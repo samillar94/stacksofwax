@@ -1,2 +1,2 @@
 # stacksofwax
-Web dev project for the QUB MSc Software Development
+Web dev project for the MSc Software Development at Queen's University Belfast - a web app for vinyl collectors.
