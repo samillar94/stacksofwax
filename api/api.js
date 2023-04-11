@@ -5,8 +5,6 @@ const mysql = require('mysql');
 const app = express();
 const API_PORT = process.env.API_PORT || 4000;
 
-app.set('view engine', 'ejs');
-
 app.use(express.urlencoded({extended: true}));
 
 const connection = mysql.createPool({
@@ -26,6 +24,7 @@ connection.getConnection((err)=>{
     console.log("The API has connected to the stacksofwax database.");
 });
 
+
 app.get("/vinyls", (req, res)=>{
 
     let allvinylsQ = `SELECT * FROM vinyl;`
@@ -33,6 +32,33 @@ app.get("/vinyls", (req, res)=>{
     connection.query(allvinylsQ, (err, data)=>{
         if (err) throw err;
         res.json({data});
+    });
+
+});
+
+app.post("/signup", (req, res)=>{
+
+    let username = req.body.username;
+    let passwordraw = req.body.passwordraw;
+
+    // TODO SHA1 here
+
+    let signupQ = `SELECT 1;`
+
+    connection.query(signupQ, [username, passwordraw], (err, data)=>{
+        if(err) {
+            res.json({err}); 
+            throw err;
+        }
+
+        if(data){
+            let respObj = {
+                id: data.insertId,
+                title: username,
+                message: `${username} added to database`,
+            };
+            res.json({respObj}); 
+        }
     });
 
 });

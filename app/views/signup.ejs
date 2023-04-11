@@ -1,0 +1,12 @@
+<%- include('header') %>
+<h2>Join us!</h2>
+
+<form method="POST" action="/signup">
+  <label>
+    <input name="username" type="text" placeholder="Pick a funky username">
+    <input name="passwordraw1" type="password" placeholder="Craft a strong password">
+    <input name="passwordraw2" type="password" placeholder="Confirm your password">
+  </label>
+  <button class='button'>Create account</button>
+</form>
+<%- include('footer') %>
