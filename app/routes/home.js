@@ -12,8 +12,7 @@ router.get('/', (req, res, next)=> {
         //get at the session object and store it in a local variable
         let sess_obj = req.session;
         let from = req.headers.referer; // can use this to display page differently 
-        console.log(sess_obj);
-       
+        // console.log(sess_obj);
 
         let vinylsEP = `http://localhost:${API_PORT}/vinyls`;
         // TODO top n vinyls

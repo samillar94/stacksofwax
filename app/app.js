@@ -5,32 +5,23 @@ const cookieParser = require('cookie-parser');
 const sessions = require('express-session');
 const axios = require("axios");
 
-
 /// app and ports
 const app = express();
 const APP_PORT = process.env.APP_PORT || 3000;
 const API_PORT = process.env.API_PORT || 4000;
 
-/// custom HTTP response codes for redirects
-const CHRC_login = 309;
-const CHRC_logout = 389;
-const CHRC_failed = 399;
-
 /// custom modules
 const globalErrHandler = require("./middleware/errorHandler");
 
+/// middleware 
 app.set('view engine', 'ejs');
-
-//middleware 
 app.use(sessions({
     secret: 'thisisasecret',
     saveUninitialized: false,
     resave: false
     })
 );
-app.use(express.urlencoded({extended: true}));
-
-
+app.use(express.urlencoded({extended: true})); 
 
 /// test
 let testEP = `http://localhost:${API_PORT}/vinyls`;
@@ -45,26 +36,62 @@ const signupRoute = require('./routes/signup.js');
 app.use('/signup', signupRoute);
 
 app.get('/loginpage', (req, res) => {
-    res.render('login', {member: false}); 
+    res.render('loginpage', {member: false}); 
 });
 
-app.get('/login', (req, res) => {
-    let sessionObj = req.session;
-    sessionObj.sess_valid = true;
+app.post('/login', (req, res) => { 
+
     console.log("logging in?");
+
+    let username = req.body.username;
+    let passwordraw = req.body.passwordraw;
+
+    const checkData = {username, passwordraw};
+
+    const config = {
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded'
+        }
+    };
+
+    let signupEP = `http://localhost:${API_PORT}/login`;
+    
+    axios.post(signupEP, checkData, config)
+    .then((response) => {
+
+        /// TODO use data when we see what it is
+        console.log(response.data);
+        let session_obj = req.session;
+        if (!session_obj.user_id) session_obj.user_id = response.data.respObj.id;
+        res.redirect("/goodlogin");
+
+    }).catch((err)=>{
+
+        console.log(err.message);
+        res.redirect("/"); 
+
+    });
+    
+});
+
+app.get('/goodlogin', (req, res) => {
+    let session_obj = req.session;
+    session_obj.sess_valid = true;
+    console.log("logged in");
     res.redirect('/'); 
 });
 
 app.get('/logout', (req, res) => {
     req.session.destroy();
-    console.log("logging out?");
+    console.log("logged out");
     res.redirect('/');
 });
 
 app.get('/membersonly', (req, res)=>{
     let session_obj = req.session;
     if (session_obj.sess_valid) {
-        res.render('membersonly', {member: true});
+        console.log(session_obj.user_id)
+        res.render('membersonly', {member: true, user_id: session_obj.user_id });
     } else {
         res.redirect('/');
     }
@@ -72,7 +99,7 @@ app.get('/membersonly', (req, res)=>{
 
 app.use(globalErrHandler);
 
-// const server = 
+/// const server = 
 app.listen(APP_PORT, () => {
     console.log(`App started at http://localhost:${APP_PORT}`);
 }); 

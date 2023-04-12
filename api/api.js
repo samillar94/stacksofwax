@@ -39,25 +39,80 @@ app.get("/vinyls", (req, res)=>{
 app.post("/signup", (req, res)=>{
 
     let username = req.body.username;
-    let passwordraw = req.body.passwordraw;
+    let passwordraw = req.body.passwordraw; 
+    /// TODO ensure same password 
 
-    // TODO SHA1 here
+    let signupQ = `#Create a random code, six chars in length
+            SET @salt = SUBSTRING(SHA1(RAND()), 1, 6);
+            
+            #Concat our salt and our plain password, then hash them.
+            SET @saltedHash = SHA1(CONCAT(@salt, ?));
+            
+            #Get the value we should store in the database (concat of the plain text salt and the hash)
+            SET @storedSaltedHash = CONCAT(@salt,@saltedHash);
+            
+            #Store this user in the database
+            INSERT INTO user (user_id, username, password) 
+            VALUES (NULL, ?, @storedSaltedHash);`
 
-    let signupQ = `SELECT 1;`
-
-    connection.query(signupQ, [username, passwordraw], (err, data)=>{
+    connection.query(signupQ, [passwordraw, username], (err, data)=>{
         if(err) {
             res.json({err}); 
             throw err;
         }
 
         if(data){
+            console.log(data);
             let respObj = {
-                id: data.insertId,
+                id: data[3].insertId,
+                /// TODO find out why 4 OKpackets
                 title: username,
                 message: `${username} added to database`,
             };
             res.json({respObj}); 
+        }
+    });
+
+});
+
+app.post("/login", (req, res)=>{
+
+    console.log("logging in?")
+
+    let username = req.body.username;
+    let passwordraw = req.body.passwordraw;
+
+    let loginQ = `#Get the salt which is stored in clear text
+    SELECT @saltInUse := SUBSTRING(password, 1, 6) FROM user WHERE username = ?;
+    
+    #Get the hash of the salted password entered by the user at SIGN UP
+    SELECT @storedSaltedHashInUse := SUBSTRING(password, 7, 40) FROM user WHERE username = ?;
+    
+    #Concat our salt in use and our login password attempt, then hash them.
+    SET @saltedHash = SHA1(CONCAT(@saltInUse, ?));
+    
+    #Return the user id
+    SELECT user_id FROM user WHERE username = ? AND password = CONCAT(@saltInUse, @saltedHash);`;
+  
+    connection.query(loginQ, [username, username, passwordraw, username], (err, data)=>{
+        if(err) {
+            res.json({err}); 
+            throw err;
+        }
+        /// TODO tidy this up
+        if(data){
+            try {
+                console.log(data[3][0].user_id);
+                let respObj = {
+                    id: data[3][0].user_id,
+                    title: username,
+                    message: `${username} logged in`,
+                };
+                console.log(respObj);
+                res.json({respObj}); 
+            } catch {
+                res.json({err});
+            }
         }
     });
 

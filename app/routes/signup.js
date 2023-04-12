@@ -11,9 +11,9 @@ const CHRC_logout = 389;
 const CHRC_failed = 399;
 
 router.get('/', (req, res)=>{
-    //get at the session object and store it in a local variable
+    /// get at the session object and store it in a local variable
     let sess_obj = req.session;
-    console.log(sess_obj);
+    // console.log(sess_obj);
     res.render('signup', {member: false});
 });
 
@@ -21,12 +21,12 @@ router.post('/', (req, res, next)=> {
 
     try {
 
-        //get at the session object and store it in a local variable
+        /// get at the session object and store it in a local variable
         let sess_obj = req.session;
-        console.log(sess_obj);
+        // console.log(sess_obj);
 
         let username = req.body.username;
-        let passwordraw = req.body.passwordraw;
+        let passwordraw = req.body.passwordraw1;
 
         const insertData = {username, passwordraw};
     
@@ -37,7 +37,6 @@ router.post('/', (req, res, next)=> {
         }
     
         let signupEP = `http://localhost:${API_PORT}/signup`;
-        let vinylsEP = `http://localhost:${API_PORT}/vinyls`;
         
         axios.post(signupEP, insertData, config)
         .then((response) => {
@@ -45,23 +44,13 @@ router.post('/', (req, res, next)=> {
             let insertedid = response.data.respObj.id; 
             let resmessage = response.data.respObj.message;
 
-            console.log(`${resmessage}. INSERTED user_id ${insertedid}`);
-
-            axios.get(vinylsEP).then((response2)=>{
-                res.redirect("/login");
-                // let data = response2.data.data;
-                // res.render('home', {titletext : 'vinyls say signup successful', data});  
-            });
+            console.log(`${resmessage}. INSERTED user_id ${insertedid}. `);
+            res.redirect("/goodlogin");
 
         }).catch((err)=>{ 
 
             console.log(err.message);
-
-            axios.get(vinylsEP).then((response2)=>{
-                res.redirect("/");
-                // let data = response2.data.data;
-                // res.render('home', {titletext : 'vinyls say signup unsuccessful', data});  
-            });
+            res.redirect("/");
 
         });
 
