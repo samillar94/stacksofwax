@@ -7,6 +7,10 @@ const API_PORT = process.env.API_PORT || 4000;
 
 app.use(express.urlencoded({extended: true}));
 
+
+/// custom modules
+const globalErrHandler = require("./middleware/errorHandler");
+
 const connection = mysql.createPool({
     host: process.env.DB_HOST,
     user: process.env.DB_USER,
@@ -27,7 +31,7 @@ connection.getConnection((err)=>{
 
 app.get("/vinyls", (req, res)=>{
 
-    let allvinylsQ = `SELECT * FROM vinyl;`
+    let allvinylsQ = `SELECT vinyl_id, vinylname FROM vinyl;`
 
     connection.query(allvinylsQ, (err, data)=>{
         if (err) throw err;
@@ -36,7 +40,7 @@ app.get("/vinyls", (req, res)=>{
 
 });
 
-app.get("/vinyl", (req, res)=>{
+app.get("/vinyl", (req, res, next)=>{
 
     let id = req.query.id;
 
@@ -44,11 +48,36 @@ app.get("/vinyl", (req, res)=>{
     FROM vinyl 
     LEFT JOIN label ON vinyl.label_id = label.label_id
     WHERE vinyl_id = ?;`
-
+///TODO try catch
     connection.query(vinylQ, [id], (err, data)=>{
         if (err) throw err;
         res.json(data[0]);
         console.log(data[0].vinylname + " viewed");
+    });
+
+});
+
+app.get("/collectors", (req, res)=>{
+
+    let publiccollectorsQ = `SELECT user_id, username, joindate FROM user WHERE public;`
+
+    connection.query(publiccollectorsQ, (err, data)=>{
+        if (err) throw err;
+        res.json({data});
+    });
+
+});
+
+app.get("/collector", (req, res)=>{
+
+    let id = req.query.id;
+    let sessionuserid = req.query.sessionuserid;
+
+    let collectorQ = `SELECT user_id, username, joindate, bio FROM user WHERE (public OR user_id = ?) AND user_id = ?;`
+
+    connection.query(collectorQ, [sessionuserid, id], (err, data)=>{
+        if (err) throw err;
+        res.json(data[0]);
     });
 
 });
@@ -132,6 +161,8 @@ app.post("/login", (req, res)=>{
     });
 
 });
+
+app.use(globalErrHandler); // doesn't work yet
 
 const server = app.listen(API_PORT, () => {
     console.log(`API started at http://localhost:${server.address().port}/`);

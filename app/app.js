@@ -31,7 +31,7 @@ app.use('/signup', signupRoute);
 
 app.get('/login', (req, res) => {
 
-    res.render('login', {member: false}); 
+    res.render('login', {member: req.session.sess_valid}); 
 
 });
 
@@ -55,13 +55,13 @@ app.post('/login', (req, res) => {
     axios.post(signupEP, checkData, config)
     .then((response) => {
 
-        console.log(response.data);
+        console.log("login attempt: "+response.data);
         if (!req.session.user_id) req.session.user_id = response.data.respObj.id;
         res.redirect("/goodlogin");
 
     }).catch((err)=>{
 
-        console.log(err.message);
+        console.log("Error in login post route: ", err.message);
         res.redirect("/"); 
 
     });
@@ -69,23 +69,29 @@ app.post('/login', (req, res) => {
 });
 
 app.get('/goodlogin', (req, res) => {
+
     req.session.sess_valid = true;
     console.log("logged in");
     res.redirect('/'); 
+
 });
 
 app.get('/logout', (req, res) => {
+
     req.session.destroy();
     console.log("logged out");
     res.redirect('/');
+
 });
 
 app.get('/membersonly', (req, res)=>{
+
     if (req.session.sess_valid) {
         res.render('membersonly', {member: req.session.sess_valid, user_id: req.session.user_id });
     } else {
         res.redirect('/');
     }
+
 });
 
 app.get("/vinyl", (req, res) => {
@@ -97,17 +103,59 @@ app.get("/vinyl", (req, res) => {
     axios.get(vinylEP).then(results => {
         
         let data = results.data;
-        res.render('vinyl', {data, member: req.session.sess_valid});
+
+        if (!data) {
+            res.redirect('/');
+        } else {
+            res.render('vinyl', {data, member: req.session.sess_valid});
+        }
 
     }).catch(err => {
-        console.log("Error: ", err.message);
+        console.log("Error in vinyl route: ", err.message);
+    });
+
+});
+
+app.get("/collectors", (req, res)=>{
+
+    let collectorsEP = `http://localhost:${API_PORT}/collectors`;
+
+    axios.get(collectorsEP).then((results)=>{
+
+        let data = results.data.data;
+        res.render('collectors', {data, member: req.session.sess_valid});  
+
+    }).catch(err => {
+        console.log("Error in collectors route: ", err.message);
+    });
+
+});
+
+app.get("/collector", (req, res)=>{
+
+    let id = req.query.id;
+    let sessionuserid = req.session.user_id;
+
+    let collectorEP = `http://localhost:${API_PORT}/collector?id=${id}&sessionuserid=${sessionuserid}`;
+
+    axios.get(collectorEP).then((results)=>{
+
+        let data = results.data;
+
+        if (!data) {
+            res.redirect('/collectors');
+        } else {
+            res.render('collector', {data, member: req.session.sess_valid});  
+        }
+
+    }).catch(err => {
+        console.log("Error in collector route: ", err.message);
     });
 
 });
 
 app.use(globalErrHandler);
 
-/// const server = 
-app.listen(APP_PORT, () => {
-    console.log(`App started at http://localhost:${APP_PORT}/`);
+const server = app.listen(APP_PORT, () => {
+    console.log(`App started at http://localhost:${server.address().port}/`);
 }); 

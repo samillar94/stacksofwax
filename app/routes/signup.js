@@ -39,7 +39,9 @@ router.post('/', (req, res, next)=> {
             let insertedid = response.data.respObj.id; 
             let resmessage = response.data.respObj.message;
 
-            console.log(`${resmessage}. INSERTED user_id ${insertedid}. `);
+            req.session.user_id = insertedid;
+
+            console.log(`${resmessage}. Inserted user_id ${insertedid}.`);
             res.redirect("/goodlogin");
 
         }).catch((err)=>{ 

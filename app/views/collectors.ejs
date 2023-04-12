@@ -1,0 +1,27 @@
+<%- include('header') %>
+  
+  <div style="margin: 0 auto; padding: 100px">
+    
+    <h2>STACKSOFWAX members</h2>
+
+    <div class="flex one two-600 three-800 four-1000"> 
+
+      <table>
+        <tr>
+          <th>Username</th>
+          <th>Stack</th>
+          <th>Joined</th>
+        </tr>
+
+        <% data.forEach( (collector)=>{   %>
+        <tr>
+          <th><a class="button" href="/collector?id=<%= collector.user_id %>"><%= collector.username %></a></th>
+          <td>?</td>
+          <td><%= collector.joindate %></td>
+        </tr>
+        <% }); %>
+      </table>
+
+    </div>
+  </div>
+<%- include('footer') %>
