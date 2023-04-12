@@ -5,11 +5,6 @@ const axios = require('axios');
 const APP_PORT = process.env.APP_PORT || 3000;
 const API_PORT = process.env.API_PORT || 4000;
 
-/// custom HTTP response codes for redirects
-const CHRC_login = 309;
-const CHRC_logout = 389;
-const CHRC_failed = 399;
-
 router.get('/', (req, res)=>{
     /// get at the session object and store it in a local variable
     let sess_obj = req.session;
@@ -59,8 +54,8 @@ router.post('/', (req, res, next)=> {
     } catch (err) {
         
         console.log(err.message);
-        next(); // sends control flow to next bit of code
-        // TODO throws error - next not defined
+        next(); /// sends control flow to next bit of code
+        /// TODO throws error - next not defined
 
     }
 

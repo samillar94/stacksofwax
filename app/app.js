@@ -23,20 +23,16 @@ app.use(sessions({
 );
 app.use(express.urlencoded({extended: true})); 
 
-/// test
-let testEP = `http://localhost:${API_PORT}/vinyls`;
-axios.get(testEP).then((response)=>{
-    console.log(response.data.data[0]);  
-});
-
 /// routes
 const homeRoute = require('./routes/home.js');
 app.use('/', homeRoute);
 const signupRoute = require('./routes/signup.js');
 app.use('/signup', signupRoute);
 
-app.get('/loginpage', (req, res) => {
-    res.render('loginpage', {member: false}); 
+app.get('/login', (req, res) => {
+
+    res.render('login', {member: false}); 
+
 });
 
 app.post('/login', (req, res) => { 
@@ -59,10 +55,8 @@ app.post('/login', (req, res) => {
     axios.post(signupEP, checkData, config)
     .then((response) => {
 
-        /// TODO use data when we see what it is
         console.log(response.data);
-        let session_obj = req.session;
-        if (!session_obj.user_id) session_obj.user_id = response.data.respObj.id;
+        if (!req.session.user_id) req.session.user_id = response.data.respObj.id;
         res.redirect("/goodlogin");
 
     }).catch((err)=>{
@@ -75,8 +69,7 @@ app.post('/login', (req, res) => {
 });
 
 app.get('/goodlogin', (req, res) => {
-    let session_obj = req.session;
-    session_obj.sess_valid = true;
+    req.session.sess_valid = true;
     console.log("logged in");
     res.redirect('/'); 
 });
@@ -88,18 +81,33 @@ app.get('/logout', (req, res) => {
 });
 
 app.get('/membersonly', (req, res)=>{
-    let session_obj = req.session;
-    if (session_obj.sess_valid) {
-        console.log(session_obj.user_id)
-        res.render('membersonly', {member: true, user_id: session_obj.user_id });
+    if (req.session.sess_valid) {
+        res.render('membersonly', {member: req.session.sess_valid, user_id: req.session.user_id });
     } else {
         res.redirect('/');
     }
+});
+
+app.get("/vinyl", (req, res) => {
+
+    let id = req.query.id;
+
+    let vinylEP = `http://localhost:${API_PORT}/vinyl?id=${id}`;
+    
+    axios.get(vinylEP).then(results => {
+        
+        let data = results.data;
+        res.render('vinyl', {data, member: req.session.sess_valid});
+
+    }).catch(err => {
+        console.log("Error: ", err.message);
+    });
+
 });
 
 app.use(globalErrHandler);
 
 /// const server = 
 app.listen(APP_PORT, () => {
-    console.log(`App started at http://localhost:${APP_PORT}`);
+    console.log(`App started at http://localhost:${APP_PORT}/`);
 }); 

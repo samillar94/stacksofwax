@@ -9,8 +9,6 @@ router.get('/', (req, res, next)=> {
 
     try {
 
-        //get at the session object and store it in a local variable
-        let sess_obj = req.session;
         let from = req.headers.referer; // can use this to display page differently 
         // console.log(sess_obj);
 
@@ -19,7 +17,7 @@ router.get('/', (req, res, next)=> {
 
         axios.get(vinylsEP).then((response)=>{
             let data = response.data.data;
-            res.render('home', {titletext : 'vinyls', data, member: sess_obj.sess_valid});  
+            res.render('home', {titletext : 'vinyls', data, member: req.session.sess_valid});  
         });
 
     } catch (err) {

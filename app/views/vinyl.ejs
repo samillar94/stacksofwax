@@ -1,0 +1,23 @@
+<%- include('header') %>
+  
+  <div style="margin: 0 auto; padding: 100px;">
+    
+    <h2><%= data.vinylname %></h2>
+    
+    <table>
+      <tr>
+        <td>Year</td>
+        <td><%= data.year %></td>
+      </tr>
+      <tr>
+        <td>Notes</td>
+        <td><%= data.notes %></td>
+      </tr>
+      <tr>
+        <td>Label</td>
+        <td><a href="/label?id=<%= data.label_id %>"><%= data.labelname %></a></td>
+      </tr>
+    </table>
+
+  </div>
+<%- include('footer') %>

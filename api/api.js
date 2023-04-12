@@ -36,11 +36,28 @@ app.get("/vinyls", (req, res)=>{
 
 });
 
+app.get("/vinyl", (req, res)=>{
+
+    let id = req.query.id;
+
+    let vinylQ = `SELECT vinylname, year, vinyl.notes AS notes, label.label_id AS label_id, labelname
+    FROM vinyl 
+    LEFT JOIN label ON vinyl.label_id = label.label_id
+    WHERE vinyl_id = ?;`
+
+    connection.query(vinylQ, [id], (err, data)=>{
+        if (err) throw err;
+        res.json(data[0]);
+        console.log(data[0].vinylname + " viewed");
+    });
+
+});
+
 app.post("/signup", (req, res)=>{
 
     let username = req.body.username;
     let passwordraw = req.body.passwordraw; 
-    /// TODO ensure same password 
+    /// TODO ensure passwords match (client JS)
 
     let signupQ = `#Create a random code, six chars in length
             SET @salt = SUBSTRING(SHA1(RAND()), 1, 6);
@@ -64,8 +81,7 @@ app.post("/signup", (req, res)=>{
         if(data){
             console.log(data);
             let respObj = {
-                id: data[3].insertId,
-                /// TODO find out why 4 OKpackets
+                id: data[3].insertId, /// 4 OK packets from 4 commands
                 title: username,
                 message: `${username} added to database`,
             };
@@ -102,7 +118,6 @@ app.post("/login", (req, res)=>{
         /// TODO tidy this up
         if(data){
             try {
-                console.log(data[3][0].user_id);
                 let respObj = {
                     id: data[3][0].user_id,
                     title: username,
@@ -119,5 +134,5 @@ app.post("/login", (req, res)=>{
 });
 
 const server = app.listen(API_PORT, () => {
-    console.log(`API started on port ${server.address().port}.`);
+    console.log(`API started at http://localhost:${server.address().port}/`);
 });
