@@ -3,7 +3,7 @@
   <div style="margin: 0 auto; padding: 100px;">
     
     <h2><%= data.releasename %></h2>
-    <% if (data.vinyls>1) { %><p><%= data.vinyls %>-vinyl release</p><% } <%>
+    <% if (data.vinyls>1) { %><p><%= data.vinyls %>-vinyl release</p><% } %>
     <table>
       <tr>
         <th>Year</th>
@@ -22,6 +22,7 @@
         </td>
       </tr>
     </table>
+    <!-- TODO include add button and table of owned copies and comments for members -->
 
   </div>
 <%- include('footer') %>

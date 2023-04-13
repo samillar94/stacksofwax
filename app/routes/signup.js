@@ -6,19 +6,14 @@ const APP_PORT = process.env.APP_PORT || 3000;
 const API_PORT = process.env.API_PORT || 4000;
 
 router.get('/', (req, res)=>{
-    /// get at the session object and store it in a local variable
-    let sess_obj = req.session;
-    // console.log(sess_obj);
+
     res.render('signup', {member: false});
+
 });
 
 router.post('/', (req, res, next)=> { 
 
     try {
-
-        /// get at the session object and store it in a local variable
-        let sess_obj = req.session;
-        // console.log(sess_obj);
 
         let username = req.body.username;
         let passwordraw = req.body.passwordraw1;
@@ -44,7 +39,8 @@ router.post('/', (req, res, next)=> {
             console.log(`${resmessage}. Inserted user_id ${insertedid}.`);
             res.redirect("/goodlogin");
 
-        }).catch((err)=>{ 
+        })
+        .catch((err)=>{ 
 
             console.log(err.message);
             res.redirect("/");
@@ -56,8 +52,7 @@ router.post('/', (req, res, next)=> {
     } catch (err) {
         
         console.log(err.message);
-        next(); /// sends control flow to next bit of code
-        /// TODO throws error - next not defined
+        res.redirect("/");
 
     }
 

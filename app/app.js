@@ -50,7 +50,7 @@ app.post('/login', (req, res) => {
         }
     };
 
-    let signupEP = `http://localhost:${API_PORT}/login`;
+    let signupEP = `http://localhost:${API_PORT}/login`; 
     
     axios.post(signupEP, checkData, config)
     .then((response) => {
@@ -103,15 +103,20 @@ app.get("/vinyl", (req, res) => {
     axios.get(vinylEP).then(results => {
         
         let data = results.data;
-
-        if (!data) {
-            res.redirect('/');
-        } else {
+ 
+        if (data.release_id) {
             res.render('vinyl', {data, member: req.session.sess_valid});
+        } else {
+            console.log("Vinyl route received no release data from the API.");
+            console.log("Response:", data);
+            res.redirect('/');
         }
 
     }).catch(err => {
+
         console.log("Error in vinyl route: ", err.message);
+        res.redirect('/');
+
     });
 
 });
@@ -122,11 +127,14 @@ app.get("/collectors", (req, res)=>{
 
     axios.get(collectorsEP).then((results)=>{
 
-        let data = results.data.data;
+        let data = results.data;
         res.render('collectors', {data, member: req.session.sess_valid});  
 
     }).catch(err => {
+
         console.log("Error in collectors route: ", err.message);
+        res.redirect('/');
+
     });
 
 });
@@ -142,14 +150,19 @@ app.get("/collector", (req, res)=>{
 
         let data = results.data;
 
-        if (!data) {
-            res.redirect('/collectors');
-        } else {
+        if (data.user_id) {
             res.render('collector', {data, member: req.session.sess_valid});  
+        } else {
+            console.log("Collector route received no user data from the API.")
+            console.log("Response:", data);
+            res.redirect('/collectors');
         }
 
     }).catch(err => {
+
         console.log("Error in collector route: ", err.message);
+        res.redirect('/collectors');
+
     });
 
 });
