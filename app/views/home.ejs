@@ -8,9 +8,9 @@
 
     <div class="flex one two-600 three-800 four-1000"> 
 
-        <% data.forEach( (vinyl)=>{   %>
+        <% data.forEach( (release)=>{   %>
             <div>
-                <a class="button" href="/vinyl?id=<%= vinyl.vinyl_id %>"><%= vinyl.vinylname %></a>
+                <a class="button" href="/vinyl?id=<%= release.release_id %>"><%= release.releasename %></a>
             </div>
         <% }); %>
 

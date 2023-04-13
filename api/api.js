@@ -31,7 +31,7 @@ connection.getConnection((err)=>{
 
 app.get("/vinyls", (req, res)=>{
 
-    let allvinylsQ = `SELECT vinyl_id, vinylname FROM vinyl;`
+    let allvinylsQ = `SELECT release_id, releasename FROM release;`
 
     connection.query(allvinylsQ, (err, data)=>{
         if (err) throw err;
@@ -44,15 +44,15 @@ app.get("/vinyl", (req, res, next)=>{
 
     let id = req.query.id;
 
-    let vinylQ = `SELECT vinylname, year, vinyl.notes AS notes, label.label_id AS label_id, labelname
-    FROM vinyl 
-    LEFT JOIN label ON vinyl.label_id = label.label_id
-    WHERE vinyl_id = ?;`
+    let vinylQ = `SELECT releasename, year, releasenotes, label.label_id AS label_id, labelname
+    FROM release 
+    LEFT JOIN label ON release.label_id = label.label_id
+    WHERE release_id = ?;`
 ///TODO try catch
     connection.query(vinylQ, [id], (err, data)=>{
         if (err) throw err;
         res.json(data[0]);
-        console.log(data[0].vinylname + " viewed");
+        console.log(data[0].releasename + " viewed");
     });
 
 });

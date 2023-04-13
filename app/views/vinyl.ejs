@@ -2,8 +2,8 @@
   
   <div style="margin: 0 auto; padding: 100px;">
     
-    <h2><%= data.vinylname %></h2>
-    
+    <h2><%= data.releasename %></h2>
+    <% if (data.vinyls>1) { %><p><%= data.vinyls %>-vinyl release</p><% } <%>
     <table>
       <tr>
         <th>Year</th>
@@ -11,11 +11,15 @@
       </tr>
       <tr>
         <th>Notes</th>
-        <td><%= data.notes %></td>
+        <td><%= data.releasenotes %></td>
       </tr>
       <tr>
         <th>Label</th>
-        <td><a href="/label?id=<%= data.label_id %>"><%= data.labelname %></a></td>
+        <td>
+          <!--<a href="/label?id=<%= data.label_id %>">-->
+            <%= data.labelname %>
+          <!--</a>-->
+        </td>
       </tr>
     </table>
 
