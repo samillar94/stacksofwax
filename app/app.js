@@ -37,8 +37,6 @@ app.get('/login', (req, res) => {
 
 app.post('/login', (req, res) => { 
 
-    console.log("logging in?");
-
     let username = req.body.username;
     let passwordraw = req.body.passwordraw;
 
@@ -54,15 +52,22 @@ app.post('/login', (req, res) => {
     
     axios.post(signupEP, checkData, config)
     .then((response) => {
+        console.log(`Login attempt by "${username}"...`);
 
-        console.log("login attempt: "+response.data);
-        if (!req.session.user_id) req.session.user_id = response.data.respObj.id;
-        res.redirect("/goodlogin");
+        if (response.data.respObj) {
+            if (!req.session.user_id) req.session.user_id = response.data.respObj.id;
+            console.log("...succeeded.");
+            res.redirect("/goodlogin");
+        } else {
+            console.log("...failed - no data from the API.");
+            console.log("Response:", response.data);
+            res.redirect("/?message=loginfailed"); 
+        }
 
     }).catch((err)=>{
 
         console.log("Error in login post route: ", err.message);
-        res.redirect("/"); 
+        res.redirect("/?message=loginbug"); 
 
     });
     
@@ -72,7 +77,7 @@ app.get('/goodlogin', (req, res) => {
 
     req.session.sess_valid = true;
     console.log("logged in");
-    res.redirect('/'); 
+    res.redirect('/?message=goodlogin'); 
 
 });
 
@@ -80,7 +85,7 @@ app.get('/logout', (req, res) => {
 
     req.session.destroy();
     console.log("logged out");
-    res.redirect('/');
+    res.redirect('/?message=loggedout');
 
 });
 
@@ -89,7 +94,7 @@ app.get('/membersonly', (req, res)=>{
     if (req.session.sess_valid) {
         res.render('membersonly', {member: req.session.sess_valid, user_id: req.session.user_id });
     } else {
-        res.redirect('/');
+        res.redirect('/?message=unauthorised');
     }
 
 });
@@ -109,13 +114,13 @@ app.get("/vinyl", (req, res) => {
         } else {
             console.log("Vinyl route received no release data from the API.");
             console.log("Response:", data);
-            res.redirect('/');
+            res.redirect('/?message=novinyl');
         }
 
     }).catch(err => {
 
         console.log("Error in vinyl route: ", err.message);
-        res.redirect('/');
+        res.redirect('/?message=vinylbug');
 
     });
 
@@ -133,7 +138,7 @@ app.get("/collectors", (req, res)=>{
     }).catch(err => {
 
         console.log("Error in collectors route: ", err.message);
-        res.redirect('/');
+        res.redirect('/?message=collectorsbug');
 
     });
 

@@ -8,7 +8,7 @@ const API_PORT = process.env.API_PORT || 4000;
 app.use(express.urlencoded({extended: true}));
 
 
-/// custom modules
+/// may not use this
 const globalErrHandler = require("./middleware/errorHandler");
 
 const connection = mysql.createPool({
@@ -35,12 +35,14 @@ app.get("/vinyls", (req, res, next)=>{
 
     connection.query(allvinylsQ, (err, data)=>{
         if (err) {
-            console.log(err); /// this is the API's business, not the app's
+            console.log(err);
+            res.json(err);
         } else if (data[0].release_id) { /// checks the data is not blank
             res.json(data);
         } else {
-            console.log("No release data. (Why??)");
-            next();
+            let apimessage = "No release data. (Why??)";
+            console.log(apimessage);
+            res.json(apimessage);
         }
     });
 
@@ -63,7 +65,7 @@ app.get("/vinyl", (req, res, next)=>{
             console.log(data[0].releasename, "viewed.");
             res.json(data[0]);
         } else {
-            apimessage = "The release requested does not exist.";
+            let apimessage = "The release requested does not exist.";
             console.log(apimessage);
             res.json(apimessage);
         }
@@ -78,11 +80,13 @@ app.get("/collectors", (req, res, next)=>{
     connection.query(publiccollectorsQ, (err, data)=>{
         if (err) {
             console.log(err); 
+            res.json(err);
         } else if (data[0]) { 
             res.json(data);
         } else {
-            console.log("No user data. (Why??)");
-            next();
+            let apimessage = "No user data, for some godforsaken reason."
+            console.log(apimessage);
+            res.json(apimessage);
         }
     });
 
@@ -103,7 +107,7 @@ app.get("/collector", (req, res)=>{
             console.log(data[0].username, "viewed.")
             res.json(data[0]);
         } else {
-            apimessage = "The user requested does not exist, or is not visible.";
+            let apimessage = "The user requested does not exist, or is not visible.";
             console.log(apimessage);
             res.json(apimessage);
         }
@@ -135,7 +139,7 @@ app.post("/signup", (req, res, next)=>{
     connection.query(signupQ, [passwordraw, username], (err, data)=>{
         if (err) {
             console.log("User creation failed: ", err.sqlMessage);
-            res.json({err}); 
+            res.json(err); 
         } else if (data[3].insertId) {
   
             let respObj = {
@@ -146,8 +150,9 @@ app.post("/signup", (req, res, next)=>{
             res.json({respObj}); 
 
         } else {
-            console.log("Something wacky's happened with signup.");
-            next();
+            let apimessage = "Something wacky's happened with signup.";
+            console.log(apimessage);
+            res.json(apimessage);
         }
     });
 
@@ -175,7 +180,7 @@ app.post("/login", (req, res)=>{
     connection.query(loginQ, [username, username, passwordraw, username], (err, data)=>{
         if(err) {
             res.json({err}); 
-        } else if (data) {
+        } else if (data[3][0]) {
             try {
                 let respObj = {
                     id: data[3][0].user_id,
@@ -187,6 +192,10 @@ app.post("/login", (req, res)=>{
             } catch {
                 res.json({err});
             }
+        } else {
+            apimessage = "Login details invalid.";
+            console.log(apimessage);
+            res.json(apimessage);
         }
     });
 

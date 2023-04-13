@@ -24,37 +24,40 @@ router.post('/', (req, res, next)=> {
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded'
             }
-        }
+        };
     
         let signupEP = `http://localhost:${API_PORT}/signup`;
         
         axios.post(signupEP, insertData, config)
         .then((response) => {
 
-            let insertedid = response.data.respObj.id; 
-            let resmessage = response.data.respObj.message;
+            let data = response.data;
 
-            req.session.user_id = insertedid;
+            if (data.respObj) {
 
-            console.log(`${resmessage}. Inserted user_id ${insertedid}.`);
-            res.redirect("/goodlogin");
+                let insertedid = data.respObj.id; 
+                let resmessage = data.respObj.message;
 
-        })
-        .catch((err)=>{ 
+                req.session.user_id = insertedid;
 
-            console.log(err.message);
-            res.redirect("/");
+                console.log(`${resmessage}. Inserted user_id ${insertedid}.`);
+                res.redirect("/goodlogin");
+
+            } else {
+
+                console.log("Signup failed:", data.sqlMessage);
+                res.redirect("/?message=signupfailed");
+
+            };
 
         });
 
-
-
     } catch (err) {
         
-        console.log(err.message);
-        res.redirect("/");
+        console.log("Error in signup route:", err.message);
+        res.redirect("/?message=signupbug");
 
-    }
+    };
 
 });
 
