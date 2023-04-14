@@ -2,7 +2,6 @@ const express = require("express");
 const router = express.Router();
 const axios = require('axios');
 
-const APP_PORT = process.env.APP_PORT || 3000;
 const API_PORT = process.env.API_PORT || 4000;
 
 router.get('/', (req, res)=>{
@@ -29,23 +28,19 @@ router.post('/', (req, res, next)=> {
         let signupEP = `http://localhost:${API_PORT}/signup`;
         
         axios.post(signupEP, insertData, config)
-        .then((response) => {
+        .then((results) => {
 
-            let data = response.data;
+            let goodstuff = results.data.goodstuff;
 
-            if (data.respObj) {
+            if (goodstuff) {
 
-                let insertedid = data.respObj.id; 
-                let resmessage = data.respObj.message;
-
-                req.session.user_id = insertedid;
-
-                console.log(`${resmessage}. Inserted user_id ${insertedid}.`);
+                req.session.user_id = goodstuff.insertId;
+                console.log(`${goodstuff.apimessage}. Inserted user_id ${goodstuff.insertId}.`);
                 res.redirect("/goodlogin");
 
             } else {
 
-                console.log("Signup failed:", data.sqlMessage);
+                console.log("Signup failed:", results.data.badstuff);
                 res.redirect("/?message=signupfailed");
 
             };
@@ -54,7 +49,7 @@ router.post('/', (req, res, next)=> {
 
     } catch (err) {
         
-        console.log("Error in signup route:", err.message);
+        console.log("Error in signup POST route:", err.message);
         res.redirect("/?message=signupbug");
 
     };

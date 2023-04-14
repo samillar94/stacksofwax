@@ -14,9 +14,9 @@ router.get('/', (req, res, next)=> {
         /// TODO top n vinyls
 
         axios.get(vinylsEP)
-        .then((response)=>{
+        .then((results)=>{
             
-            let data = response.data;
+            let data = results.data.goodstuff;
             res.render('home', {titletext : 'vinyls', data, member: req.session.sess_valid}); 
 
         });
@@ -26,7 +26,7 @@ router.get('/', (req, res, next)=> {
         console.log(err);
         next(); /// the home route is the one place I'll pass to the error handler - all other page errors I'll just redirect here
 
-    }
+    };
 
 });
 

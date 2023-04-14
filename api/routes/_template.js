@@ -1,19 +1,17 @@
 const express = require("express");
 const router = express.Router();
-const axios = require('axios');
-
-const API_PORT = process.env.API_PORT || 4000;
+const connection = require("../connection.js");
 
 router.get('/', (req, res)=> { 
 
     try {
 
-        /// code from inside app.get here (pull axios.get.then.catch into catch block below)
+        /// code from inside app.get here
 
     } catch (err) {
 
         console.log("Error in template GET route:", err.message);
-        res.redirect("/?message=templatebug");
+        res.json(err);
 
     };
 
@@ -23,12 +21,12 @@ router.post('/', (req, res)=> {
 
     try {
 
-        /// code from inside app.post here (pull axios.post.then.catch into catch block below)
+        /// code from inside app.post here
 
     } catch (err) {
 
         console.log("Error in template POST route:", err.message);
-        res.redirect("/?message=templatebug");
+        res.json(err);
 
     };
 
