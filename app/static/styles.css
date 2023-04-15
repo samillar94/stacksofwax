@@ -3,11 +3,11 @@ html {
 }
 body {
     min-height: 100%;
-    /* background: linear-gradient(#210121, #010001); */
-    background: 
+    background: linear-gradient(0.25turn, #210121, #010001);
+    /* background: 
         linear-gradient(127deg, rgb(35, 0, 83), rgba(140, 0, 255, 0) 70%),
         linear-gradient(217deg, rgba(255,0,0,.8), rgba(255,0,0,0) 70%),
-        linear-gradient(336deg, rgba(0,0,255,.8), rgba(0,0,255,0) 70.71%);
+        linear-gradient(336deg, rgba(0,0,255,.8), rgba(0,0,255,0) 70.71%); */
     color: #eee;
     font-family: 'Segoe UI', sans-serif;
 }

@@ -8,24 +8,25 @@ router.get('/', (req, res)=> {
 
     try {
 
-        let id = req.query.id;
+        let release_id = req.query.id;
+        let user_id = req.session.user_id;
 
-        let vinylEP = `http://localhost:${API_PORT}/vinyl?id=${id}`;
+        let vinylEP = `http://localhost:${API_PORT}/vinyl?release_id=${release_id}&user_id=${user_id}`;
         
         axios.get(vinylEP)
         .then((results) => {
             
-            let data = results.data.goodstuff;
+            let { goodstuff, badstuff, gravy, baldy } = results.data;
                  
-            if (data) {
-                res.render('vinyl', {title: `${data.releasename} - Vinyl`, data, member: req.session.sess_valid});
+            if (goodstuff) {
+                res.render('vinyl', {title: `${goodstuff.releasename} - Vinyl`, goodstuff: goodstuff, gravy: gravy, member: req.session.sess_valid});
             } else {
                 console.log("Vinyl route received no release data from the API.");
-                console.log("Response:", data);
+                console.log("Response:", badstuff);
                 res.redirect('/?message=novinyl');
             }
     
-        });
+        }); 
 
     } catch (err) {
 

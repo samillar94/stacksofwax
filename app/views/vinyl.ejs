@@ -1,21 +1,21 @@
 <%- include('header') %>
     
-<h2><%= data.releasename %></h2>
-<% if (data.vinyls>1) { %><p><%= data.vinyls %>-vinyl release</p><% } %>
+<h2><%= goodstuff.releasename %></h2>
+<% if (goodstuff.vinyls>1) { %><p><%= goodstuff.vinyls %>-vinyl release</p><% } %>
 <table>
   <tr>
     <th>Year</th>
-    <td><%= data.year %></td>
+    <td><%= goodstuff.year %></td>
   </tr>
   <tr>
     <th>Notes</th>
-    <td><%= data.releasenotes %></td>
+    <td><%= goodstuff.releasenotes %></td>
   </tr>
   <tr>
     <th>Label</th>
     <td>
-      <!--<a href="/label?id=<%= data.label_id %>">-->
-        <%= data.labelname %>
+      <!--<a href="/label?id=<%= goodstuff.label_id %>">-->
+        <%= goodstuff.labelname %>
       <!--</a>-->
     </td>
   </tr>
@@ -24,9 +24,25 @@
 
 <% if (member) { %>
 <h3>My wax</h3>
+<% if(gravy[0]) { %>
+<table>
+  <tr>
+    <th>ID</th>
+    <th>Collection</th>
+    <th>My notes</th>
+  </tr>
+  <% gravy.forEach(copy => { %>
+  <tr>
+    <td><%= copy.owned_release_id %></td>
+    <td><%= copy.collectionname %></td>
+    <td><%= copy.ownercomment %></td>
+  </tr>
+  <% }) %>
+</table>
+<% } %>
 <form method="POST" action="/ihaveone">
-  <input type="hidden" id="release_id" name="release_id" value="<%= data.release_id %>">
-  <label><button class='button' >+1</button>I have <!--another-->one</label>
+  <input type="hidden" id="release_id" name="release_id" value="<%= goodstuff.release_id %>">
+  <button class='button' >I have <% if (gravy) { %>another <% } %>one</button>
 </form>
 <% } %>
 <%- include('footer') %>
