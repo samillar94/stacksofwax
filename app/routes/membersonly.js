@@ -9,7 +9,7 @@ router.get('/', (req, res)=> {
     try {
 
         if (req.session.sess_valid) {
-            res.render('membersonly', {member: req.session.sess_valid, user_id: req.session.user_id });
+            res.render('membersonly', {title: 'Shhhh!', member: req.session.sess_valid, user_id: req.session.user_id });
         } else {
             res.redirect('/?message=unauthorised');
         }

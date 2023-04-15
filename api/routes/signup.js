@@ -45,7 +45,8 @@ router.post('/', (req, res)=> {
                 apimessage: "Something wacky's happened with signup."
             };
             res.json({badstuff: badstuff});
-        }
+        };
+
     });
     
 });

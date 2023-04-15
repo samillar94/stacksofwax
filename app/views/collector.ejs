@@ -1,23 +1,20 @@
 <%- include('header') %>
-  
-  <div style="margin: 0 auto; padding: 100px;">
-    
-    <h2><%= data.username %></h2>
-    
-    <table>
-      <tr>
-        <th>Joined</th>
-        <td><%= data.joindate %></td>
-      </tr>
-      <tr>
-        <th>Bio</th>
-        <td><%= data.bio %></td>
-      </tr>
-      <tr>
-        <th>Stack</th>
-        <td>? vinyls collected</td>
-      </tr>
-    </table>
 
-  </div>
+<h2><%= data.username %></h2>
+
+<table>
+  <tr>
+    <th>Joined</th>
+    <td><%= data.joindate %></td>
+  </tr>
+  <tr>
+    <th>Bio</th>
+    <td><%= data.bio %></td>
+  </tr>
+  <tr>
+    <th>Stack</th>
+    <td>? vinyls collected</td>
+  </tr>
+</table>
+
 <%- include('footer') %>

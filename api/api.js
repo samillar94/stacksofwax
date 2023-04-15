@@ -18,18 +18,20 @@ connection.getConnection((err)=>{
 });
 
 /// routes
-const vinylsRoute = require('./routes/vinyls.js');
-app.use('/vinyls', vinylsRoute);
-const vinylRoute = require('./routes/vinyl.js');
-app.use('/vinyl', vinylRoute);
-const signupRoute = require('./routes/signup.js');
-app.use('/signup', signupRoute);
-const loginRoute = require('./routes/login.js');
-app.use('/login', loginRoute);
-const collectorsRoute = require('./routes/collectors.js');
-app.use('/collectors', collectorsRoute);
-const collectorRoute = require('./routes/collector.js');
-app.use('/collector', collectorRoute);
+const vinyls = require('./routes/vinyls.js');
+app.use('/vinyls', vinyls);
+const vinyl = require('./routes/vinyl.js');
+app.use('/vinyl', vinyl);
+const signup = require('./routes/signup.js');
+app.use('/signup', signup);
+const login = require('./routes/login.js');
+app.use('/login', login);
+const collectors = require('./routes/collectors.js');
+app.use('/collectors', collectors);
+const collector = require('./routes/collector.js');
+app.use('/collector', collector);
+const ihaveone = require('./routes/ihaveone.js');
+app.use('/ihaveone', ihaveone);
 
 app.use(globalErrHandler);
 

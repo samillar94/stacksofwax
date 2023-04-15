@@ -8,7 +8,7 @@ router.get('/', (req, res)=> {
 
     try {
 
-        res.render('login', {member: req.session.sess_valid}); 
+        res.render('login', {title: 'Login', member: req.session.sess_valid}); 
 
     } catch (err) {
 
@@ -26,7 +26,7 @@ router.post('/', (req, res)=> {
         let username = req.body.username;
         let passwordraw = req.body.passwordraw;
     
-        const checkData = {username, passwordraw};
+        const checkdata = {username, passwordraw};
     
         const config = {
             headers: {
@@ -36,7 +36,7 @@ router.post('/', (req, res)=> {
     
         let signupEP = `http://localhost:${API_PORT}/login`; 
         
-        axios.post(signupEP, checkData, config)
+        axios.post(signupEP, checkdata, config)
         .then((results) => {
 
             console.log(`Login attempt by "${username}"...`);

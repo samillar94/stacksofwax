@@ -9,13 +9,12 @@ const axios = require("axios");
 const app = express();
 const APP_PORT = process.env.APP_PORT || 3000;
 
-/// custom modules
-const globalErrHandler = require("./middleware/errorHandler");
-
 /// middleware 
+const globalErrHandler = require("./middleware/errorHandler");
+app.use(express.static('static'));
 app.set('view engine', 'ejs');
 app.use(sessions({
-    secret: 'thisisasecret',
+    secret: 'fabsolutely abulous',
     saveUninitialized: false,
     resave: false
     })
@@ -23,29 +22,33 @@ app.use(sessions({
 app.use(express.urlencoded({extended: true})); 
  
 /// routes
-const homeRoute = require('./routes/home.js');
-app.use('/', homeRoute);
-const vinylsRoute = require('./routes/vinyls.js');
-app.use('/vinyls', vinylsRoute);
-const vinylRoute = require('./routes/vinyl.js');
-app.use('/vinyl', vinylRoute);
-const collectorsRoute = require('./routes/collectors.js');
-app.use('/collectors', collectorsRoute);
-const collectorRoute = require('./routes/collector.js');
-app.use('/collector', collectorRoute);
-const signupRoute = require('./routes/signup.js');
-app.use('/signup', signupRoute);
-const loginRoute = require('./routes/login.js');
-app.use('/login', loginRoute);
-const goodloginRoute = require('./routes/goodlogin.js');
-app.use('/goodlogin', goodloginRoute);
-const logoutRoute = require('./routes/logout.js');
-app.use('/logout', logoutRoute);
-const membersonlyRoute = require('./routes/membersonly.js');
-app.use('/membersonly', membersonlyRoute);
+const home = require('./routes/home.js');
+app.use('/', home);
+const vinyls = require('./routes/vinyls.js');
+app.use('/vinyls', vinyls);
+const vinyl = require('./routes/vinyl.js');
+app.use('/vinyl', vinyl);
+const collectors = require('./routes/collectors.js');
+app.use('/collectors', collectors);
+const collector = require('./routes/collector.js');
+app.use('/collector', collector);
+const signup = require('./routes/signup.js');
+app.use('/signup', signup);
+const login = require('./routes/login.js');
+app.use('/login', login);
+const goodlogin = require('./routes/goodlogin.js');
+app.use('/goodlogin', goodlogin);
+const logout = require('./routes/logout.js');
+app.use('/logout', logout);
+const membersonly = require('./routes/membersonly.js');
+app.use('/membersonly', membersonly);
+const ihaveone = require('./routes/ihaveone.js');
+app.use('/ihaveone', ihaveone);
 
+/// more middleware
 app.use(globalErrHandler);
 
+/// server
 const server = app.listen(APP_PORT, () => {
     console.log(`App started at http://localhost:${server.address().port}/`);
 }); 

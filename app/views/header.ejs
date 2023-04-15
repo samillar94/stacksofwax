@@ -4,16 +4,17 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TODO: EJS THIS</title>
-    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/picnic"> -->
+    <title><%= title %> | STACKSofWAX</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/picnic">
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
   <nav class="demo">
     <a href="/" class="brand">
-      <span>STACKSOFWAX</span>
+      <img src="stacksofwax logo v1.svg" alt="STACKSofWAX" height="90">
     </a>
   
-    <div class="menu">
+    <div class="menu my-menu">
       <a class="button" href="/vinyls">vinyls</a>
       <a class="button" href="/collectors">collectors</a>
       <% if (member) { %>
@@ -26,3 +27,4 @@
 
     </div>
   </nav>
+  <div class="my-main">

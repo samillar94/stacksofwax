@@ -14,7 +14,7 @@ router.get('/', (req, res)=> {
         .then((results)=>{
     
             let data = results.data.goodstuff;
-            res.render('collectors', {data, member: req.session.sess_valid});  
+            res.render('collectors', {title: 'Collectors', data, member: req.session.sess_valid});  
     
         });
 

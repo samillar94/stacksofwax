@@ -6,7 +6,7 @@ const API_PORT = process.env.API_PORT || 4000;
 
 router.get('/', (req, res)=>{
 
-    res.render('signup', {member: false});
+    res.render('signup', {title: 'Sign up', member: false});
 
 });
 
@@ -17,7 +17,7 @@ router.post('/', (req, res, next)=> {
         let username = req.body.username;
         let passwordraw = req.body.passwordraw1;
 
-        const insertData = {username, passwordraw};
+        const insertdata = {username, passwordraw};
     
         const config = {
             headers: {
@@ -27,7 +27,7 @@ router.post('/', (req, res, next)=> {
     
         let signupEP = `http://localhost:${API_PORT}/signup`;
         
-        axios.post(signupEP, insertData, config)
+        axios.post(signupEP, insertdata, config)
         .then((results) => {
 
             let goodstuff = results.data.goodstuff;

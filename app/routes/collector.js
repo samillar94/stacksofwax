@@ -20,7 +20,7 @@ router.get('/', (req, res)=> {
     
             if (data) {
 
-                res.render('collector', {data, member: req.session.sess_valid});  
+                res.render('collector', {title: `${data.username} - Collector`, data, member: req.session.sess_valid});  
 
             } else {
 

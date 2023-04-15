@@ -17,7 +17,7 @@ router.get('/', (req, res, next)=> {
         .then((results)=>{
             
             let data = results.data.goodstuff;
-            res.render('home', {titletext : 'vinyls', data, member: req.session.sess_valid}); 
+            res.render('home', {title: 'Vinyls', data, member: req.session.sess_valid}); 
 
         });
 

@@ -1,19 +1,17 @@
 <%- include('header') %>
-  
-  <div style="margin: 0 auto; padding: 100px">
-    
-    <h2><%= titletext %></h2>
-    
-    <h3>Vinyl is back, but please shelve, don't stack.</h3>
 
-    <div class="flex one two-600 three-800 four-1000"> 
+<h2>Vinyls</h2>
 
-        <% data.forEach( (release)=>{   %>
-            <div>
-                <a class="button" href="/vinyl?id=<%= release.release_id %>"><%= release.releasename %></a>
-            </div>
-        <% }); %>
+<h3>Vinyl is back, but please shelve, don't stack.</h3>
 
+<div class="flex one two-600 three-800 four-1000"> 
+
+  <% data.forEach( (release)=>{   %>
+    <div>
+        <a class="button" href="/vinyl?id=<%= release.release_id %>"><%= release.releasename %></a>
     </div>
-  </div>
+  <% }); %>
+
+</div>
+
 <%- include('footer') %>

@@ -18,7 +18,7 @@ router.get('/', (req, res)=> {
             let data = results.data.goodstuff;
                  
             if (data) {
-                res.render('vinyl', {data, member: req.session.sess_valid});
+                res.render('vinyl', {title: `${data.releasename} - Vinyl`, data, member: req.session.sess_valid});
             } else {
                 console.log("Vinyl route received no release data from the API.");
                 console.log("Response:", data);
