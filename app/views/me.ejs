@@ -25,7 +25,7 @@
       <td><%= copy.owned_release_id %></td>
       <td><%= copy.releasename %></td>
       <td><%= copy.year %></td>
-      <td><input name="ownercomment" type="textarea" value=<%= copy.ownercomment %>></td>
+      <td><input name="ownercomment" type="textarea" value="<%= copy.ownercomment %>"></td>
       <td>
         <input type="hidden" id="owned_release_id" name="owned_release_id" value="<%= copy.owned_release_id %>">
         <input type="submit" name="toupdate" value="Save" />
