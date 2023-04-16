@@ -17,7 +17,6 @@ router.get('/', (req, res)=> {
         };
 
         let goodstuff = data[0];
-        console.log(goodstuff);
         
         if (goodstuff) { 
             res.json({goodstuff: goodstuff}); 

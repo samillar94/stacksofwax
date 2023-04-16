@@ -11,20 +11,32 @@ router.get('/', (req, res)=> {
         let release_id = req.query.id;
         let user_id = req.session.user_id;
 
-        let vinylEP = `http://localhost:${API_PORT}/vinyl?release_id=${release_id}&user_id=${user_id}`;
-        
+        let vinylEP = `http://localhost:${API_PORT}/vinyl?release_id=${release_id}`;
+        let copiesEP = `http://localhost:${API_PORT}/myvinyls?release_id=${release_id}&user_id=${user_id}`;
+
         axios.get(vinylEP)
-        .then((results) => {
+        .then((results1) => {
             
-            let { goodstuff, badstuff, gravy, baldy } = results.data;
+            let vinyldata = results1.data.goodstuff;
                  
-            if (goodstuff) {
-                res.render('vinyl', {title: `${goodstuff.releasename} - Vinyl`, goodstuff: goodstuff, gravy: gravy, member: req.session.sess_valid});
-            } else {
-                console.log("Vinyl route received no release data from the API.");
-                console.log("Response:", badstuff);
-                res.redirect('/?message=novinyl');
-            }
+            if (results1.data.badstuff) console.log(results1.data.badstuff);
+
+            axios.get(copiesEP)
+            .then((results2) => {
+                
+                let copiesdata = results2.data.goodstuff;
+
+                if (results2.data.badstuff) console.log(results2.data.badstuff);
+
+                if (vinyldata) {
+                    res.render('vinyl', {title: `${vinyldata.releasename} - Vinyl`, vinyldata, copiesdata, member: req.session.sess_valid});
+                } else {
+                    console.log("Vinyl route received no release data from the API.");
+                    console.log("Response:", badstuff);
+                    res.redirect('/?message=novinyl');
+                }                
+
+            });
     
         }); 
 

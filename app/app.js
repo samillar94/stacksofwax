@@ -40,8 +40,8 @@ const goodlogin = require('./routes/goodlogin.js');
 app.use('/goodlogin', goodlogin);
 const logout = require('./routes/logout.js');
 app.use('/logout', logout);
-const membersonly = require('./routes/membersonly.js');
-app.use('/membersonly', membersonly);
+const me = require('./routes/me.js');
+app.use('/me', me);
 const ihaveone = require('./routes/ihaveone.js');
 app.use('/ihaveone', ihaveone);
 

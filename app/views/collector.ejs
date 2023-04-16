@@ -1,20 +1,38 @@
 <%- include('header') %>
 
-<h2><%= data.username %></h2>
+<h2><%= userdata.username %></h2>
 
 <table>
   <tr>
     <th>Joined</th>
-    <td><%= data.joindate %></td>
+    <td><%= userdata.joindate %></td>
   </tr>
   <tr>
     <th>Bio</th>
-    <td><%= data.bio %></td>
+    <td><%= userdata.bio %></td>
   </tr>
   <tr>
     <th>Stack</th>
     <td>? vinyls collected</td>
   </tr>
 </table>
+
+<% if(ownedvinylsdata[0]) { %>
+<h3>Their wax</h3>
+<table>
+  <tr>
+    <th>Release</th>
+    <th>Year</th>
+    <th>My notes</th>
+  </tr>
+  <% ownedvinylsdata.forEach(copy => { %>
+  <tr>
+    <td><%= copy.releasename %></td>
+    <td><%= copy.year %></td>
+    <td><%= copy.ownercomment %></td>
+  </tr>
+  <% }) %>
+</table>
+<% } %>
 
 <%- include('footer') %>

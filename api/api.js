@@ -32,6 +32,8 @@ const collector = require('./routes/collector.js');
 app.use('/collector', collector);
 const ihaveone = require('./routes/ihaveone.js');
 app.use('/ihaveone', ihaveone);
+const myvinyls = require('./routes/myvinyls.js');
+app.use('/myvinyls', myvinyls);
 
 app.use(globalErrHandler);
 

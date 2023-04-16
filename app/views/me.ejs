@@ -1,0 +1,23 @@
+<%- include('header') %>
+
+<h3>My wax</h3>
+<% if(goodstuff) { %>
+<table>
+  <tr>
+    <th>Release</th>
+    <th>Year</th>
+    <th>My notes</th>
+  </tr>
+  <% goodstuff.forEach(copy => { %>
+  <tr>
+    <td><%= copy.releasename %></td>
+    <td><%= copy.year %></td>
+    <td><%= copy.ownercomment %></td>
+  </tr>
+  <% }) %>
+</table>
+<% } %>
+
+<a class="button" href="/collector?id=<%= user_id %>">My page</a>
+
+<%- include('footer') %>

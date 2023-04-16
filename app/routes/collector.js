@@ -8,29 +8,45 @@ router.get('/', (req, res)=> {
 
     try {
 
-        let id = req.query.id;
+        let user_id = req.query.id;
         let sessionuserid = req.session.user_id;
     
-        let collectorEP = `http://localhost:${API_PORT}/collector?id=${id}&sessionuserid=${sessionuserid}`;
+        let collectorEP = `http://localhost:${API_PORT}/collector?id=${user_id}&sessionuserid=${sessionuserid}`;
+        let ownedvinylsEP = `http://localhost:${API_PORT}/myvinyls?user_id=${user_id}`;
     
         axios.get(collectorEP)
-        .then((results)=>{
+        .then((results1)=>{
     
-            let data = results.data.goodstuff;
-    
-            if (data) {
+            let userdata = results1.data.goodstuff;
+ 
+            if (results1.data.badstuff) console.log(results1.data.badstuff);
 
-                res.render('collector', {title: `${data.username} - Collector`, data, member: req.session.sess_valid});  
+            axios.get(ownedvinylsEP)
+            .then((results2) => {
+                
+                let ownedvinylsdata = results2.data.goodstuff;
 
-            } else {
+                if (results2.data.badstuff) console.log(results2.data.badstuff);
 
-                console.log("Collector route received no user data from the API.")
-                console.log("Response:", results.data.badstuff);
-                res.redirect('/collectors');
+                if (userdata) {
 
-            };
-    
+                    res.render('collector', {title: `${userdata.username} - Collector`, userdata, ownedvinylsdata, member: req.session.sess_valid});  
+
+                } else {
+
+                    console.log("Collector route received no user data from the API.")
+                    res.redirect('/collectors');
+
+                };                  
+
+            });
+
         });
+
+            
+ 
+
+      
 
     } catch (err) {
 
