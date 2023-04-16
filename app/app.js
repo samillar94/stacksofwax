@@ -44,6 +44,8 @@ const me = require('./routes/me.js');
 app.use('/me', me);
 const ihaveone = require('./routes/ihaveone.js');
 app.use('/ihaveone', ihaveone);
+const editcopy = require('./routes/editcopy.js');
+app.use('/editcopy', editcopy);
 
 /// more middleware
 app.use(globalErrHandler);

@@ -16,6 +16,10 @@ a {
     color: #aee;
 }
 
+input[type=text], input[type=textarea], input[type=password] {
+    color: #210121;
+}
+
 div.my-main {
     margin: 0 auto; 
     padding: 100px;

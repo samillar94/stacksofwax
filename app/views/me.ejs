@@ -2,22 +2,45 @@
 
 <h3>My wax</h3>
 <% if(goodstuff) { %>
-<table>
-  <tr>
-    <th>Release</th>
-    <th>Year</th>
-    <th>My notes</th>
-  </tr>
-  <% goodstuff.forEach(copy => { %>
-  <tr>
-    <td><%= copy.releasename %></td>
-    <td><%= copy.year %></td>
-    <td><%= copy.ownercomment %></td>
-  </tr>
-  <% }) %>
-</table>
+
+  <table>
+    <tr>
+      <th>ID</th>
+      <th>Release</th>
+      <th>Year</th>
+      <th>My notes</th>
+      <th>Options</th>
+    </tr>
+    <% goodstuff.forEach(copy => { %>
+
+    <tr id="V<%= copy.owned_release_id %>" style="display: table-row">
+      <td><%= copy.owned_release_id %></td>
+      <td><%= copy.releasename %></td>
+      <td><%= copy.year %></td>
+      <td><%= copy.ownercomment %></td>
+      <td><a class="button" onclick="var id = <%= copy.owned_release_id %>; edit(id);">Edit</a></td>
+    </tr>
+    <form method="POST" action="/editcopy">
+    <tr id="E<%= copy.owned_release_id %>" style="display: none">
+      <td><%= copy.owned_release_id %></td>
+      <td><%= copy.releasename %></td>
+      <td><%= copy.year %></td>
+      <td><input name="ownercomment" type="textarea" value=<%= copy.ownercomment %>></td>
+      <td>
+        <input type="hidden" id="owned_release_id" name="owned_release_id" value="<%= copy.owned_release_id %>">
+        <input type="submit" name="toupdate" value="Save" />
+        <input type="submit" name="todelete" value="Delete" />
+        <a class="button" onclick="var id = <%= copy.owned_release_id %>; closeedit(id);">Close</a>
+      </td>
+    </tr>
+    </form>
+    <% }) %>
+  </table>
+
 <% } %>
 
 <a class="button" href="/collector?id=<%= user_id %>">My page</a>
 
 <%- include('footer') %>
+
+<%- include('editbuttonSCRIPT') %>
