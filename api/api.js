@@ -36,6 +36,8 @@ const myvinyls = require('./routes/myvinyls.js');
 app.use('/myvinyls', myvinyls);
 const updatecopy = require('./routes/updatecopy.js');
 app.use('/updatecopy', updatecopy);
+const deletecopy = require('./routes/deletecopy.js');
+app.use('/deletecopy', deletecopy);
 
 app.use(globalErrHandler);
 

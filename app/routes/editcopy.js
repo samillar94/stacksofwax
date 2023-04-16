@@ -36,13 +36,13 @@ router.post('/', (req, res)=> {
 
         } else if (todelete) {
 
-            const postdata = {owned_release_id, ownercomment};
+            const postdata = {owned_release_id};
 
             let deletecopyEP = `http://localhost:${API_PORT}/deletecopy`;
 
             axios.post(deletecopyEP, postdata, config)
             .then((results)=>{
-
+ 
                 if (from == 'http://localhost:3000/me') res.redirect('me'); 
                 // if (from == 'http://localhost:3000/vinyl') res.redirect('vinyl'); /// need to sort this out
             });
