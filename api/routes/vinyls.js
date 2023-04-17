@@ -15,7 +15,7 @@ router.get('/', (req, res)=> {
         let goodstuff = data;
         
         if (goodstuff[0]) { 
-            res.json({goodstuff: goodstuff}); 
+            res.json({goodstuff: goodstuff});
         } else {
             let badstuff = {
                 apimessage: "No release data. (Why??)"

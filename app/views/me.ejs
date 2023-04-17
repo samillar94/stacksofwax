@@ -11,13 +11,24 @@
       <th>My notes</th>
       <th>Options</th>
     </tr>
-    <% goodstuff.forEach(copy => { %>
+    <% 
+    goodstuff.forEach(copy => { 
+      let clip = 30;
+      let trunc;
+      if (copy.ownercomment == null) {
+        trunc = '';
+      } else if (copy.ownercomment.length<clip) {
+        trunc = copy.ownercomment;
+      } else {
+        trunc = copy.ownercomment.slice(0,clip-1) + '…';
+      }
+    %>
 
     <tr id="V<%= copy.owned_release_id %>" style="display: table-row">
       <td><%= copy.owned_release_id %></td>
       <td><%= copy.releasename %></td>
       <td><%= copy.year %></td>
-      <td><%= copy.ownercomment %></td>
+      <td><%= trunc %></td>
       <td><a class="button" onclick="var id = <%= copy.owned_release_id %>; edit(id);">Edit</a></td>
     </tr>
     <form method="POST" action="/editcopy">
@@ -25,7 +36,10 @@
       <td><%= copy.owned_release_id %></td>
       <td><%= copy.releasename %></td>
       <td><%= copy.year %></td>
-      <td><input name="ownercomment" type="textarea" value="<%= copy.ownercomment %>"></td>
+      <td>
+        <!-- <input name="ownercomment" type="textarea" value="<%= copy.ownercomment %>"> -->
+        <textarea name="ownercomment" rows="5" cols="25"><%= copy.ownercomment %></textarea>
+      </td>
       <td>
         <input type="hidden" id="owned_release_id" name="owned_release_id" value="<%= copy.owned_release_id %>">
         <input type="submit" name="toupdate" value="Save" />
@@ -43,4 +57,4 @@
 
 <%- include('footer') %>
 
-<%- include('editbuttonSCRIPT') %>
+<script src="editbuttonSCRIPT.js"></script>

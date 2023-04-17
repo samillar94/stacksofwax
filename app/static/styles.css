@@ -16,7 +16,7 @@ a {
     color: #aee;
 }
 
-input[type=text], input[type=textarea], input[type=password] {
+input[type=text], input[type=textarea], input[type=password], textarea {
     color: #210121;
 }
 
