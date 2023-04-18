@@ -4,20 +4,17 @@ const connection = require("../connection.js");
 
 router.post('/', (req, res)=> { 
 
-    let {copy_id, ownercomment} = req.body;
+    let { jukebox_id } = req.body;
 
- 
-    let updatecopyQ = `UPDATE copy
-    SET ownercomment = ?
-    WHERE copy_id = ?;`;
+    let deletejukeboxQ = `DELETE FROM jukebox
+    WHERE jukebox_id = ?;`;
 
     console.log(req.body)
 
-    connection.query(updatecopyQ, [ownercomment, copy_id], (err, data)=>{
+    connection.query(deletejukeboxQ, [jukebox_id], (err, data)=>{
 
-       
         if (err) {
-            console.log("Release copy update failed: ", err.sqlMessage);
+            console.log("Delete jukebox failed: ", err.sqlMessage);
             res.json({badstuff: err}); 
             return;
         }; 
@@ -28,11 +25,12 @@ router.post('/', (req, res)=> {
 
         if (data.affectedRows == 1) {
             responseobject.goodstuff = data;
-            responseobject.goodstuff.apimessage = `Release copy updated.`,
+            responseobject.goodstuff.apimessage = `Jukebox deleted.`,
             res.json(responseobject); 
         } else {
             responseobject.badstuff = {
-                apimessage: "Something wacky's happened with updatecopy."
+                data,
+                apimessage: "Something wacky's happened with deletejukebox."
             }
             res.json(responseobject);
         };

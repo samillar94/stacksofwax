@@ -14,6 +14,7 @@
     <td><%= jukebox.jukebox_id %></td>
 
     <form method="POST" action="/editjukebox" onsubmit="return confirm('Sure you want to update this jukebox?')">
+    <input type="hidden" name="jukebox_id" value="<%= jukebox.jukebox_id %>">
 
     <td id="JtdVN<%= jukebox.jukebox_id %>" style="display: table-cell"><%= jukebox.jukeboxname %></td>
     <td id="JtdVC<%= jukebox.jukebox_id %>" style="display: table-cell"><%= jukebox.jukeboxdesc %></td>

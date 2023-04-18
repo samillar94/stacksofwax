@@ -10,9 +10,9 @@ router.post('/', (req, res)=> {
 
         let from = req.headers.referer; 
 
-        let { copy_id, ownercomment } = req.body;
+        let { jukebox_id } = req.body;
 
-        console.log(copy_id, ownercomment);
+        console.log("Jukebox",jukebox_id,"deleted");
 
         const config = {
             headers: {
@@ -20,22 +20,21 @@ router.post('/', (req, res)=> {
             }
         };
 
-        const postdata = {copy_id, ownercomment};
+        const postdata = { jukebox_id };
 
-        let editcopyEP = `http://localhost:${API_PORT}/editcopy`;
+        let deletejukeboxEP = `http://localhost:${API_PORT}/deletejukebox`;
 
-        axios.post(editcopyEP, postdata, config)
+        axios.post(deletejukeboxEP, postdata, config)
         .then((results)=>{
 
             if (from.includes('http://localhost:3000/me')) res.redirect('me'); 
-            // if (from == 'http://localhost:3000/vinyl') res.redirect('vinyl'); /// need to sort this out
-    
+            // if (from == 'http://localhost:3000/jukeboxes') res.redirect('jukeboxes'); /// need to sort this out
         });
 
     } catch (err) {
 
-        console.log("Error in editcopy POST route:", err.message);
-        res.redirect("/?message=editcopybug");
+        console.log("Error in deletejukebox POST route:", err.message);
+        res.redirect("/?message=deletejukeboxbug");
 
     };
 

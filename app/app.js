@@ -46,8 +46,14 @@ const ihaveone = require('./routes/ihaveone.js');
 app.use('/ihaveone', ihaveone);
 const editcopy = require('./routes/editcopy.js');
 app.use('/editcopy', editcopy);
+const deletecopy = require('./routes/deletecopy.js');
+app.use('/deletecopy', deletecopy);
 const addjukebox = require('./routes/addjukebox.js');
 app.use('/addjukebox', addjukebox);
+const editjukebox = require('./routes/editjukebox.js');
+app.use('/editjukebox', editjukebox);
+const deletejukebox = require('./routes/deletejukebox.js');
+app.use('/deletejukebox', deletejukebox); 
 const jukeboxes = require('./routes/jukeboxes.js');
 app.use('/jukeboxes', jukeboxes);
 
