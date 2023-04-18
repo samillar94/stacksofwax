@@ -38,6 +38,11 @@ const updatecopy = require('./routes/updatecopy.js');
 app.use('/updatecopy', updatecopy);
 const deletecopy = require('./routes/deletecopy.js');
 app.use('/deletecopy', deletecopy);
+const addjukebox = require('./routes/addjukebox.js');
+app.use('/addjukebox', addjukebox);
+const jukeboxes = require('./routes/jukeboxes.js');
+app.use('/jukeboxes', jukeboxes);
+
 
 app.use(globalErrHandler);
 

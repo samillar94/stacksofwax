@@ -16,15 +16,21 @@ router.get('/', (req, res, next)=> {
         axios.get(vinylsEP)
         .then((results)=>{
             
-            let data = results.data.goodstuff;
-            res.render('home', {title: 'Vinyls', data, member: req.session.sess_valid}); 
+            let vinylsdata = results.data.goodstuff;
+            res.render('home', {
+                title: 'Vinyls', 
+                vinylsdata: vinylsdata, 
+                member: req.session.sess_valid
+            }); 
 
         });
 
     } catch (err) {
 
         console.log(err);
-        next(); /// the home route is the one place I'll pass to the error handler - all other page errors I'll just redirect here
+        next(); 
+        /// the home route is the one place I'll pass to the error handler 
+        /// - all other page errors I'll just redirect here
 
     };
 
