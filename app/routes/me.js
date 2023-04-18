@@ -13,21 +13,39 @@ router.get('/', (req, res)=> {
             let user_id = req.session.user_id;
 
             let myvinylsEP = `http://localhost:${API_PORT}/myvinyls?user_id=${user_id}`;
+            let myjukeboxesEP = `http://localhost:${API_PORT}/jukeboxes?user_id=${user_id}`;
             
             axios.get(myvinylsEP)
-            .then((results) => {
+            .then((results1) => {
                 
-                let { goodstuff, badstuff } = results.data;
+                let copiesdata = results1.data.goodstuff;
+                let { badstuff } = results1.data;
 
                 if (badstuff) console.log(badstuff);
+
+                axios.get(myjukeboxesEP)   
+                .then((results2) => {
+
+                    let jukeboxesdata = results2.data.goodstuff;
+                    let { badstuff } = results2.data;
+
+                    if (badstuff) console.log(badstuff);
+
+                    res.render('me', {
+                        title: `Me`, 
+                        copiesdata: copiesdata, 
+                        jukeboxesdata: jukeboxesdata,
+                        user_id: user_id, 
+                        member: req.session.sess_valid
+                    });
                     
-                res.render('me', {title: `Me`, goodstuff: goodstuff, user_id: user_id, member: req.session.sess_valid});
+                });
 
             }); 
 
         } else {
             res.redirect('/?message=unauthorised');
-        }
+        };
 
     } catch (err) {
 

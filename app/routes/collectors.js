@@ -13,8 +13,12 @@ router.get('/', (req, res)=> {
         axios.get(collectorsEP)
         .then((results)=>{
     
-            let data = results.data.goodstuff;
-            res.render('collectors', {title: 'Collectors', data, member: req.session.sess_valid});  
+            let collectorsdata = results.data.goodstuff;
+            res.render('collectors', {
+                title: 'Collectors', 
+                collectorsdata: collectorsdata, 
+                member: req.session.sess_valid
+            });  
     
         });
 

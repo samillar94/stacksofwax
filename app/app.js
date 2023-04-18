@@ -46,6 +46,10 @@ const ihaveone = require('./routes/ihaveone.js');
 app.use('/ihaveone', ihaveone);
 const editcopy = require('./routes/editcopy.js');
 app.use('/editcopy', editcopy);
+const addjukebox = require('./routes/addjukebox.js');
+app.use('/addjukebox', addjukebox);
+const jukeboxes = require('./routes/jukeboxes.js');
+app.use('/jukeboxes', jukeboxes);
 
 /// more middleware
 app.use(globalErrHandler);

@@ -1,7 +1,30 @@
 <%- include('header') %>
 
+<h3>My jukeboxes</h3>
+<table>
+  <tr>
+    <th>ID</th>
+    <th>Name</th>
+    <th>Description</th>
+  </tr>
+  <% if(jukeboxesdata) { 
+    jukeboxesdata.forEach(jukebox => { %>
+    <th><%= jukebox.jukebox_id %></th>
+    <th><%= jukebox.jukeboxname %></th>
+    <th><%= jukebox.jukeboxdesc %></th>
+    <% });
+  }; %>  
+  <form>
+  <tr>
+    <td>*</td>
+    <td><input name="jukeboxname" type="text" placeholder="Name it something fancy"></td>
+    <td><textarea name="jukeboxdesc" rows="2" cols="25" placeholder="255-character elevator pitch... go!"></textarea></td>
+    <td><input type="submit" name="toadd" value="Add" /></td>
+  </tr>
+  </form>
+
 <h3>My wax</h3>
-<% if(goodstuff) { %>
+<% if(copiesdata) { %>
 
   <table>
     <tr>
@@ -12,7 +35,7 @@
       <th>Options</th>
     </tr>
     <% 
-    goodstuff.forEach(copy => { 
+    copiesdata.forEach(copy => { 
       let clip = 30;
       let trunc;
       if (copy.ownercomment == null) {
@@ -44,10 +67,10 @@
       </td>
     </tr>
     </form>
-    <% }) %>
+    <% }); %>
   </table>
 
-<% } %>
+<% }; %>
 
 <a class="button" href="/collector?id=<%= user_id %>">My page</a>
 
