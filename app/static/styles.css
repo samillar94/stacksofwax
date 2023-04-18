@@ -16,9 +16,9 @@ a {
     color: #aee;
 }
 
-input[type=text], input[type=textarea], input[type=password], textarea {
+/* input[type=text], input[type=textarea], input[type=password], textarea {
     color: #210121;
-}
+} */
 
 div.my-main {
     margin: 0 auto; 

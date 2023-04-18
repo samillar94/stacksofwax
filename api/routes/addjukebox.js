@@ -4,12 +4,12 @@ const connection = require("../connection.js");
 
 router.post('/', (req, res)=> { 
 
-    let {jukeboxname, jukeboxdesc} = req.body;
+    let {jukeboxname, jukeboxdesc, user_id} = req.body;
 
-    let addjukeboxQ = `INSERT INTO jukebox (jukeboxname, jukeboxdesc)
-    VALUES (?, ?);`;
+    let addjukeboxQ = `INSERT INTO jukebox (jukeboxname, jukeboxdesc, user_id)
+    VALUES (?, ?, ?);`;
 
-    connection.query(addjukeboxQ, [jukeboxname, jukeboxdesc], (err, data)=>{
+    connection.query(addjukeboxQ, [jukeboxname, jukeboxdesc, user_id], (err, data)=>{
 
         if (err) {
             console.log("Jukebox addition failed: ", err.sqlMessage);

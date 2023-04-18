@@ -4,16 +4,16 @@ const connection = require("../connection.js");
 
 router.post('/', (req, res)=> { 
 
-    let {owned_release_id, ownercomment} = req.body;
+    let {copy_id, ownercomment} = req.body;
 
  
-    let updatecopyQ = `UPDATE owned_release
+    let updatecopyQ = `UPDATE copy
     SET ownercomment = ?
-    WHERE owned_release_id = ?;`;
+    WHERE copy_id = ?;`;
 
     console.log(req.body)
 
-    connection.query(updatecopyQ, [ownercomment, owned_release_id], (err, data)=>{
+    connection.query(updatecopyQ, [ownercomment, copy_id], (err, data)=>{
 
        
         if (err) {

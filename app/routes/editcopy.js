@@ -10,9 +10,9 @@ router.post('/', (req, res)=> {
 
         let from = req.headers.referer; 
 
-        let { owned_release_id, ownercomment, toupdate, todelete } = req.body;
+        let { copy_id, ownercomment, toupdate, todelete } = req.body;
 
-        console.log(owned_release_id, ownercomment, toupdate, todelete);
+        console.log(copy_id, ownercomment, toupdate, todelete);
 
         const config = {
             headers: {
@@ -22,7 +22,7 @@ router.post('/', (req, res)=> {
 
         if (toupdate) {
 
-            const postdata = {owned_release_id, ownercomment};
+            const postdata = {copy_id, ownercomment};
 
             let updatecopyEP = `http://localhost:${API_PORT}/updatecopy`;
 
@@ -36,7 +36,7 @@ router.post('/', (req, res)=> {
 
         } else if (todelete) {
 
-            const postdata = {owned_release_id};
+            const postdata = {copy_id};
 
             let deletecopyEP = `http://localhost:${API_PORT}/deletecopy`;
 

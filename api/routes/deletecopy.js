@@ -4,14 +4,14 @@ const connection = require("../connection.js");
 
 router.post('/', (req, res)=> { 
 
-    let {owned_release_id} = req.body;
+    let {copy_id} = req.body;
 
-    let deletecopyQ = `DELETE FROM owned_release
-    WHERE owned_release_id = ?;`;
+    let deletecopyQ = `DELETE FROM copy
+    WHERE copy_id = ?;`;
 
     console.log(req.body)
 
-    connection.query(deletecopyQ, [owned_release_id], (err, data)=>{
+    connection.query(deletecopyQ, [copy_id], (err, data)=>{
 
         if (err) {
             console.log("Delete copy update failed: ", err.sqlMessage);

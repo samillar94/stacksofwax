@@ -8,12 +8,12 @@ router.get('/', (req, res)=> {
 
     let releaseclause = '';
     let release_id = req.query.release_id;
-    if (release_id) releaseclause = ` AND owned_release.release_id = ${release_id}`
+    if (release_id) releaseclause = ` AND copy.release_id = ${release_id}`
 
-    let vinylQ = `SELECT \`release\`.release_id, releasename, year, owned_release_id, owned_release.collection_id, collectionname, ownercomment
-    FROM owned_release
-    LEFT JOIN \`release\` ON owned_release.release_id = \`release\`.release_id
-    LEFT JOIN collection ON owned_release.collection_id = collection.collection_id
+    let vinylQ = `SELECT \`release\`.release_id, releasename, year, copy_id, copy.jukebox_id, jukeboxname, ownercomment
+    FROM copy
+    LEFT JOIN \`release\` ON copy.release_id = \`release\`.release_id
+    LEFT JOIN jukebox ON copy.jukebox_id = jukebox.jukebox_id
     WHERE owneruser_id = ? ?;`
 
     connection.query(vinylQ, [user_id, releaseclause], (err, data)=>{

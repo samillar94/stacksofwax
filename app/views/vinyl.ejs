@@ -1,4 +1,4 @@
-<%- include('header') %>
+<%- include('header', {here: 'vinyl'}) %>
     
 <h2><%= vinyldata.releasename %></h2>
 <% if (vinyldata.vinyls>1) { %><p><%= vinyldata.vinyls %>-vinyl release</p><% } %>
@@ -23,18 +23,16 @@
 <!-- TODO include add button and table of owned copies and comments for members -->
 
 <% if (member) { %>
-<h3>My wax</h3>
+<h3>My copies</h3>
 <% if(copiesdata[0]) { %>
 <table>
   <tr>
     <th>ID</th>
-    <th>Collection</th>
     <th>My notes</th>
   </tr>
   <% copiesdata.forEach(copy => { %>
   <tr>
-    <td><%= copy.owned_release_id %></td>
-    <td><%= copy.collectionname %></td>
+    <td><%= copy.copy_id %></td>
     <td><%= copy.ownercomment %></td>
   </tr>
   <% }) %>

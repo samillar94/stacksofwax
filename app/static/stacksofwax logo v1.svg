@@ -1,21 +1,128 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<svg width="3648.1389" height="1025.219" xml:space="preserve" overflow="hidden" version="1.1" id="svg15" sodipodi:docname="stacksofwax logo v1.svg" inkscape:version="1.2.1 (9c6d41e410, 2022-07-14)"
-    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
-    xmlns="http://www.w3.org/2000/svg"
-    xmlns:svg="http://www.w3.org/2000/svg">
-    <sodipodi:namedview id="namedview17" pagecolor="#ffffff" bordercolor="#000000" borderopacity="0.25" inkscape:showpageshadow="2" inkscape:pageopacity="0.0" inkscape:pagecheckerboard="0" inkscape:deskcolor="#d1d1d1" showgrid="false" inkscape:zoom="0.29915506" inkscape:cx="1582.7912" inkscape:cy="369.37366" inkscape:window-width="1920" inkscape:window-height="991" inkscape:window-x="2391" inkscape:window-y="-9" inkscape:window-maximized="1" inkscape:current-layer="g13" />
-    <defs id="defs5">
-        <clipPath id="clip0">
-            <rect x="-43" y="243" width="4379" height="1916" id="rect2" />
+<svg
+   width="3648.1389"
+   height="1025.219"
+   xml:space="preserve"
+   overflow="hidden"
+   version="1.1"
+   id="svg15"
+   sodipodi:docname="stacksofwax logo v1.svg"
+   inkscape:version="1.2.1 (9c6d41e410, 2022-07-14)"
+   inkscape:export-filename="stacksofwax logo v1e1.png"
+   inkscape:export-xdpi="96"
+   inkscape:export-ydpi="96"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+    <sodipodi:namedview
+   id="namedview17"
+   pagecolor="#ffffff"
+   bordercolor="#000000"
+   borderopacity="0.25"
+   inkscape:showpageshadow="2"
+   inkscape:pageopacity="0.0"
+   inkscape:pagecheckerboard="0"
+   inkscape:deskcolor="#d1d1d1"
+   showgrid="false"
+   inkscape:zoom="0.29915506"
+   inkscape:cx="1988.9351"
+   inkscape:cy="476.3416"
+   inkscape:window-width="1920"
+   inkscape:window-height="991"
+   inkscape:window-x="2391"
+   inkscape:window-y="-9"
+   inkscape:window-maximized="1"
+   inkscape:current-layer="svg15" />
+    <defs
+   id="defs5"><linearGradient
+   inkscape:collect="always"
+   id="linearGradient6867"><stop
+     style="stop-color:#7d7f99;stop-opacity:1;"
+     offset="0"
+     id="stop6863" /><stop
+     style="stop-color:#7d7f99;stop-opacity:0.60330576;"
+     offset="1"
+     id="stop6865" /></linearGradient>
+        <clipPath
+   id="clip0">
+            <rect
+   x="-43"
+   y="243"
+   width="4379"
+   height="1916"
+   id="rect2" />
         </clipPath>
-        <clipPath id="clip0-5">
-            <rect x="-16" y="88" width="1593" height="697" id="rect300" />
+        <clipPath
+   id="clip0-5">
+            <rect
+   x="-16"
+   y="88"
+   width="1593"
+   height="697"
+   id="rect300" />
         </clipPath>
-    </defs>
-    <g clip-path="url(#clip0)" transform="translate(-529.92281,-742.79687)" id="g13">
-        <text font-family="'Gill Sans Nova Cond', 'Gill Sans MT Condensed', 'Gill Sans Nova Cond_MSFontService', sans-serif" font-weight="500" font-stretch="condensed" font-size="912px" id="text7" x="704.53992" y="1560.0001">STACKS</text>
-        <text font-family="'Gill Sans Nova Cond', 'Gill Sans MT Condensed', 'Gill Sans Nova Cond_MSFontService', sans-serif" font-weight="500" font-stretch="condensed" font-size="527px" transform="skewX(-10)" id="text9" x="2677.9548" y="1560.0001">OF</text>
-        <text font-family="'Gill Sans Nova Cond', 'Gill Sans MT Condensed', 'Gill Sans Nova Cond_MSFontService', sans-serif" font-weight="500" font-stretch="condensed" font-size="912px" id="text11" x="2806.8899" y="1560.0001">WAX</text>
+    <clipPath
+   clipPathUnits="userSpaceOnUse"
+   id="clipPath3128"><path
+     id="path3130"
+     style="display:inline"
+     d="m -2021.2907,-2131.9248 -399.8716,478.294 -48.1363,-58.4283 88.8496,-104.3554 -71.9213,-87.2987 -118.0143,68.9546 -48.1362,-58.4281 545.413,-301.6343 z m 407.2579,499.9369 -559.3266,291.749 -34.2616,-41.5872 263.5138,-320.9515 -1.1326,-1.3747 -366.8652,195.5025 -34.2617,-41.5873 393.3982,-493.1547 52.3836,63.5837 -274.3716,325.2807 1.1327,1.3748 372.3428,-206.362 35.9608,43.6495 -263.7562,323.4588 1.1326,1.3748 361.7275,-204.5402 z m -552.1508,-670.2069 -278.922,110.3569 -181.9099,288.3402 -53.5162,-64.9586 131.275,-196.4278 -1.1327,-1.3748 -219.3359,89.5384 -53.5162,-64.9585 318.3902,-122.6788 161.6963,-252.6468 53.5161,64.9584 -120.8663,170.5435 1.1326,1.3748 189.6728,-87.0255 z m 4.4936,235.1646 -1.4158,-1.7184 -224.1206,129.2527 55.7815,67.7081 z"
+     inkscape:label="wax" /></clipPath><linearGradient
+   inkscape:collect="always"
+   xlink:href="#linearGradient6867"
+   id="linearGradient6869"
+   x1="2322.3604"
+   y1="942.79688"
+   x2="2279.6104"
+   y2="1568.0156"
+   gradientUnits="userSpaceOnUse" /></defs>
+    <g
+   clip-path="url(#clip0)"
+   transform="translate(-529.92281,-742.79687)"
+   id="g13"
+   style="display:none">
+        <text
+   font-family="'Gill Sans Nova Cond', 'Gill Sans MT Condensed', 'Gill Sans Nova Cond_MSFontService', sans-serif"
+   font-weight="500"
+   font-stretch="condensed"
+   font-size="912px"
+   id="text7"
+   x="704.53992"
+   y="1560.0001">STACKS</text>
+        <text
+   font-family="'Gill Sans Nova Cond', 'Gill Sans MT Condensed', 'Gill Sans Nova Cond_MSFontService', sans-serif"
+   font-weight="500"
+   font-stretch="condensed"
+   font-size="527px"
+   transform="skewX(-10)"
+   id="text9"
+   x="2677.9548"
+   y="1560.0001">OF</text>
+        <text
+   font-family="'Gill Sans Nova Cond', 'Gill Sans MT Condensed', 'Gill Sans Nova Cond_MSFontService', sans-serif"
+   font-weight="500"
+   font-stretch="condensed"
+   font-size="912px"
+   id="text11"
+   x="2806.8899"
+   y="1560.0001"
+   style="display:inline">WAX</text>
     </g>
-</svg>
+<path
+   id="path302"
+   d="m 854.165,942.79687 c -36.21872,0 -66.05471,13.06253 -89.50781,39.1875 -23.15623,25.82813 -34.73438,59.22663 -34.73438,100.19533 0,21.0781 4.3047,45.4219 12.91406,73.0312 8.60937,27.6093 27.16409,68.2813 55.66407,122.0157 28.79685,53.4374 46.46094,90.1015 52.99218,109.9921 6.53125,19.8906 9.79688,36.8126 9.79688,50.7657 0,16.3281 -5.78907,30.2812 -17.36719,41.8593 -11.57812,11.5782 -25.53126,17.3672 -41.85937,17.3672 -21.96873,0 -44.67971,-11.2812 -68.13282,-33.8437 v 81.0469 c 24.93748,15.7343 50.76565,23.6015 77.48438,23.6015 37.10933,0 67.24221,-12.9141 90.39844,-38.7422 23.4531,-26.1249 35.17968,-59.9687 35.17968,-101.5312 0,-21.375 -4.3047,-45.8672 -12.91406,-73.4766 -8.31249,-27.9062 -26.86722,-68.2812 -55.66406,-121.125 -28.49997,-53.1405 -46.16407,-89.6563 -52.99219,-109.5469 -6.53125,-20.1875 -9.79687,-37.4062 -9.79687,-51.6562 0,-38.8906 19.74222,-58.3359 59.22656,-58.3359 15.1406,0 33.39846,6.3828 54.77344,19.1484 V 958.82812 C 896.46971,948.14063 874.64935,942.79687 854.165,942.79687 Z m 887.0625,0 c -53.1405,0 -94.1094,27.90634 -122.9063,83.71873 -28.4999,55.8125 -42.75,133.297 -42.75,232.4531 0,99.1561 14.2501,175.4532 42.75,228.8907 28.5,53.4374 68.8751,80.1562 121.125,80.1562 32.6562,0 63.6797,-11.4297 93.0704,-34.289 v -82.3829 c -32.6563,29.3906 -60.2657,44.086 -82.8282,44.086 -32.9531,0 -56.5547,-18.7032 -70.8047,-56.1094 -14.2499,-37.4062 -21.375,-98.711 -21.375,-183.9141 0,-86.0937 6.9766,-147.5469 20.9297,-184.3593 14.25,-37.1094 37.1095,-55.6641 68.5782,-55.6641 26.1249,0 52.25,12.7656 78.375,38.2969 v -79.26564 c -30.5781,-21.0781 -58.6329,-31.61719 -84.1641,-31.61719 z m 581.1328,0 c -36.2187,0 -66.0547,13.06253 -89.5078,39.1875 -23.1562,25.82813 -34.7344,59.22663 -34.7344,100.19533 0,21.0781 4.3047,45.4219 12.9141,73.0312 8.6094,27.6093 27.1641,68.2813 55.664,122.0157 28.7969,53.4374 46.461,90.1015 52.9922,109.9921 6.5312,19.8906 9.7969,36.8126 9.7969,50.7657 0,16.3281 -5.7891,30.2812 -17.3672,41.8593 -11.578,11.5782 -25.5312,17.3672 -41.8594,17.3672 -21.9687,0 -44.6797,-11.2812 -68.1328,-33.8437 v 81.0469 c 24.9375,15.7343 50.7657,23.6015 77.4844,23.6015 37.1094,0 67.2422,-12.9141 90.3984,-38.7422 23.4532,-26.1249 35.1797,-59.9687 35.1797,-101.5312 0,-21.375 -4.3046,-45.8672 -12.914,-73.4766 -8.3126,-27.9062 -26.8673,-68.2812 -55.6641,-121.125 -28.5,-53.1405 -46.1641,-89.6563 -52.9922,-109.5469 -6.5312,-20.1875 -9.7969,-37.4062 -9.7969,-51.6562 0,-38.8906 19.7423,-58.3359 59.2266,-58.3359 15.1407,0 33.3985,6.3828 54.7734,19.1484 v -73.92188 c -23.1562,-10.68749 -44.9765,-16.03125 -65.4609,-16.03125 z M 1344.4541,947.25 1229.5634,1560 h 75.7032 l 24.0468,-134.9297 h 113.1094 L 1464.2431,1560 h 75.7031 l -114,-612.75 z m 2116.1543,0 -114.8907,612.75 h 75.7032 l 24.0468,-134.9297 h 113.1094 L 3580.3974,1560 h 75.7031 l -114,-612.75 z m -2491.10746,3.5625 v 73.0312 h 93.96096 V 1560 h 78.8203 v -536.1563 h 93.5156 v -73.0312 z m 935.15626,0 V 1560 h 78.375 V 950.8125 Z m 166.9922,0 -85.9453,300.1406 L 2094.3603,1560 h 81.0469 l -119.3438,-319.2891 95.7422,-289.8984 z m 744.1465,0 130.4765,617.2031 h 53.8828 l 80.1563,-407.4609 h 1.7812 l 82.3828,407.4609 h 53.8829 l 130.4765,-617.2031 h -82.3828 l -76.5937,418.5937 h -1.7813 l -77.4844,-418.5937 h -56.5547 l -81.9375,409.2422 h -1.7812 l -72.1406,-409.2422 z m 868.3593,0 92.1797,285.4453 L 3669.4599,1560 h 84.1641 l 68.1328,-226.2188 h 1.7812 L 3893.8974,1560 h 84.1641 l -107.7656,-323.7422 92.1796,-285.4453 h -84.164 l -54.7735,201.7266 h -1.7812 L 3768.3193,950.8125 Z M 1383.6416,1096.875 h 2.2265 l 42.75,255.1641 h -87.7265 z m 2116.1543,0 h 2.2265 l 42.75,255.1641 h -87.7265 z m -921.3164,106.4746 c -29.678,0 -55.8167,16.8962 -78.4161,50.6914 -22.3974,33.6237 -38.2683,76.9405 -47.6152,129.9492 -9.8913,56.0966 -8.9323,100.2703 2.8789,132.5215 11.8415,32.0798 31.6583,48.1211 59.4492,48.1211 26.9333,0 52.2185,-15.9551 75.8574,-47.8633 23.639,-31.9082 40.4496,-76.1681 50.4317,-132.7793 9.3771,-53.1803 8.4527,-96.5814 -2.7734,-130.205 -11.0547,-33.6237 -30.9922,-50.4356 -59.8125,-50.4356 z m 141.998,4.6309 L 2658.4072,1560 h 45.289 l 28.7208,-162.8867 h 59.957 l 7.4414,-42.2012 h -59.957 l 18.4668,-104.7305 h 64.332 l 7.4414,-42.2011 z m -149.9082,37.3125 c 14.9248,0 24.4734,12.0084 28.6445,36.0254 4.1711,24.0169 2.3384,58.2405 -5.4961,102.6718 -7.7134,43.7451 -17.9198,77.7982 -30.6211,102.1582 -12.5297,24.36 -26,36.5391 -40.4101,36.5391 -15.0963,0 -24.6597,-11.9222 -28.6895,-35.7676 -4.0298,-23.8453 -2.0961,-58.1553 5.7989,-102.9297 7.6226,-43.2304 17.5409,-77.111 29.7578,-101.6425 12.4187,-24.7032 26.0908,-37.0547 41.0156,-37.0547 z"
+   style="font-weight:500;font-stretch:condensed;font-size:912px;font-family:'Gill Sans Nova Cond', 'Gill Sans MT Condensed', 'Gill Sans Nova Cond_MSFontService', sans-serif;display:inline;fill:url(#linearGradient6869);fill-opacity:1"
+   transform="translate(-529.92281,-742.79687)"
+   inkscape:label="stacksofwax" /><image
+   width="2465.2747"
+   height="1384.7909"
+   preserveAspectRatio="none"
+   xlink:href="grooves%20(BBC).jpg"
+   id="image1980"
+   x="-3746.5662"
+   y="-2625.4995"
+   transform="matrix(-0.63585533,-0.77180827,-0.77180827,0.63585533,0,0)"
+   clip-path="url(#clipPath3128)"
+   inkscape:label="grooves (bbc)" /></svg>

@@ -6,7 +6,7 @@ router.post('/', (req, res)=> {
 
     let {release_id, user_id} = req.body;
 
-    let ihaveoneQ = `INSERT INTO owned_release (release_id, owneruser_id)
+    let ihaveoneQ = `INSERT INTO copy (release_id, owneruser_id)
     VALUES (?, ?);`;
 
     connection.query(ihaveoneQ, [release_id, user_id], (err, data)=>{
