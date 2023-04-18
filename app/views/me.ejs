@@ -24,27 +24,23 @@
       }
     %>
 
-    <tr id="V<%= copy.owned_release_id %>" style="display: table-row">
-      <td><%= copy.owned_release_id %></td>
-      <td><%= copy.releasename %></td>
-      <td><%= copy.year %></td>
-      <td><%= trunc %></td>
-      <td><a class="button" onclick="var id = <%= copy.owned_release_id %>; edit(id);">Edit</a></td>
-    </tr>
     <form method="POST" action="/editcopy">
-    <tr id="E<%= copy.owned_release_id %>" style="display: none">
+    <tr>
       <td><%= copy.owned_release_id %></td>
       <td><%= copy.releasename %></td>
       <td><%= copy.year %></td>
-      <td>
-        <!-- <input name="ownercomment" type="textarea" value="<%= copy.ownercomment %>"> -->
-        <textarea name="ownercomment" rows="5" cols="25"><%= copy.ownercomment %></textarea>
-      </td>
-      <td>
+      <td id="tdVC<%= copy.owned_release_id %>" style="display: table-cell"><%= trunc %></td>
+      <td id="tdVB<%= copy.owned_release_id %>" style="display: table-cell; text-align: right"><a class="button" onclick="var id = <%= copy.owned_release_id %>; edit(id);">Edit</a></td>
+      <td id="tdEB<%= copy.owned_release_id %>" style="display: none; text-align: right" colspan="2">
         <input type="hidden" id="owned_release_id" name="owned_release_id" value="<%= copy.owned_release_id %>">
         <input type="submit" name="toupdate" value="Save" />
         <input type="submit" name="todelete" value="Delete" />
         <a class="button" onclick="var id = <%= copy.owned_release_id %>; closeedit(id);">Close</a>
+      </td>    
+    </tr>
+    <tr id="trEC<%= copy.owned_release_id %>" style="display: none">
+      <td colspan="5">
+        <textarea name="ownercomment" rows="5" cols="40"><%= copy.ownercomment %></textarea>
       </td>
     </tr>
     </form>

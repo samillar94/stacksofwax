@@ -8,7 +8,7 @@ const API_PORT = process.env.API_PORT || 4000;
 app.use(express.urlencoded({extended: true}));
 
 /// my middleware
-const connection = require("./connection.js")
+const connection = require("./connection.js");
 const globalErrHandler = require("./middleware/errorHandler");
 
 /// db connection
