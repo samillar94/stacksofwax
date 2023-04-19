@@ -6,14 +6,19 @@ router.get('/', (req, res)=> {
 
     let { user_id, jukebox_id } = req.query;
 
-    let jukevinylsQ = `SELECT selection_id, selection.copy_id, copy.release_id, 
-    releasename, year, ownercomment
+    let jukeboxclause = '';
+    if (jukebox_id) jukeboxclause = `AND selection.jukebox_id = ${jukebox_id}`;
+    let userclause = '';
+    if (user_id) userclause = `AND owneruser_id = ${user_id}`;
+
+    let jukevinylsQ = `SELECT selection_id, jukebox_id, selection.copy_id, copy.release_id, 
+    releasename, year, owneruser_id AS user_id, ownercomment
     FROM selection
     LEFT JOIN copy ON selection.copy_id = copy.copy_id
     LEFT JOIN \`release\` ON copy.release_id = \`release\`.release_id
-    WHERE selection.jukebox_id = ?;`
+    WHERE true ${jukeboxclause} ${userclause};`
 
-    connection.query(jukevinylsQ, [jukebox_id], (err, data)=>{
+    connection.query(jukevinylsQ, (err, data)=>{
 
         if (err) {
             console.log(err.sqlMessage)

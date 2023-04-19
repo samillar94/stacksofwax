@@ -29,6 +29,11 @@
     </td>
     <td id="JtdEC<%= jukebox.jukebox_id %>" style="display: none">
       <textarea name="jukeboxdesc" rows="4" cols="25"><%= jukebox.jukeboxdesc %></textarea>
+      <% if(jukevinylsdata) jukevinylsdata.forEach( (copy)=>{   
+        if (copy.jukebox_id == jukebox.jukebox_id) { %>
+          <a class="button" href="/vinyl?id=<%= copy.release_id %>">#<%= copy.copy_id %> <%= copy.releasename %></a>
+      <% };
+      }); %>
     </td>
     <td id="JtdEB<%= jukebox.jukebox_id %>" style="display: none; text-align: right">
       <a class="button" onclick="var id = <%= jukebox.jukebox_id %>; closeeditJ(id);">Close</a>     

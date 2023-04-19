@@ -4,9 +4,9 @@
 <h3><%= jukeboxdata.jukeboxdesc %></h3>
 <p>Created by <a href="/collector?id=<%= jukeboxdata.user_id %>">
 <%= jukeboxdata.username %></a></p>
-<% if(jukevinylsdata) jukevinylsdata.forEach( (release)=>{   %>
+<% if(jukevinylsdata) jukevinylsdata.forEach( (copy)=>{   %>
   <div>
-      <a class="button" href="/vinyl?id=<%= release.release_id %>"><%= release.releasename %></a>
+      <a class="button" href="/vinyl?id=<%= copy.release_id %>">#<%= copy.copy_id %> <%= copy.releasename %></a>
   </div>
 <% }); %>
 
