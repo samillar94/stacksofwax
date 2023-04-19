@@ -54,8 +54,12 @@ const editjukebox = require('./routes/editjukebox.js');
 app.use('/editjukebox', editjukebox);
 const deletejukebox = require('./routes/deletejukebox.js');
 app.use('/deletejukebox', deletejukebox); 
+const popjukebox = require('./routes/popjukebox.js');
+app.use('/popjukebox', popjukebox);
 const jukeboxes = require('./routes/jukeboxes.js');
 app.use('/jukeboxes', jukeboxes);
+const jukebox = require('./routes/jukebox.js');
+app.use('/jukebox', jukebox);
 
 /// more middleware
 app.use(globalErrHandler);

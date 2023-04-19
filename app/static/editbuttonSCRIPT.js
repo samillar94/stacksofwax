@@ -4,12 +4,14 @@ function editC(id) {
     document.getElementById("CtdVC"+id).style.display = "none";
     document.getElementById("CtdEB"+id).style.display = "table-cell";
     document.getElementById("CtrEC"+id).style.display = "table-row";
+    document.getElementById("CtrEJ"+id).style.display = "table-row";
 }
 function closeeditC(id) {
     document.getElementById("CtdVB"+id).style.display = "table-cell";
     document.getElementById("CtdVC"+id).style.display = "table-cell";
     document.getElementById("CtdEB"+id).style.display = "none";
     document.getElementById("CtrEC"+id).style.display = "none";
+    document.getElementById("CtrEJ"+id).style.display = "none";
 }
 /// Jukebox edit toggle
 function editJ(id) {

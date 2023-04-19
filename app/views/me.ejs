@@ -16,7 +16,9 @@
     <form method="POST" action="/editjukebox" onsubmit="return confirm('Sure you want to update this jukebox?')">
     <input type="hidden" name="jukebox_id" value="<%= jukebox.jukebox_id %>">
 
-    <td id="JtdVN<%= jukebox.jukebox_id %>" style="display: table-cell"><%= jukebox.jukeboxname %></td>
+    <td id="JtdVN<%= jukebox.jukebox_id %>" style="display: table-cell">
+      <a href="/jukebox?id=<%= jukebox.jukebox_id %>"><%= jukebox.jukeboxname %></a>
+    </td>
     <td id="JtdVC<%= jukebox.jukebox_id %>" style="display: table-cell"><%= jukebox.jukeboxdesc %></td>
     <td id="JtdVB<%= jukebox.jukebox_id %>" style="display: table-cell; text-align: right">
       <a class="button" onclick="var id = <%= jukebox.jukebox_id %>; editJ(id);">Edit</a>
@@ -79,7 +81,7 @@
     <form method="POST" action="/editcopy" onsubmit="return confirm('Sure you want to save changes to this copy?')">
     <tr>
       <td><%= copy.copy_id %></td>
-      <td><%= copy.releasename %></td>
+      <td><a href="/vinyl?id=<%= copy.release_id %>"><%= copy.releasename %></a></td>
       <td><%= copy.year %></td>
       <td id="CtdVC<%= copy.copy_id %>" style="display: table-cell"><%= trunc %></td>
       <td id="CtdVB<%= copy.copy_id %>" style="display: table-cell; text-align: right">
@@ -91,7 +93,7 @@
     </tr>
     <tr id="CtrEC<%= copy.copy_id %>" style="display: none">
       <td colspan="4">
-        <textarea name="ownercomment" rows="5" cols="50"><%= copy.ownercomment %></textarea>
+        <textarea name="ownercomment" rows="4" cols="50"><%= copy.ownercomment %></textarea>
       </td>
       <td style="text-align: right">
         <input type="hidden" id="copy_id" name="copy_id" value="<%= copy.copy_id %>">
@@ -103,6 +105,22 @@
         <input type="submit" name="todelete" value="Delete" />
         </form>
       </td>
+    </tr>
+    <tr id="CtrEJ<%= copy.copy_id %>" style="display: none">
+      <form method="POST" action="/popjukebox">
+      <input type="hidden" name="copy_id" value="<%= copy.copy_id %>">
+      <td colspan="4">
+        <select name="jukebox_id">
+          <option value="" selected>Add your copy to a jukebox…</option>
+          <% if(jukeboxesdata) jukeboxesdata.forEach( jukebox => { %>
+          <option value="<%= jukebox.jukebox_id %>"><%= jukebox.jukeboxname %></option>
+          <% }); %>
+        </select>
+      </td>
+      <td style="text-align: right">
+        <input type="submit" value="Add" />
+      </td>
+      </form>
     </tr>
     
     <% }); %>
