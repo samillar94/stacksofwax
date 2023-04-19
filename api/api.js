@@ -50,6 +50,8 @@ const jukeboxes = require('./routes/jukeboxes.js');
 app.use('/jukeboxes', jukeboxes);
 const jukebox = require('./routes/jukebox.js');
 app.use('/jukebox', jukebox);
+const jukevinyls = require('./routes/jukevinyls.js');
+app.use('/jukevinyls', jukevinyls);
 
 
 app.use(globalErrHandler);

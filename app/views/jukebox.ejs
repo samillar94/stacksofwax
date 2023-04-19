@@ -1,8 +1,14 @@
 <%- include('header', {here: 'jukebox'}) %>
     
 <h2><%= jukeboxdata.jukeboxname %></h2>
-<%= jukeboxdata.jukeboxdesc %>
+<h3><%= jukeboxdata.jukeboxdesc %></h3>
+<p>Created by <a href="/collector?id=<%= jukeboxdata.user_id %>">
+<%= jukeboxdata.username %></a></p>
+<% if(jukevinylsdata) jukevinylsdata.forEach( (release)=>{   %>
+  <div>
+      <a class="button" href="/vinyl?id=<%= release.release_id %>"><%= release.releasename %></a>
+  </div>
+<% }); %>
 
-<!-- TODO contents -->
 
 <%- include('footer') %>

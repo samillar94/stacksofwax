@@ -13,31 +13,43 @@ router.get('/', (req, res)=> {
     
         let collectorEP = `http://localhost:${API_PORT}/collector?id=${user_id}&sessionuserid=${sessionuserid}`;
         let ownedvinylsEP = `http://localhost:${API_PORT}/myvinyls?user_id=${user_id}`;
-    
+        let theirjukeboxesEP = `http://localhost:${API_PORT}/jukeboxes?user_id=${user_id}`;
+
         axios.get(collectorEP)
         .then((results1)=>{
     
             let userdata = results1.data.goodstuff;
- 
             if (results1.data.badstuff) console.log(results1.data.badstuff);
 
             axios.get(ownedvinylsEP)
             .then((results2) => {
                 
                 let ownedvinylsdata = results2.data.goodstuff;
-
                 if (results2.data.badstuff) console.log(results2.data.badstuff);
 
-                if (userdata) {
+                axios.get(theirjukeboxesEP)   
+                .then((results3) => {
 
-                    res.render('collector', {title: `${userdata.username} - Collector`, userdata, ownedvinylsdata, member: req.session.sess_valid});  
+                    let jukeboxesdata = results3.data.goodstuff;
+                    if (results3.data.badstuff) console.log(results3.data.badstuff);
 
-                } else {
+                    if (userdata) {
 
-                    console.log("Collector route received no user data from the API.")
-                    res.redirect('/collectors');
+                        res.render('collector', {
+                            title: `${userdata.username} - Collector`, 
+                            userdata, 
+                            ownedvinylsdata, 
+                            jukeboxesdata,
+                            member: req.session.sess_valid});  
 
-                };                  
+                    } else {
+
+                        console.log("Collector route received no user data from the API.")
+                        res.redirect('/collectors');
+
+                    };
+                    
+                });
 
             });
 

@@ -35,4 +35,25 @@
 </table>
 <% } %>
 
+<h3>Their jukeboxes</h3>
+<table>
+  <tr>
+    <th>ID</th>
+    <th>Name</th>
+    <th>Description</th>
+  </tr>
+  <% if(jukeboxesdata) { 
+    jukeboxesdata.forEach(jukebox => { %>
+  <tr>
+    <td><%= jukebox.jukebox_id %></td>
+    <td>
+      <a href="/jukebox?id=<%= jukebox.jukebox_id %>"><%= jukebox.jukeboxname %></a>
+    </td>
+    <td><%= jukebox.jukeboxdesc %></td>
+    </td>
+  </tr>
+    <% });
+  }; %>  
+</table>
+
 <%- include('footer') %>
