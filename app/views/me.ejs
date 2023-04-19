@@ -29,11 +29,6 @@
     </td>
     <td id="JtdEC<%= jukebox.jukebox_id %>" style="display: none">
       <textarea name="jukeboxdesc" rows="4" cols="25"><%= jukebox.jukeboxdesc %></textarea>
-      <% if(jukevinylsdata) jukevinylsdata.forEach( (copy)=>{   
-        if (copy.jukebox_id == jukebox.jukebox_id) { %>
-          <a class="button" href="/vinyl?id=<%= copy.release_id %>">#<%= copy.copy_id %> <%= copy.releasename %></a>
-      <% };
-      }); %>
     </td>
     <td id="JtdEB<%= jukebox.jukebox_id %>" style="display: none; text-align: right">
       <a class="button" onclick="var id = <%= jukebox.jukebox_id %>; closeeditJ(id);">Close</a>     
@@ -46,6 +41,28 @@
       <input type="submit" value="Delete" />
     </td>
     </form>
+  </tr>
+  <tr>
+    <td colspan="4">
+      <b>Wax:</b>
+      <% if(jukevinylsdata) jukevinylsdata.forEach( (copy)=>{   
+        if (copy.jukebox_id == jukebox.jukebox_id) { %>
+          <span>
+            #<%= copy.copy_id %> <%= copy.releasename %>
+            <form 
+            method="POST" 
+            action="/deleteselection" 
+            style="display:inline" 
+            onsubmit="return confirm('Sure you want to remove this vinyl from the jukebox?')"
+            >
+            <input type="hidden" name="jukebox_id" value="<%= copy.jukebox_id %>">
+            <input type="hidden" name="copy_id" value="<%= copy.copy_id %>">
+            <input type="submit" value="➖" />
+            </form>
+          </span>
+      <% };
+      }); %>
+    </td>
   </tr>
     <% });
   }; %>  
@@ -122,7 +139,7 @@
         </select>
       </td>
       <td style="text-align: right">
-        <input type="submit" value="Pop in" />
+        <input type="submit" value="➕" />
       </td>
       </form>
     </tr>
