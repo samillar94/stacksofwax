@@ -54,6 +54,10 @@ const jukebox = require('./routes/jukebox.js');
 app.use('/jukebox', jukebox);
 const jukevinyls = require('./routes/jukevinyls.js');
 app.use('/jukevinyls', jukevinyls);
+const addreview = require('./routes/addreview.js');
+app.use('/addreview', addreview);
+const reviews = require('./routes/reviews.js');
+app.use('/reviews', reviews);
 
 
 app.use(globalErrHandler);

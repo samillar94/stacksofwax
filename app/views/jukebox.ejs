@@ -4,11 +4,30 @@
 <h3><%= jukeboxdata.jukeboxdesc %></h3>
 <p>Created by <a href="/collector?id=<%= jukeboxdata.user_id %>">
 <%= jukeboxdata.username %></a></p>
+
+<h3>Wax</h3>
 <% if(jukevinylsdata) jukevinylsdata.forEach( (copy)=>{   %>
-  <div>
-      <a class="button" href="/vinyl?id=<%= copy.release_id %>">#<%= copy.copy_id %> <%= copy.releasename %></a>
-  </div>
+  <a class="button" href="/vinyl?id=<%= copy.release_id %>">#<%= copy.copy_id %> <%= copy.releasename %></a>
 <% }); %>
 
+<h3>Reviews</h3>
+<table>
+  <% if (reviewsdata) reviewsdata.forEach((review) =>{ %>
+  <tr>
+    <td><%= review.reviewtext %></td>
+    <td><%= review.username %></td>
+  </tr>
+  <% }); 
+  if (member) { %>
+  <form method="POST" action="/addreview">
+  <tr>
+    <input type="hidden" name="jukebox_id" value="<%= jukeboxdata.jukebox_id %>">
+    <td><textarea name="reviewtext" rows="4" cols="50" placeholder="Nice combo right? Leave a comment."></textarea></td>
+    <td style="text-align: right"><input type="submit" value="Post" /></td>
+  </tr>
+  </form>
+  <% } %>
+</table>
 
-<%- include('footer') %>
+
+<%- include('footer') %> 

@@ -17,8 +17,8 @@
   
     <div class="menu my-menu">
       <a class="button" <% if (here == 'home') { %>style="font-weight: bold"<% } %> href="/vinyls">vinyls</a>
-      <a class="button" <% if (here == 'collectors') { %>style="font-weight: bold"<% } %> href="/collectors">collectors</a>
       <a class="button" <% if (here == 'jukeboxes') { %>style="font-weight: bold"<% } %> href="/jukeboxes">jukeboxes</a>
+      <a class="button" <% if (here == 'collectors') { %>style="font-weight: bold"<% } %> href="/collectors">collectors</a>
       <% if (member) { %>
       <a class="button" <% if (here == 'me') { %>style="font-weight: bold"<% } %> href="/me">me</a> 
       <a class="button" href="/logout">logout</a> 

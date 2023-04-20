@@ -13,12 +13,13 @@ router.get('/', (req, res)=> {
 
         let jukeboxEP = `http://localhost:${API_PORT}/jukebox?jukebox_id=${jukebox_id}`;
         let jukevinylsEP = `http://localhost:${API_PORT}/jukevinyls?jukebox_id=${jukebox_id}`;
+        let reviewsEP = `http://localhost:${API_PORT}/reviews?jukebox_id=${jukebox_id}`;
 
         axios.get(jukeboxEP)
         .then((results1) => {
             
             let jukeboxdata = results1.data.goodstuff;
-                 
+                  
             if (results1.data.badstuff) console.log(results1.data.badstuff);
 
             axios.get(jukevinylsEP)
@@ -29,17 +30,27 @@ router.get('/', (req, res)=> {
 
                 if (badstuff) console.log(badstuff);
 
-                if (jukeboxdata) {
-                    res.render('jukebox', {
-                        title: `${jukeboxdata.jukeboxname} - Jukebox`, 
-                        jukeboxdata, 
-                        jukevinylsdata,
-                        member: req.session.sess_valid});
-                } else {
-                    console.log("Jukebox route received no release data from the API.");
-                    console.log("Response:", badstuff);
-                    res.redirect('/?message=nojukebox');
-                };
+                axios.get(reviewsEP)
+                .then((results3) => {
+                    
+                    let reviewsdata = results3.data.goodstuff;
+                 
+                    if (results3.data.badstuff) console.log(results3.data.badstuff);
+                
+                    if (jukeboxdata) {
+                        res.render('jukebox', {
+                            title: `${jukeboxdata.jukeboxname} - Jukebox`, 
+                            jukeboxdata, 
+                            jukevinylsdata,
+                            reviewsdata,
+                            member: req.session.sess_valid});
+                    } else {
+                        console.log("Jukebox route received no release data from the API.");
+                        console.log("Response:", badstuff);
+                        res.redirect('/?message=nojukebox');
+                    };
+
+                });
                 
             });
 

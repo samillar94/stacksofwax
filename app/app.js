@@ -20,6 +20,7 @@ app.use(sessions({
     })
 );
 app.use(express.urlencoded({extended: true})); 
+app.use(cookieParser());
  
 /// routes
 const home = require('./routes/home.js');
@@ -62,6 +63,8 @@ const jukeboxes = require('./routes/jukeboxes.js');
 app.use('/jukeboxes', jukeboxes);
 const jukebox = require('./routes/jukebox.js');
 app.use('/jukebox', jukebox);
+const addreview = require('./routes/addreview.js');
+app.use('/addreview', addreview);
 
 /// more middleware
 app.use(globalErrHandler);
