@@ -60,6 +60,10 @@ const reviews = require('./routes/reviews.js');
 app.use('/reviews', reviews);
 const searchvinyls = require('./routes/searchvinyls.js');
 app.use('/searchvinyls', searchvinyls);
+const togglelike = require('./routes/togglelike.js');
+app.use('/togglelike', togglelike);
+const jukeboxlikes = require('./routes/jukeboxlikes.js');
+app.use('/jukeboxlikes', jukeboxlikes);
 
 
 app.use(globalErrHandler);

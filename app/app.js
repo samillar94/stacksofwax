@@ -28,6 +28,11 @@ app.use(sessions({
 );
 app.use(express.urlencoded({extended: true})); 
 // app.use(cookieParser());
+app.use(function(req, res, next) {
+    res.locals.user_id = req.session.user_id;
+    res.locals.sess_valid = req.session.sess_valid;
+    next();
+}); // exposes session to ejs templates
  
 /// routes
 const home = require('./routes/home.js');
@@ -74,6 +79,8 @@ const addreview = require('./routes/addreview.js');
 app.use('/addreview', addreview);
 const searchvinyls = require('./routes/searchvinyls.js');
 app.use('/searchvinyls', searchvinyls);
+const togglelike = require('./routes/togglelike.js');
+app.use('/togglelike', togglelike);
 
 /// more middleware
 app.use(globalErrHandler);

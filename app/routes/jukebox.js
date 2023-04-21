@@ -14,6 +14,7 @@ router.get('/', (req, res)=> {
         let jukeboxEP = `http://localhost:${API_PORT}/jukebox?jukebox_id=${jukebox_id}`;
         let jukevinylsEP = `http://localhost:${API_PORT}/jukevinyls?jukebox_id=${jukebox_id}`;
         let reviewsEP = `http://localhost:${API_PORT}/reviews?jukebox_id=${jukebox_id}`;
+        let likesEP = `http://localhost:${API_PORT}/jukeboxlikes?jukebox_id=${jukebox_id}`;
 
         axios.get(jukeboxEP)
         .then((results1) => {
@@ -26,9 +27,8 @@ router.get('/', (req, res)=> {
             .then((results2) => {
 
                 let jukevinylsdata = results2.data.goodstuff;
-                let { badstuff } = results2.data;
 
-                if (badstuff) console.log(badstuff);
+                if (results2.data.badstuff) console.log(results2.data.badstuff);
 
                 axios.get(reviewsEP)
                 .then((results3) => {
@@ -37,20 +37,36 @@ router.get('/', (req, res)=> {
                  
                     if (results3.data.badstuff) console.log(results3.data.badstuff);
                 
-                    if (jukeboxdata) {
-                        res.render('jukebox', {
-                            title: `${jukeboxdata.jukeboxname} - Jukebox`, 
-                            jukeboxdata, 
-                            jukevinylsdata,
-                            reviewsdata,
-                            member: req.session.sess_valid,
-                            query: req.query
-                        });
-                    } else {
-                        console.log("Jukebox route received no release data from the API.");
-                        console.log("Response:", badstuff);
-                        res.redirect('/?message=nojukebox');
-                    };
+                    axios.get(likesEP)
+                    .then((results4) => {
+
+                        let likesdata = results4.data.goodstuff;
+                
+                        if (results4.data.badstuff) console.log(results4.data.badstuff);
+
+                        if (jukeboxdata) {
+
+                            let likebutton = "Like";
+                            if (likesdata) likesdata.forEach(like => {
+                                if (like.likeruser_id == user_id) likebutton = "Unlike";
+                            });
+                            res.render('jukebox', {
+                                title: `${jukeboxdata.jukeboxname} - Jukebox`, 
+                                jukeboxdata, 
+                                jukevinylsdata,
+                                reviewsdata,
+                                likesdata,
+                                likebutton,
+                                member: req.session.sess_valid,
+                                query: req.query
+                            });
+                        } else {
+                            console.log("Jukebox route received no release data from the API.");
+                            console.log("Response:", badstuff);
+                            res.redirect('/?message=nojukebox');
+                        };
+
+                    });
 
                 });
                 

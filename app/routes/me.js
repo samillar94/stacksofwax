@@ -14,6 +14,8 @@ router.get('/', (req, res)=> {
 
             let user_id = req.session.user_id;
 
+            /// TODO pass in username/data
+
             let myvinylsEP = `http://localhost:${API_PORT}/myvinyls?user_id=${user_id}`;
             let myjukeboxesEP = `http://localhost:${API_PORT}/jukeboxes?user_id=${user_id}`;
             let jukevinylsEP = `http://localhost:${API_PORT}/jukevinyls?user_id=${user_id}`;
