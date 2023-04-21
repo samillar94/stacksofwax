@@ -29,7 +29,13 @@ router.get('/', (req, res)=> {
                 if (results2.data.badstuff) console.log(results2.data.badstuff);
 
                 if (vinyldata) {
-                    res.render('vinyl', {title: `${vinyldata.releasename} - Vinyl`, vinyldata, copiesdata, member: req.session.sess_valid});
+                    res.render('vinyl', {
+                        title: `${vinyldata.releasename} - Vinyl`, 
+                        vinyldata, 
+                        copiesdata, 
+                        member: req.session.sess_valid,
+                        query: req.query
+                    });
                 } else {
                     console.log("Vinyl route received no release data from the API.");
                     console.log("Response:", badstuff);

@@ -40,7 +40,9 @@ router.get('/', (req, res)=> {
                             userdata, 
                             ownedvinylsdata, 
                             jukeboxesdata,
-                            member: req.session.sess_valid});  
+                            member: req.session.sess_valid,
+                            query: req.query
+                        });  
 
                     } else {
 

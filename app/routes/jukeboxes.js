@@ -18,7 +18,8 @@ router.get('/', (req, res, next)=> {
             res.render('jukeboxes', {
                 title: 'Jukeboxes', 
                 jukeboxesdata: jukeboxesdata, 
-                member: req.session.sess_valid
+                member: req.session.sess_valid,
+                query: req.query
             }); 
 
         });

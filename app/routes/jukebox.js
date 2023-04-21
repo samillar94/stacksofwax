@@ -43,7 +43,9 @@ router.get('/', (req, res)=> {
                             jukeboxdata, 
                             jukevinylsdata,
                             reviewsdata,
-                            member: req.session.sess_valid});
+                            member: req.session.sess_valid,
+                            query: req.query
+                        });
                     } else {
                         console.log("Jukebox route received no release data from the API.");
                         console.log("Response:", badstuff);

@@ -10,18 +10,20 @@ router.get('/', (req, res, next)=> {
 
         let from = req.headers.referer; /// could use this to display page differently 
 
-        let vinylsEP = `http://localhost:${API_PORT}/vinyls`;
+        let { nameS } = req.query;
+
+        let searchvinylsEP = `http://localhost:${API_PORT}/searchvinyls?nameS=${nameS}`;
         /// TODO top n vinyls
 
-        axios.get(vinylsEP)
+        axios.get(searchvinylsEP)
         .then((results)=>{
             
             let vinylsdata = results.data.goodstuff;
-            res.render('home', {
-                title: 'Vinyls', 
+            res.render('searchvinyls', {
+                title: `${nameS} - Vinyl search`, 
                 vinylsdata: vinylsdata, 
                 member: req.session.sess_valid,
-                query: req.query
+                query : req.query
             }); 
 
         });

@@ -8,7 +8,8 @@ router.get('/', (req, res)=> {
 
     try {
 
-        req.session.destroy();
+        req.session.destroy(); // do I need this ?
+        res.clearCookie("user_id");
         console.log("logged out");
         res.redirect('/?message=loggedout');
 

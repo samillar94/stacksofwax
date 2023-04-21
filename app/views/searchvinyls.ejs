@@ -1,0 +1,15 @@
+<%- include('header', {here: 'home'}) %>
+
+<h2>Search results: <%= query.nameS %></h2>
+
+<div class="flex one two-600 three-800 four-1000"> 
+
+  <% vinylsdata.forEach( (release)=>{   %>
+    <div>
+        <a class="button" href="/vinyl?id=<%= release.release_id %>"><%= release.releasename %></a>
+    </div>
+  <% }); %>
+
+</div>
+
+<%- include('footer') %>

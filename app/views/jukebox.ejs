@@ -12,13 +12,7 @@
 
 <h3>Reviews</h3>
 <table>
-  <% if (reviewsdata) reviewsdata.forEach((review) =>{ %>
-  <tr>
-    <td><%= review.reviewtext %></td>
-    <td><%= review.username %></td>
-  </tr>
-  <% }); 
-  if (member) { %>
+  <% if (member) { %>
   <form method="POST" action="/addreview">
   <tr>
     <input type="hidden" name="jukebox_id" value="<%= jukeboxdata.jukebox_id %>">
@@ -26,7 +20,13 @@
     <td style="text-align: right"><input type="submit" value="Post" /></td>
   </tr>
   </form>
-  <% } %>
+  <% }; %>
+  <% if (reviewsdata) reviewsdata.forEach((review) =>{ %>
+  <tr>
+    <td><%= review.reviewtext %></td>
+    <td><%= review.username %></td>
+  </tr>
+  <% }); %>
 </table>
 
 

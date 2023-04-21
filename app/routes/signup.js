@@ -6,7 +6,11 @@ const API_PORT = process.env.API_PORT || 4000;
 
 router.get('/', (req, res)=>{
 
-    res.render('signup', {title: 'Sign up', member: false});
+    res.render('signup', {
+        title: 'Sign up', 
+        member: false,
+        query: req.query
+    });
 
 });
 

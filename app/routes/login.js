@@ -8,7 +8,11 @@ router.get('/', (req, res)=> {
 
     try {
 
-        res.render('login', {title: 'Login', member: req.session.sess_valid}); 
+        res.render('login', {
+            title: 'Login', 
+            member: req.session.sess_valid,
+            query: req.query
+        }); 
 
     } catch (err) {
 
@@ -44,7 +48,8 @@ router.post('/', (req, res)=> {
             let goodstuff = results.data.goodstuff;
     
             if (goodstuff) {
-                req.session.user_id = goodstuff.user_id;
+                req.session.user_id = goodstuff.user_id; // shift these to cookies
+                // res.cookie("user_id", goodstuff.user_id);
                 console.log("...succeeded.");
                 res.redirect("/goodlogin");
             } else {

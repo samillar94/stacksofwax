@@ -10,17 +10,24 @@ const app = express();
 const APP_PORT = process.env.APP_PORT || 3000;
 
 /// middleware 
+const ninetyDays = 1000 * 60 * 60 * 24 * 90;
 const globalErrHandler = require("./middleware/errorHandler");
 app.use(express.static('static'));
 app.set('view engine', 'ejs');
 app.use(sessions({
     secret: 'fabsolutely abulous',
     saveUninitialized: false,
+    // cookie: { 
+    //     maxAge: ninetyDays,
+    //     secure: true, // requires HTTPS
+    //     httpOnly: true, // prevents JS access
+    //     sameSite: 'Lax' // match domain
+    // },
     resave: false
     })
 );
 app.use(express.urlencoded({extended: true})); 
-app.use(cookieParser());
+// app.use(cookieParser());
  
 /// routes
 const home = require('./routes/home.js');
@@ -65,6 +72,8 @@ const jukebox = require('./routes/jukebox.js');
 app.use('/jukebox', jukebox);
 const addreview = require('./routes/addreview.js');
 app.use('/addreview', addreview);
+const searchvinyls = require('./routes/searchvinyls.js');
+app.use('/searchvinyls', searchvinyls);
 
 /// more middleware
 app.use(globalErrHandler);

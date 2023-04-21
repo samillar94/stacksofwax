@@ -58,6 +58,8 @@ const addreview = require('./routes/addreview.js');
 app.use('/addreview', addreview);
 const reviews = require('./routes/reviews.js');
 app.use('/reviews', reviews);
+const searchvinyls = require('./routes/searchvinyls.js');
+app.use('/searchvinyls', searchvinyls);
 
 
 app.use(globalErrHandler);

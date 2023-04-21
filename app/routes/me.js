@@ -10,6 +10,8 @@ router.get('/', (req, res)=> {
 
         if (req.session.sess_valid) {
 
+            console.log("Cookies:", req.cookies);
+
             let user_id = req.session.user_id;
 
             let myvinylsEP = `http://localhost:${API_PORT}/myvinyls?user_id=${user_id}`;
@@ -40,7 +42,8 @@ router.get('/', (req, res)=> {
                             jukeboxesdata: jukeboxesdata,
                             jukevinylsdata,
                             user_id: user_id, 
-                            member: req.session.sess_valid
+                            member: req.session.sess_valid,
+                            query: req.query
                         });
                     
                     });

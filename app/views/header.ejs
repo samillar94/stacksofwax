@@ -26,7 +26,15 @@
       <a class="button" <% if (here == 'signup') { %>style="font-weight: bold"<% } %> href="/signup">sign up</a>
       <a class="button" <% if (here == 'login') { %>style="font-weight: bold"<% } %> href="/login">login</a>
       <% } %>
-
+      <br/>
+      <form method="GET" action="/searchvinyls">
+        <input 
+        type="search" 
+        name="nameS" 
+        placeholder="Search for a vinyl title"
+        value="<% if(query) { %><%= query.nameS %><% } %>">
+        <input type="submit" value="search">
+      </form>
     </div>
   </nav>
   <div class="my-main">

@@ -17,7 +17,8 @@ router.get('/', (req, res)=> {
             res.render('collectors', {
                 title: 'Collectors', 
                 collectorsdata: collectorsdata, 
-                member: req.session.sess_valid
+                member: req.session.sess_valid,
+                query: req.query
             });  
     
         });
