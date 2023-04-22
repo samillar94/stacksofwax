@@ -27,7 +27,8 @@ router.post('/', (req, res)=> {
             res.json({badstuff: err});
             return; 
         }; 
-        
+
+        console.log(data)
         let goodstuff = data[3][0];
         console.log(goodstuff);
        

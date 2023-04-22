@@ -1,40 +1,62 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-bs-theme="dark">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><%= title %> | STACKSofWAX</title>
-    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/picnic"> -->
-    <link rel="stylesheet" href="https://cdn.simplecss.org/simple.min.css">
     <link rel="stylesheet" href="styles.css">
+    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/picnic"> -->
+    <!-- <link rel="stylesheet" href="https://cdn.simplecss.org/simple.min.css"> -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.4/font/bootstrap-icons.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
 </head>
 <body>
-  <nav >
-    <a href="/" class="brand">
-      <img src="stacksofwax logo v1e1.png" alt="STACKSofWAX" height="90">
-    </a>
-  
-    <div class="menu my-menu">
-      <a class="button" <% if (here == 'home') { %>style="font-weight: bold"<% } %> href="/vinyls">vinyls</a>
-      <a class="button" <% if (here == 'jukeboxes') { %>style="font-weight: bold"<% } %> href="/jukeboxes">jukeboxes</a>
-      <a class="button" <% if (here == 'collectors') { %>style="font-weight: bold"<% } %> href="/collectors">collectors</a>
-      <% if (member) { %>
-      <a class="button" <% if (here == 'me') { %>style="font-weight: bold"<% } %> href="/me">me</a> 
-      <a class="button" href="/logout">logout</a> 
-      <% } else { %>
-      <a class="button" <% if (here == 'signup') { %>style="font-weight: bold"<% } %> href="/signup">sign up</a>
-      <a class="button" <% if (here == 'login') { %>style="font-weight: bold"<% } %> href="/login">login</a>
-      <% } %>
-      <br/>
-      <form method="GET" action="/searchvinyls">
-        <input 
-        type="search" 
-        name="nameS" 
-        placeholder="Search for a vinyl title"
-        value="<% if(query) { %><%= query.nameS %><% } %>">
-        <input type="submit" value="search">
-      </form>
+  <nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <div class="container-fluid">
+      <a href="/" class="navbar-brand">
+        <img src="stacksofwax logo v1e1.png" alt="STACKSofWAX" height="90">
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggler" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="my-menu collapse navbar-collapse" id="navbarToggler">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link <% if (here == 'home') { %>active" aria-current="page<% } %>" href="/vinyls">vinyls</a>
+          </li>
+          <li class="nav-item"></li>
+            <a class="nav-link <% if (here == 'jukeboxes') { %>active" aria-current="page<% } %>" href="/jukeboxes">jukeboxes</a>
+          </li>
+          <li class="nav-item"></li>
+            <a class="nav-link <% if (here == 'collectors') { %>active" aria-current="page<% } %>" href="/collectors">collectors</a>
+          </li>
+          <% if (member) { %>
+          <li class="nav-item"></li>
+              <a class="nav-link <% if (here == 'me') { %>active" aria-current="page<% } %>" href="/me">me</a> 
+          </li>
+          <li class="nav-item"></li>
+            <a class="nav-link" href="/logout">logout</a> 
+          </li>
+          <% } else { %>
+          <li class="nav-item"></li>
+            <a class="nav-link <% if (here == 'signup') { %>active" aria-current="page<% } %>" href="/signup">sign up</a>
+          </li>
+          <li class="nav-item"></li>
+            <a class="nav-link <% if (here == 'login') { %>active" aria-current="page<% } %>" href="/login">login</a>
+          </li>
+          <% } %>
+        </ul>
+        <form method="GET" action="/searchvinyls" class="d-flex" role="search">
+          <input 
+          type="search" 
+          name="nameS" 
+          placeholder="Search for a vinyl title"
+          value="<% if(query) { %><%= query.nameS %><% } %>">
+          <input type="submit" value="search">
+        </form>
+      </div>
     </div>
   </nav>
-  <div class="my-main">
+  <div class="my-main container">

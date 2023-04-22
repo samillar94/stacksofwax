@@ -4,16 +4,20 @@
 
 <div class="flex one two-600 three-800 four-1000"> 
 
-  <table>
+  <table class="table">
     <tr>
       <th>Username</th>
       <th>Stack</th>
       <th>Joined</th>
     </tr>
 
-    <% collectorsdata.forEach( (collector)=>{   %>
+    <% collectorsdata.forEach( (collector)=>{ %>
     <tr>
-      <th><a class="button" href="/collector?id=<%= collector.user_id %>"><%= collector.username %></a></th>
+      <td>
+        <a class="btn btn-outline-info" href="/collector?id=<%= collector.user_id %>">
+          <img style="height:30px;padding-right:10px;" src="<%= collector.userimageurl %>"/><%= collector.username %>
+        </a>
+      </td>
       <td>?</td>
       <td><%= collector.joindate %></td>
     </tr>

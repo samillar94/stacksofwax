@@ -4,7 +4,7 @@ const connection = require("../connection.js");
 
 router.get('/', (req, res)=> { 
 
-    let publiccollectorsQ = `SELECT user_id, username, joindate FROM user WHERE public;`
+    let publiccollectorsQ = `SELECT user_id, username, joindate, userimageurl FROM user WHERE public;`
 
     connection.query(publiccollectorsQ, (err, data)=>{
 

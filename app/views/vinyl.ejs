@@ -2,7 +2,7 @@
     
 <h2><%= vinyldata.releasename %></h2>
 <% if (vinyldata.vinyls>1) { %><p><%= vinyldata.vinyls %>-vinyl release</p><% } %>
-<table>
+<table class="table">
   <tr>
     <th>Year</th>
     <td><%= vinyldata.year %></td>
@@ -25,7 +25,7 @@
 <% if (member) { %>
 <h3>My copies</h3>
 <% if(copiesdata[0]) { %>
-<table>
+<table class="table">
   <tr>
     <th>ID</th>
     <th>My notes</th>

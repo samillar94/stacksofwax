@@ -8,12 +8,16 @@ body {
         linear-gradient(127deg, rgb(35, 0, 83), rgba(140, 0, 255, 0) 70%),
         linear-gradient(217deg, rgba(255,0,0,.8), rgba(255,0,0,0) 70%),
         linear-gradient(336deg, rgba(0,0,255,.8), rgba(0,0,255,0) 70.71%); */
-    color: #eee;
-    font-family: 'Segoe UI', sans-serif;
+    /* color: #eee; */
+    /* font-family: 'Segoe UI', sans-serif; */
+}
+
+table {
+    border-color: #ffffff21 !important;
 }
 
 a {
-    color: #aee;
+    /* color: #aee; */
 }
 
 /* input[type=text], input[type=textarea], input[type=password], textarea {
@@ -21,10 +25,10 @@ a {
 } */
 
 div.my-main {
-    margin: 0 auto; 
+    /* margin: 0 auto;  */
     padding: 20px;
 }
 
 .my-menu {
-    margin: auto;
+    /* margin: auto; */
 }

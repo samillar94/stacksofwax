@@ -8,7 +8,7 @@
 
   <% if (jukeboxesdata) jukeboxesdata.forEach( (jukebox)=>{   %>
     <div>
-        <a class="button" href="/jukebox?id=<%= jukebox.jukebox_id %>"><%= jukebox.jukeboxname %></a>
+      <a class="btn btn-outline-info" href="/jukebox?id=<%= jukebox.jukebox_id %>"><%= jukebox.jukeboxname %></a>
     </div>
   <% }); %>
 

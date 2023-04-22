@@ -1,8 +1,8 @@
 <%- include('header', {here: 'collector'}) %>
 
-<h2><%= userdata.username %></h2>
+<h2><img src="<%= userdata.userimageurl %>" style="height:100px;padding-right:30px;"/><%= userdata.username %></h2>
 
-<table>
+<table class="table">
   <tr>
     <th>Joined</th>
     <td><%= userdata.joindate %></td>
@@ -19,7 +19,7 @@
 
 <% if(ownedvinylsdata[0]) { %>
 <h3>Their wax</h3>
-<table>
+<table class="table">
   <tr>
     <th>Release</th>
     <th>Year</th>
@@ -36,7 +36,7 @@
 <% } %>
 
 <h3>Their jukeboxes</h3>
-<table>
+<table class="table">
   <tr>
     <th>ID</th>
     <th>Name</th>
