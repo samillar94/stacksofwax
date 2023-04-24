@@ -47,8 +47,14 @@
       <b>Wax:</b>
       <% if(jukevinylsdata) jukevinylsdata.forEach( (copy)=>{   
         if (copy.jukebox_id == jukebox.jukebox_id) { %>
-          <span>
-            #<%= copy.copy_id %> <%= copy.releasename %>
+          <a class="btn btn-outline-info btn-sm" href="/vinyl?id=<%= copy.release_id %>">
+            #<%= copy.copy_id %> <img class="minicover" src="
+    <% if (copy.releaseimageurl == null) { %>
+    defaultcover.png
+    <% } else { %>
+    <%= copy.releaseimageurl %>
+    <% } %>
+    "/> <%= copy.releasename %>
             <form 
             method="POST" 
             action="/deleteselection" 
@@ -57,9 +63,9 @@
             >
             <input type="hidden" name="jukebox_id" value="<%= copy.jukebox_id %>">
             <input type="hidden" name="copy_id" value="<%= copy.copy_id %>">
-            <input type="submit" value="🗑️" class="btn btn-outline-danger"></input>
+            <input type="submit" value="🗑️" class="btn btn-outline-danger btn-sm"></input>
             </form>
-          </span>
+          </a>
       <% };
       }); %>
     </td>
@@ -103,7 +109,13 @@
   <form method="POST" action="/editcopy" onsubmit="return confirm('Sure you want to save changes to this copy?')">
   <tr style="border-top-width: 3px">
     <td><%= copy.copy_id %></td>
-    <td><a href="/vinyl?id=<%= copy.release_id %>" class="btn btn-outline-info"><%= copy.releasename %></a></td>
+    <td><a href="/vinyl?id=<%= copy.release_id %>" class="btn btn-outline-info"><img class="minicover" src="
+    <% if (copy.releaseimageurl == null) { %>
+    defaultcover.png
+    <% } else { %>
+    <%= copy.releaseimageurl %>
+    <% } %>
+    "/> <%= copy.releasename %></a></td>
     <td><%= copy.year %></td>
     <td id="CtdVC<%= copy.copy_id %>" style="display: table-cell"><%= trunc %></td>
     <td id="CtdVB<%= copy.copy_id %>" style="display: table-cell; text-align: right">

@@ -30,7 +30,7 @@ app.use(sessions({
 );
 app.use(express.urlencoded({extended: true})); 
 // app.use(cookieParser());
-app.use(function(req, res, next) {
+app.use((req, res, next) => {
     res.locals.user_id = req.session.user_id;
     res.locals.sess_valid = req.session.sess_valid;
     next();

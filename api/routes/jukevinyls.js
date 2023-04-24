@@ -12,7 +12,7 @@ router.get('/', (req, res)=> {
     if (user_id) userclause = `AND owneruser_id = ${user_id}`;
 
     let jukevinylsQ = `SELECT selection_id, jukebox_id, selection.copy_id, copy.release_id, 
-    releasename, year, owneruser_id AS user_id, ownercomment
+    releasename, year, releaseimageurl, owneruser_id AS user_id, ownercomment
     FROM selection
     LEFT JOIN copy ON selection.copy_id = copy.copy_id
     LEFT JOIN \`release\` ON copy.release_id = \`release\`.release_id

@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="200"
+   height="200"
+   viewBox="0 0 52.916665 52.916666"
+   version="1.1"
+   id="svg5"
+   inkscape:version="1.2.1 (9c6d41e410, 2022-07-14)"
+   sodipodi:docname="defaultartist.svg"
+   inkscape:export-filename="defaultartist.png"
+   inkscape:export-xdpi="96"
+   inkscape:export-ydpi="96"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview7"
+     pagecolor="#190032"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:document-units="mm"
+     showgrid="false"
+     inkscape:zoom="2.9683221"
+     inkscape:cx="116.90106"
+     inkscape:cy="145.36832"
+     inkscape:window-width="1920"
+     inkscape:window-height="991"
+     inkscape:window-x="2391"
+     inkscape:window-y="-9"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="g561" />
+  <defs
+     id="defs2" />
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <g
+       id="g501"
+       inkscape:label="originals"
+       style="display:none">
+      <circle
+         style="fill:#7d7f99;stroke:#00ffff;stroke-width:0;stroke-opacity:0.982659"
+         id="path234"
+         cx="26.458334"
+         cy="26.458334"
+         r="26.458332" />
+      <circle
+         style="fill:#ffffff;stroke:#00ffff;stroke-width:0;stroke-opacity:0.982659"
+         id="path290"
+         cx="26.458334"
+         cy="26.458334"
+         r="6.0911365" />
+      <path
+         style="fill:#ffffff;stroke:#00ffff;stroke-width:0;stroke-opacity:0.982659"
+         d="m 4.0068965,37.117397 c 0,0 -1.6486331,-5.329038 10.5733885,-4.541775 4.539007,0.292373 10.803723,3.911014 20.600228,0.7859 4.385649,-1.399035 5.400938,-4.108621 6.602751,-6.148115 3.382186,2.481667 -1.923956,10.782274 -10.753307,12.284372 -1.658138,5.584558 -4.062305,11.745236 -6.209754,13.418888 -5.245624,4.088268 -9.627402,-2.166262 -12.873449,-3.996466 -1.750483,-0.986966 3.475968,-7.248264 5.066299,-10.562023 C 13.890739,36.500762 8.2727218,35.703669 4.0068965,37.117397 Z"
+         id="path400"
+         sodipodi:nodetypes="cssccsscc" />
+    </g>
+    <g
+       id="g561"
+       inkscape:label="merged"
+       transform="matrix(-1,0,0,1,52.916667,0)">
+      <path
+         id="circle555"
+         style="fill:#ffffff;fill-opacity:0.52164;stroke:#00ffff;stroke-width:0;stroke-opacity:0.982659"
+         d="M 26.458333,0 C 11.845799,-5.5228478e-7 -5.5228479e-7,11.845799 0,26.458333 c 0.00518329,8.762961 4.3487473,16.954892 11.599292,21.876184 -0.176164,-1.891544 4.01806,-7.068211 5.413623,-9.976135 -3.122311,-1.857414 -8.7401034,-2.654478 -13.0059244,-1.240751 0,0 -1.6484946,-5.329104 10.5735144,-4.541842 4.539003,0.292373 10.62501,3.999728 20.421506,0.874618 2.793316,-0.891076 3.868693,-2.299741 4.738253,-3.407877 l -2.072639,-1.62317 c -0.511396,-0.373594 0.68916,-1.852011 1.142406,-1.517849 l 2.060925,1.662533 c 0.02319,-0.0343 0.277806,-0.40086 0.332463,-0.489488 0.542565,0.398105 0.851623,0.889199 1.018249,1.532097 l 1.756238,1.610876 c 0.397128,0.364258 -0.818825,1.292874 -1.127266,1.079748 l -0.799077,-0.552143 c -1.290351,2.261096 -5.096436,6.744719 -11.021416,7.752709 -1.643023,5.533654 -4.018617,11.630184 -6.151045,13.36921 0.525799,0.03225 1.052444,0.0488 1.579231,0.04961 14.612535,10e-7 26.458335,-11.845799 26.458334,-26.458334 C 52.916668,11.845799 41.070867,-1.1045696e-6 26.458333,0 Z m 0,20.367232 c 3.364014,2e-5 6.091081,2.727087 6.091101,6.091101 -2e-5,3.364014 -2.727087,6.091081 -6.091101,6.091101 -3.364014,-2e-5 -6.091081,-2.727087 -6.091101,-6.091101 2e-5,-3.364014 2.727087,-6.091081 6.091101,-6.091101 z"
+         inkscape:label="icon"
+         sodipodi:nodetypes="sccccssccccccssccccssccccc" />
+    </g>
+  </g>
+</svg>

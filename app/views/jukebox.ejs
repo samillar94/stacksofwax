@@ -2,12 +2,23 @@
     
 <h2><%= jukeboxdata.jukeboxname %></h2>
 <h3><%= jukeboxdata.jukeboxdesc %></h3>
-<p>Created by <a href="/collector?id=<%= jukeboxdata.user_id %>">
-<%= jukeboxdata.username %></a></p>
+<p>Created by 
+  <a class="btn btn-outline-info" href="/collector?id=<%= jukeboxdata.user_id %>">
+    <img class="minipic" src="<%= jukeboxdata.userimageurl %>"/>
+    <%= jukeboxdata.username %>
+  </a>
+</p>
 
 <h3>Wax</h3>
 <% if(jukevinylsdata) jukevinylsdata.forEach( (copy)=>{   %>
-  <a class="button" href="/vinyl?id=<%= copy.release_id %>">#<%= copy.copy_id %> <%= copy.releasename %></a>
+  <a class="btn btn-outline-info" href="/vinyl?id=<%= copy.release_id %>"
+    >#<%= copy.copy_id %> <img class="minicover" src="
+    <% if (copy.releaseimageurl == null) { %>
+    defaultcover.png
+    <% } else { %>
+    <%= copy.releaseimageurl %>
+    <% } %>
+    "/> <%= copy.releasename %></a>
 <% }); %>
 
 <form method="POST" action="/togglelike">

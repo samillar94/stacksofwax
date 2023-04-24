@@ -4,7 +4,7 @@ const connection = require("../connection.js");
 
 router.get('/', (req, res)=> { 
 
-    let allvinylsQ = `SELECT release_id, releasename FROM \`release\`;` /// release is a reserved word in SQL -_-
+    let allvinylsQ = `SELECT release_id, releasename, releaseimageurl  FROM \`release\`;` /// release is a reserved word in SQL -_-
 
     connection.query(allvinylsQ, (err, data)=>{
 

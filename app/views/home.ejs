@@ -4,11 +4,20 @@
 
 <h3>Vinyl is back, but please shelve, don't stack.</h3>
 
-<div class="flex one two-600 three-800 four-1000"> 
+<div class="flex-container"> 
 
   <% vinylsdata.forEach( (release)=>{   %>
     <div>
-        <a class="btn btn-outline-info" href="/vinyl?id=<%= release.release_id %>"><%= release.releasename %></a>
+        <a class="btn btn-outline-info" href="/vinyl?id=<%= release.release_id %>">
+          <img class="bigcover" src="
+          <% if (release.releaseimageurl == null) { %>
+          defaultcover.png
+          <% } else { %>
+          <%= release.releaseimageurl %>
+          <% } %>
+          "/><br/>
+          <%= release.releasename %>
+        </a>
     </div>
   <% }); %>
 
