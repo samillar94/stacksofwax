@@ -1,7 +1,17 @@
 <%- include('header', {here: 'vinyl'}) %>
     
-<h2><%= vinyldata.releasename %></h2>
+<h1><%= vinyldata.releasename %></h1>
 <% if (vinyldata.vinyls>1) { %><p><%= vinyldata.vinyls %>-vinyl release</p><% } %>
+<% vinyldata.sections.forEach(section => { %>
+  <h2><% if (section.sectionname != vinyldata.releasename) { %><%= section.sectionname %> <% } %><% section.artists.forEach(artist => { %><a class="btn btn-outline-info" href="/artist?<%= artist.artist_id %>"><%= artist.artistname %></a> <% }); %></h2>
+  <table>
+    <tr>
+      <td><%= section.sectionindex %>-1</td>
+      <td>Track 1</td>
+    </tr>
+  </table>
+<% }) %>
+<h2></h2>
 <table class="table">
   <tr>
     <th>Year</th>
@@ -20,6 +30,8 @@
     </td>
   </tr>
 </table>
+
+
 <!-- TODO include add button and table of owned copies and comments for members -->
 
 <% if (member) { %>

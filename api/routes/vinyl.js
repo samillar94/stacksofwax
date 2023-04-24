@@ -8,25 +8,59 @@ router.get('/', (req, res)=> {
     let user_id = req.query.user_id;
     console.log(user_id)
 
-    let vinylQ = `SELECT release_id, releasename, year, vinyls, releasenotes, label.label_id AS label_id, labelname
+    let vinylQ = `
+    SELECT release_id, releasename, year, vinyls, releasenotes, label.label_id AS label_id, labelname
     FROM \`release\`
     LEFT JOIN label ON release.label_id = label.label_id
-    WHERE release_id = ?;`
+    WHERE release_id = ?
+    ;`
 
-    connection.query(vinylQ, [release_id], (err, data)=>{
+    let sectionQ = `
+    SELECT \`release\`.release_id, section_id, sectionname, sectionindex
+    FROM section
+    LEFT JOIN \`release\` ON release.release_id = section.release_id
+    WHERE \`release\`.release_id = ?
+    ;`
+
+    let artistQ = `
+    SELECT section.section_id, artist.artist_id, artistname
+    FROM section_credit
+    LEFT JOIN section ON section.section_id = section_credit.section_id
+    LEFT JOIN \`release\` ON \`release\`.release_id = section.release_id
+    LEFT JOIN artistversion ON artistversion.artistversion_id = section_credit.artistversion_id
+    LEFT JOIN artist ON artist.artist_id = artistversion.artist_id
+    WHERE \`release\`.release_id = ?
+    ;`
+
+    connection.query(vinylQ+sectionQ+artistQ, [release_id, release_id, release_id], (err, data)=>{
 
         if (err) {
             res.json({badstuff: err});
             return;
         };
         
-        console.log(data);
 
-        let goodstuff = data[0];
+        let goodstuff = data[0][0];
 
         let responseobject = {};
         
         if (goodstuff) {
+
+            let sections = [];
+            data[1].forEach(section => {
+                if (section.release_id == goodstuff.release_id) {
+                    let credits = [];
+                    data[2].forEach(credit => {
+                        if (credit.section_id == section.section_id) credits.push(credit);
+                    });
+                    section.artists = credits;
+                    sections.push(section);
+                };
+            });
+            goodstuff.sections = sections;
+
+            console.log(goodstuff);
+
             responseobject.goodstuff = goodstuff;
         } else {
             responseobject.badstuff = {

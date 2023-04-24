@@ -38,18 +38,17 @@ router.get('/', (req, res)=> {
                     });
                 } else {
                     console.log("Vinyl route received no release data from the API.");
-                    console.log("Response:", badstuff);
                     res.redirect('/?message=novinyl');
                 }                
 
-            });
+            }); 
     
         }); 
 
     } catch (err) {
 
         console.log("Error in vinyl GET route: ", err.message);
-        res.redirect('/?message=vinylbug');
+        res.redirect('/?message=vinylbug'); 
 
     };
 

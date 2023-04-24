@@ -1,8 +1,9 @@
 <%- include('header', {here: 'home'}) %>
 
-<h2>Vinyls</h2>
+<h1>Got wax?</h1>
+<p>Organise your collection, make new discoveries and connect with other enthusiasts on <img style="vertical-align:text-bottom" src="stacksofwax logo v1e1.png" alt="STACKSofWAX" height="25"></p>
 
-<h3>Vinyl is back, but please shelve, don't stack.</h3>
+<h2>The commonest releases owned by members:</h2>
 
 <div class="flex-container"> 
 
@@ -16,7 +17,8 @@
           <%= release.releaseimageurl %>
           <% } %>
           "/><br/>
-          <%= release.releasename %>
+          <%= release.sectionnames %><br/>
+          <span style="font-size: smaller;"><%= release.sectionsartistnames %></span>
         </a>
     </div>
   <% }); %>

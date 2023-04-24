@@ -36,7 +36,8 @@ router.post('/', (req, res)=> {
                 let goodstuff = results.data.goodstuff;
         
                 if (goodstuff) {
-                    res.redirect(`/vinyl?id=${release_id}&message=niceyouhaveone`);
+                    // res.redirect(`/vinyl?id=${release_id}&message=niceyouhaveone`);
+                    res.redirect('back')
                 } else {
                     console.log(results.data.badstuff);
                     res.redirect(`/vinyl?id=${release_id}&message=insertfailed`);
