@@ -3,7 +3,7 @@ html {
 }
 body {
     min-height: 100%;
-    background: linear-gradient(0.25turn, #210121, #010001);
+    background: linear-gradient(0.25turn, #210121, #0a000a);
     /* background: 
         linear-gradient(127deg, rgb(35, 0, 83), rgba(140, 0, 255, 0) 70%),
         linear-gradient(217deg, rgba(255,0,0,.8), rgba(255,0,0,0) 70%),
@@ -46,6 +46,13 @@ img.minipic {
     margin-right:10px;
     object-fit:cover;
     border-radius:15px;
+}
+img.bigpic {
+    height:200px;
+    width:200px;
+    margin-right:30px;
+    object-fit:cover;
+    border-radius:100px;
 }
 img.minicover {
     height:30px;

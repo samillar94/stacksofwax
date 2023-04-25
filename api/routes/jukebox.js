@@ -7,7 +7,7 @@ router.get('/', (req, res)=> {
     let { jukebox_id } = req.query;
     /// TODO validate public/private
 
-    let jukeboxQ = `SELECT jukebox_id, jukeboxname, jukeboxdesc, jukebox.user_id AS 'user_id', username, userimageurl
+    let jukeboxQ = `SELECT jukebox_id, jukeboxname, jukeboxdesc, jukeboximageurl, jukebox.user_id AS 'user_id', username, userimageurl
     FROM jukebox
     LEFT JOIN user ON jukebox.user_id = user.user_id
     WHERE jukebox_id = ?;`;

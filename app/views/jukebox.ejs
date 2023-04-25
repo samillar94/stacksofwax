@@ -1,6 +1,12 @@
 <%- include('header', {here: 'jukebox'}) %>
     
-<h2><%= jukeboxdata.jukeboxname %></h2>
+<h1><img class="bigcover" src="
+  <% if (jukeboxdata.jukeboximageurl == null) { %>
+  defaultjuke.png
+  <% } else { %>
+  <%= jukeboxdata.jukeboximageurl %>
+  <% } %>
+  "/> <%= jukeboxdata.jukeboxname %></h1>
 <h3><%= jukeboxdata.jukeboxdesc %></h3>
 <p>Created by 
   <a class="btn btn-outline-info" href="/collector?id=<%= jukeboxdata.user_id %>">
@@ -25,9 +31,9 @@
   <h3> 
     <% if (member) { %>
     <input type="hidden" name="jukebox_id" value="<%= jukeboxdata.jukebox_id %>">
-    <input type="submit" value="<%= likebutton %>">
+    <input type="submit" class="btn btn-<% if(likebutton=="Unlike") { %>outline-<% } %>warning" value="<%= likebutton %>">
     <% } %>
-    Liked by <% if(likebutton=="Unlike") { %>you and <%= likesdata.length-1 %> other<% } else { %><%= likesdata.length %><% } %> people
+    Liked by <% if(likebutton=="Unlike") { %>you and <%= likesdata.length-1 %> other<% } else { %><%= likesdata.length %><% } %> collectors
   </h3>
 </form>
 
@@ -38,7 +44,7 @@
   <tr>
     <input type="hidden" name="jukebox_id" value="<%= jukeboxdata.jukebox_id %>">
     <td><textarea name="reviewtext" rows="4" cols="50" placeholder="Nice combo right? Leave a comment."></textarea></td>
-    <td style="text-align: right"><input type="submit" value="Post" /></td>
+    <td style="text-align: right"><input type="submit" class="btn btn-outline-success" value="Post" /></td>
   </tr>
   </form>
   <% } %>

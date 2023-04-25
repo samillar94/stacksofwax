@@ -1,9 +1,21 @@
 <%- include('header', {here: 'vinyl'}) %>
     
-<h1><%= vinyldata.releasename %></h1>
+<h1><img class="bigcover" src="
+  <% if (vinyldata.releaseimageurl == null) { %>
+  defaultcover.png
+  <% } else { %>
+  <%= vinyldata.releaseimageurl %>
+  <% } %>
+  "/> <%= vinyldata.releasename %></h1>
 <% if (vinyldata.vinyls>1) { %><p><%= vinyldata.vinyls %>-vinyl release</p><% } %>
 <% vinyldata.sections.forEach(section => { %>
-  <h2><% if (section.sectionname != vinyldata.releasename) { %><%= section.sectionname %> <% } %><% section.artists.forEach(artist => { %><a class="btn btn-outline-info" href="/artist?<%= artist.artist_id %>"><%= artist.artistname %></a> <% }); %></h2>
+  <h2><% if (section.sectionname != vinyldata.releasename) { %><%= section.sectionname %> <% } %><% section.artists.forEach(artist => { %><a class="btn btn-outline-info" href="/artist?<%= artist.artist_id %>"><img class="minipic" src="
+    <% if (artist.artistimageurl == null) { %>
+    defaultartist.png
+    <% } else { %>
+    <%= artist.artistimageurl %>
+    <% } %>
+    "/> <%= artist.artistname %></a> <% }); %></h2>
   <table>
     <tr>
       <td><%= section.sectionindex %>-1</td>
@@ -16,6 +28,10 @@
   <tr>
     <th>Year</th>
     <td><%= vinyldata.year %></td>
+  </tr>
+  <tr>
+    <th>Genres</th>
+    <td>ejs here</td>
   </tr>
   <tr>
     <th>Notes</th>
@@ -52,7 +68,7 @@
 <% } %>
 <form method="POST" action="/ihaveone">
   <input type="hidden" id="release_id" name="release_id" value="<%= vinyldata.release_id %>">
-  <button class='button' >I have <% if (copiesdata[0]) { %>another <% } %>one</button>
+  <button class='btn btn-outline-success' >I have <% if (copiesdata[0]) { %>another <% } %>one</button>
 </form>
 <% } %>
 

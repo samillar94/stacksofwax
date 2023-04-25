@@ -1,12 +1,21 @@
 <%- include('header', {here: 'home'}) %>
 
-<h2>Search results: <%= query.nameS %></h2>
+<h1>Search results: <%= query.nameS %></h1>
 
 <div class="flex-container"> 
 
-  <% vinylsdata.forEach( (release)=>{ %>
+  <% vinylsdata.sort((v1, v2) => {
+    return v1.releasename.localeCompare(v2.releasename);
+  });
+    vinylsdata.forEach( (release)=>{ %>
     <div>
-      <a role="button" class="btn btn-outline-info" href="/vinyl?id=<%= release.release_id %>"><%= release.releasename %></a>
+      <a role="button" class="btn btn-outline-info" href="/vinyl?id=<%= release.release_id %>"><img class="minicover" src="
+        <% if (release.releaseimageurl == null) { %>
+        defaultcover.png
+        <% } else { %>
+        <%= release.releaseimageurl %>
+        <% } %>
+        "/> <%= release.releasename %></a>
     </div>
   <% }); %>
 

@@ -1,6 +1,6 @@
 <%- include('header', {here: 'me'}) %>
 
-<h3>My jukeboxes</h3>
+<h1>My jukeboxes</h1>
 <table class="table">
   <tr>
     <th>ID</th>
@@ -18,7 +18,13 @@
     <input type="hidden" name="jukebox_id" value="<%= jukebox.jukebox_id %>">
 
     <td id="JtdVN<%= jukebox.jukebox_id %>" style="display: table-cell">
-      <a href="/jukebox?id=<%= jukebox.jukebox_id %>" class="btn btn-outline-info"><%= jukebox.jukeboxname %></a>
+      <a href="/jukebox?id=<%= jukebox.jukebox_id %>" class="btn btn-outline-info"><img class="minicover" src="
+    <% if (jukebox.jukeboximageurl == null) { %>
+    defaultjuke.png
+    <% } else { %>
+    <%= jukebox.jukeboximageurl %>
+    <% } %>
+    "/> <%= jukebox.jukeboxname %></a>
     </td>
     <td id="JtdVC<%= jukebox.jukebox_id %>" style="display: table-cell"><%= jukebox.jukeboxdesc %></td>
     <td id="JtdVB<%= jukebox.jukebox_id %>" style="display: table-cell; text-align: right">
@@ -63,7 +69,7 @@
             <input type="hidden" name="copy_id" value="<%= copy.copy_id %>">
             <input type="submit" value="🗑️" class="btn btn-outline-danger btn-sm"></input>
             </form>
-          </a>
+          </a><br/>
       <% };
       }); %>
     </td>
@@ -92,6 +98,9 @@
     <th>Options</th>
   </tr>
   <% 
+  copiesdata.sort((v1, v2) => {
+    return v1.releasename.localeCompare(v2.releasename);
+  });
   copiesdata.forEach(copy => { 
     let clip = 30;
     let trunc;
@@ -159,7 +168,7 @@
 
 <% }; %>
 
-<button type="button" href="/collector?id=<%= user_id %>" class="btn btn-dark">My page</a>
+<a href="/collector?id=<%= user_id %>" class="btn btn-dark">My page</a>
 
 <%- include('footer') %>
 

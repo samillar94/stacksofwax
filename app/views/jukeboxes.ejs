@@ -1,14 +1,20 @@
 <%- include('header', {here: 'jukeboxes'}) %>
 
-<h2>Jukeboxes</h2>
+<h1>Jukeboxes</h1>
 
-<h5>Spread the wax! Vinyl long-long-playlists curated by our members.</h5>
+<h5>Spread the wax! Vinyl long-long-playlists curated by our members</h5>
 
 <div class="flex-container"> 
 
   <% if (jukeboxesdata) jukeboxesdata.forEach( (jukebox)=>{   %>
     <div>
-      <a class="btn btn-outline-info" href="/jukebox?id=<%= jukebox.jukebox_id %>"><%= jukebox.jukeboxname %></a>
+      <a class="btn btn-outline-info" href="/jukebox?id=<%= jukebox.jukebox_id %>"><img class="bigcover" src="
+        <% if (jukebox.jukeboximageurl == null) { %>
+        defaultjuke.png
+        <% } else { %>
+        <%= jukebox.jukeboximageurl %>
+        <% } %>
+        "/><br><%= jukebox.jukeboxname %></a>
     </div>
   <% }); %>
 
