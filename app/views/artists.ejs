@@ -1,0 +1,23 @@
+<%- include('header', {here: 'artists'}) %>
+
+<h1>Artists</h1>
+
+<!-- <h5>Explore our vinyl database by artist</h5> -->
+
+<div class="flex-container"> 
+
+  <% if (artists) artists.forEach( (artist)=>{   %>
+    <div>
+      <a class="btn btn-outline-info" href="/artist?id=<%= artist.artist_id %>"><img class="bigcover" src="
+        <% if (artist.artistimageurl == null) { %>
+        defaultartist.png
+        <% } else { %>
+        <%= artist.artistimageurl %>
+        <% } %>
+        "/><br><%= artist.artistname %></a>
+    </div>
+  <% }); %>
+
+</div>
+
+<%- include('footer') %>

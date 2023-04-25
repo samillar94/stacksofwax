@@ -62,7 +62,7 @@ router.get('/', (req, res)=> {
                             });
                         } else {
                             console.log("Jukebox route received no release data from the API.");
-                            console.log("Response:", badstuff);
+                            console.log("Response:", results1.data.badstuff);
                             res.redirect('/jukeboxes?message=nojukebox');
                         };
 

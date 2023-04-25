@@ -4,7 +4,7 @@ const axios = require('axios');
 
 const API_PORT = process.env.API_PORT || 4000;
 
-router.get('/', (req, res, next)=> {
+router.get('/', (req, res)=> {
 
     try {
 
@@ -26,8 +26,8 @@ router.get('/', (req, res, next)=> {
 
     } catch (err) {
 
-        console.log(err);
-        next(); /// the home route is the one place I'll pass to the error handler - all other page errors I'll just redirect here
+        console.log("Error in jukeboxes GET route:", err.message);
+        res.redirect("/?message=jukeboxesbug");
 
     };
 

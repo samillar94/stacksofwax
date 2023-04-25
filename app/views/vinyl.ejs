@@ -9,7 +9,7 @@
   "/> <%= vinyldata.releasename %></h1>
 <% if (vinyldata.vinyls>1) { %><p><%= vinyldata.vinyls %>-vinyl release</p><% } %>
 <% vinyldata.sections.forEach(section => { %>
-  <h2><% if (section.sectionname != vinyldata.releasename) { %><%= section.sectionname %> <% } %><% section.artists.forEach(artist => { %><a class="btn btn-outline-info" href="/artist?<%= artist.artist_id %>"><img class="minipic" src="
+  <h2><% if (section.sectionname != vinyldata.releasename) { %><%= section.sectionname %> <% } %><% section.artists.forEach(artist => { %><a class="btn btn-outline-info" href="/artist?id=<%= artist.artist_id %>"><img class="minipic" src="
     <% if (artist.artistimageurl == null) { %>
     defaultartist.png
     <% } else { %>
@@ -31,7 +31,7 @@
   </tr>
   <tr>
     <th>Genres</th>
-    <td>ejs here</td>
+    <td><% vinyldata.genres.forEach(genre => { %><a class="btn btn-outline-info" href="/genre?handle=<%= genre.genrehandle %>"><%= genre.genrename %></a><% }) %></td>
   </tr>
   <tr>
     <th>Notes</th>

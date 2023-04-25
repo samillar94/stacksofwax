@@ -1,6 +1,12 @@
 <%- include('header', {here: 'collector'}) %>
 
-<h1><img src="<%= userdata.userimageurl %>" class="bigpic"/><%= userdata.username %></h1>
+<h1><img class="bigpic" src="
+  <% if (userdata.userimageurl == null) { %>
+  defaultavatar.png
+  <% } else { %>
+  <%= userdata.userimageurl %>
+  <% } %>
+  "/><%= userdata.username %></h1>
 
 <table class="table">
   <tr>
