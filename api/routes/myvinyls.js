@@ -10,12 +10,29 @@ router.get('/', (req, res)=> {
     let release_id = req.query.release_id;
     if (release_id) releaseclause = ` AND copy.release_id = ${release_id}`
 
-    let vinylQ = `SELECT \`release\`.release_id as release_id, releasename, year, releaseimageurl,  copy_id, ownercomment
+    let releaseQ = `
+    SELECT \`release\`.release_id, releasename, year, releaseimageurl
+    FROM \`release\`
+    INNER JOIN (
+        SELECT release_id
+        FROM copy
+        WHERE owneruser_id = ? 
+        ${releaseclause}
+        GROUP BY release_id
+    ) copydata ON copydata.release_id = \`release\`.release_id
+    ORDER BY releasename
+    ;`
+
+    let copyQ = `
+    SELECT \`release\`.release_id, copy_id, ownercomment
     FROM copy
     LEFT JOIN \`release\` ON copy.release_id = \`release\`.release_id
-    WHERE owneruser_id = ? ${releaseclause};`
+    WHERE owneruser_id = ? 
+    ${releaseclause}
+    ORDER BY copy_id
+    ;`
 
-    connection.query(vinylQ, [user_id], (err, data)=>{
+    connection.query(releaseQ+copyQ, [user_id, user_id], (err, data)=>{
 
         if (err) {
             console.log(err.sqlMessage)
@@ -23,13 +40,26 @@ router.get('/', (req, res)=> {
             return;
         };
         
-        let goodstuff = data;
+        let goodstuff = data[0];
 
-        let responseobject = {};
-        
-        if (goodstuff) responseobject.goodstuff = goodstuff;
+        if (goodstuff) {
 
-        res.json(responseobject);
+            goodstuff.forEach(vinyl => {
+
+                let copies = [];
+                data[1].forEach(copy => {
+                    if (copy.release_id == vinyl.release_id) copies.push(copy);
+                });
+
+                vinyl.copies = copies;
+
+            });
+
+            console.log(goodstuff)
+
+            res.json({goodstuff});
+
+        }
         
     });
 

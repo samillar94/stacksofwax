@@ -11,7 +11,7 @@ router.get('/', (req, res)=> {
         let user_id = req.query.id;
         let sessionuserid = req.session.user_id;
     
-        let collectorEP = `http://localhost:${API_PORT}/collector?id=${user_id}&sessionuserid=${sessionuserid}`;
+        let collectorEP = `http://localhost:${API_PORT}/collectors?user_id=${user_id}&sessionuserid=${sessionuserid}`;
         let ownedvinylsEP = `http://localhost:${API_PORT}/myvinyls?user_id=${user_id}`;
         let theirjukeboxesEP = `http://localhost:${API_PORT}/jukeboxes?user_id=${user_id}`;
 
@@ -21,10 +21,11 @@ router.get('/', (req, res)=> {
             let userdata = results1.data.goodstuff;
             if (results1.data.badstuff) console.log(results1.data.badstuff);
 
-            axios.get(ownedvinylsEP)
+            axios.get(ownedvinylsEP) 
             .then((results2) => {
                 
                 let ownedvinylsdata = results2.data.goodstuff;
+                console.log(results2.data)
                 if (results2.data.badstuff) console.log(results2.data.badstuff);
 
                 axios.get(theirjukeboxesEP)   

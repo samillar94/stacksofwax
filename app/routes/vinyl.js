@@ -24,15 +24,16 @@ router.get('/', (req, res)=> {
             axios.get(copiesEP)
             .then((results2) => {
                 
-                let copiesdata = results2.data.goodstuff;
-
+                if (results2.data.goodstuff[0]) {
+                    vinyldata.copies = results2.data.goodstuff[0].copies;
+                };
+                
                 if (results2.data.badstuff) console.log(results2.data.badstuff);
 
                 if (vinyldata) {
-                    res.render('vinyl', {
+                    res.render('vinyl', { 
                         title: `${vinyldata.releasename} - Vinyl`, 
                         vinyldata, 
-                        copiesdata, 
                         member: req.session.sess_valid,
                         query: req.query
                     });

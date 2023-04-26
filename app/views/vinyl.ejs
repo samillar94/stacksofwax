@@ -14,13 +14,15 @@
     defaultartist.png
     <% } else { %>
     <%= artist.artistimageurl %>
-    <% } %>
+    <% }; %>
     "/> <%= artist.artistname %></a> <% }); %></h2>
-  <table>
+  <table class="table table-sm">
+    <% section.tracks.forEach(track => { %>
     <tr>
-      <td><%= section.sectionindex %>-1</td>
-      <td>Track 1</td>
+      <td><%= track.trackindex %></td>
+      <td><%= track.trackname %></td>
     </tr>
+    <% }); %>
   </table>
 <% }) %>
 <h2></h2>
@@ -52,15 +54,15 @@
 
 <% if (member) { %>
 <h3>My copies</h3>
-<% if(copiesdata[0]) { %>
+<% if(vinyldata.copies[0]) { %>
 <table class="table">
   <tr>
     <th>ID</th>
     <th>My notes</th>
   </tr>
-  <% copiesdata.forEach(copy => { %>
+  <% vinyldata.copies.forEach(copy => { %>
   <tr>
-    <td><%= copy.copy_id %></td>
+    <td>#<%= copy.copy_id %></td>
     <td><%= copy.ownercomment %></td>
   </tr>
   <% }) %>
@@ -68,7 +70,7 @@
 <% } %>
 <form method="POST" action="/ihaveone">
   <input type="hidden" id="release_id" name="release_id" value="<%= vinyldata.release_id %>">
-  <button class='btn btn-outline-success' >I have <% if (copiesdata[0]) { %>another <% } %>one</button>
+  <button class='btn btn-outline-success' >I have <% if (vinyldata.copies[0]) { %>another <% } %>one</button>
 </form>
 <% } %>
 

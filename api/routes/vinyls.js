@@ -14,7 +14,7 @@ router.get('/', (req, res)=> {
     if (decade) decadeclause = `AND release.year >= ${decade} AND release.year < ${decade+10}`;
 
     let releasesQ = `
-        SELECT \`release\`.release_id, releasename, releaseimageurl, year, vinyls, owners, sectionnames, sectionsartistnames
+        SELECT \`release\`.release_id, releasename, releaseimageurl, year, vinyls, owners, sectionnames, sectionsartistnames, genrenames
         FROM \`release\` 
         LEFT JOIN (
             SELECT release_id, COUNT(owneruser_id) AS owners

@@ -10,7 +10,7 @@ router.get('/', (req, res)=> {
 
         req.session.sess_valid = true;
         console.log("logged in");
-        res.redirect('/?message=goodlogin'); 
+        res.redirect('/me?message=goodlogin'); 
 
     } catch (err) {
 

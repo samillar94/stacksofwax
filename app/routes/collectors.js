@@ -14,6 +14,8 @@ router.get('/', (req, res)=> {
         .then((results)=>{
     
             let collectorsdata = results.data.goodstuff;
+
+            if (results.data.badstuff) console.log(results.data.badstuff)
             res.render('collectors', {
                 title: 'Collectors', 
                 collectorsdata: collectorsdata, 

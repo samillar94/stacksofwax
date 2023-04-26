@@ -19,7 +19,7 @@
   </tr>
   <tr>
     <th>Stack</th>
-    <td>? vinyls collected</td>
+    <td><%= userdata.stack %> vinyls collected</td>
   </tr>
 </table>
 
@@ -29,13 +29,20 @@
   <tr>
     <th>Release</th>
     <th>Year</th>
-    <th>My notes</th>
+    <th>Copies</th>
   </tr>
-  <% ownedvinylsdata.forEach(copy => { %>
+  <% ownedvinylsdata.forEach(vinyl => { %>
   <tr>
-    <td><%= copy.releasename %></td>
-    <td><%= copy.year %></td>
-    <td><%= copy.ownercomment %></td>
+    <td><a class="btn btn-outline-info" href="/vinyl?id=<%= vinyl.release_id %>"
+      ><img class="minicover" src="
+      <% if (vinyl.releaseimageurl == null) { %>
+      defaultcover.png
+      <% } else { %>
+      <%= vinyl.releaseimageurl %>
+      <% } %>
+      "/> <%= vinyl.releasename %></a></td>
+    <td><%= vinyl.year %></td>
+    <td><%= vinyl.copies.length %></td>
   </tr>
   <% }) %>
 </table>

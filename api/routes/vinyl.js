@@ -5,8 +5,6 @@ const connection = require("../connection.js");
 router.get('/', (req, res)=> { 
 
     let release_id = req.query.release_id;
-    let user_id = req.query.user_id;
-    console.log(user_id)
 
     let vinylQ = `
     SELECT release_id, releasename, year, vinyls, releasenotes, label.label_id AS label_id, labelname
@@ -39,13 +37,22 @@ router.get('/', (req, res)=> {
     WHERE release_genre.release_id = ${release_id}
     ;`
 
-    connection.query(vinylQ+sectionQ+artistQ+genreQ, (err, data)=>{
+    let trackQ = `
+    SELECT section_track.section_id, trackindex, trackname
+    FROM section_track
+    LEFT JOIN section ON section.section_id = section_track.section_id
+    LEFT JOIN \`release\` ON \`release\`.release_id = section.release_id
+    LEFT JOIN track ON track.track_id = section_track.track_id
+    WHERE \`release\`.release_id = ${release_id}
+    ;`
+
+    connection.query(vinylQ+sectionQ+artistQ+genreQ+trackQ, (err, data)=>{
 
         if (err) {
             res.json({badstuff: err});
             return;
         };
-        
+        console.log(data[4])
         let goodstuff = data[0][0];
 
         let responseobject = {};
@@ -55,14 +62,21 @@ router.get('/', (req, res)=> {
             /// nest data like a good JSON
             let sections = [];
             data[1].forEach(section => {
-                if (section.release_id == goodstuff.release_id) {
-                    let credits = [];
-                    data[2].forEach(credit => {
-                        if (credit.section_id == section.section_id) credits.push(credit);
-                    });
-                    section.artists = credits;
-                    sections.push(section);
-                };
+
+                let credits = [];
+                data[2].forEach(credit => {
+                    if (credit.section_id == section.section_id) credits.push(credit);
+                });
+                section.artists = credits;
+
+                let tracks = [];
+                data[4].forEach(track =>{
+                    if (track.section_id == section.section_id) tracks.push(track);
+                });
+                section.tracks = tracks;
+
+                sections.push(section);
+
             });
             goodstuff.sections = sections;
 

@@ -7,7 +7,10 @@ router.get('/', (req, res)=> {
     let id = req.query.id;
     let sessionuserid = req.query.sessionuserid;
 
-    let collectorQ = `SELECT user_id, username, joindate, bio, userimageurl FROM user WHERE (public OR user_id = ?) AND user_id = ?;`
+    let collectorQ = `
+    SELECT user_id, username, joindate, bio, userimageurl 
+    FROM user WHERE (public OR user_id = ?) 
+    AND user_id = ?;`
 
     connection.query(collectorQ, [sessionuserid, id], (err, data)=>{
  
@@ -28,21 +31,6 @@ router.get('/', (req, res)=> {
         };
         
     });
-
-});
-
-router.post('/', (req, res)=> { 
-
-    try {
-
-        /// code from inside app.post here
-
-    } catch (err) {
-
-        console.log("Error in template POST route:", err.message);
-        res.json(err);
-
-    };
 
 });
 
