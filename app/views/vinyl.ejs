@@ -53,8 +53,8 @@
 <!-- TODO include add button and table of owned copies and comments for members -->
 
 <% if (member) { %>
+<% if(vinyldata.copies) { %>
 <h3>My copies</h3>
-<% if(vinyldata.copies[0]) { %>
 <table class="table">
   <tr>
     <th>ID</th>
@@ -70,7 +70,7 @@
 <% } %>
 <form method="POST" action="/ihaveone">
   <input type="hidden" id="release_id" name="release_id" value="<%= vinyldata.release_id %>">
-  <button class='btn btn-outline-success' >I have <% if (vinyldata.copies[0]) { %>another <% } %>one</button>
+  <button class='btn btn-outline-success' >I have <% if (vinyldata.copies) { %>another <% } %>one</button>
 </form>
 <% } %>
 

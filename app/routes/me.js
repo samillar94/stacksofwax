@@ -12,9 +12,9 @@ router.get('/', (req, res)=> {
 
             let user_id = req.session.user_id;
 
-            let meEP = `http://localhost:${API_PORT}/collectors?user_id=${user_id}`
+            let meEP = `http://localhost:${API_PORT}/collectors?user_id=${user_id}&sessionuserid=${user_id}`
             let myvinylsEP = `http://localhost:${API_PORT}/myvinyls?user_id=${user_id}`;
-            let myjukeboxesEP = `http://localhost:${API_PORT}/jukeboxes?user_id=${user_id}`;
+            let myjukeboxesEP = `http://localhost:${API_PORT}/jukeboxes?user_id=${user_id}&sessionuserid=${user_id}`;
             let jukevinylsEP = `http://localhost:${API_PORT}/jukevinyls?user_id=${user_id}`;
         
             axios.get(meEP)

@@ -38,6 +38,10 @@ router.get('/', (req, res)=> {
 
         if (goodstuff[0]) { 
 
+            goodstuff.forEach(user =>{
+                user.joindate = `${user.joindate.getFullYear()}-${('0'+(user.joindate.getMonth()+1)).slice(-2)}-${('0'+(user.joindate.getDate())).slice(-2)}`;
+            });     
+
             if (user_id) {
                 res.json({goodstuff: goodstuff[0]}); 
             } else {

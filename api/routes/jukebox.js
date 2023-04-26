@@ -4,15 +4,15 @@ const connection = require("../connection.js");
 
 router.get('/', (req, res)=> { 
 
-    let { jukebox_id } = req.query;
-    /// TODO validate public/private
+    let { jukebox_id, sessionuserid } = req.query;
 
     let jukeboxQ = `SELECT jukebox_id, jukeboxname, jukeboxdesc, jukeboximageurl, jukebox.user_id AS 'user_id', username, userimageurl
     FROM jukebox
     LEFT JOIN user ON jukebox.user_id = user.user_id
-    WHERE jukebox_id = ?;`;
+    WHERE (public OR user.user_id = ?) AND jukebox_id = ?
+    ;`;
 
-    connection.query(jukeboxQ, [jukebox_id], (err, data)=>{
+    connection.query(jukeboxQ, [sessionuserid, jukebox_id], (err, data)=>{
 
         if (err) {
             console.log("Jukebox selection failed:", err.sqlMessage)

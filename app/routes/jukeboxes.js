@@ -8,7 +8,9 @@ router.get('/', (req, res)=> {
 
     try {
 
-        let jukeboxesEP = `http://localhost:${API_PORT}/jukeboxes`;
+        let sessionuserid = req.session.user_id;
+
+        let jukeboxesEP = `http://localhost:${API_PORT}/jukeboxes?sessionuserid=${sessionuserid}`;
         /// TODO top rated jukeboxes
 
         axios.get(jukeboxesEP)

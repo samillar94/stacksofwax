@@ -52,7 +52,7 @@ router.get('/', (req, res)=> {
             res.json({badstuff: err});
             return;
         };
-        console.log(data[4])
+        console.log(data)
         let goodstuff = data[0][0];
 
         let responseobject = {};

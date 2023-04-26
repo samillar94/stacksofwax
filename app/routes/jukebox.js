@@ -11,9 +11,9 @@ router.get('/', (req, res)=> {
         let jukebox_id = req.query.id;
         let user_id = req.session.user_id;
 
-        let jukeboxEP = `http://localhost:${API_PORT}/jukebox?jukebox_id=${jukebox_id}`;
+        let jukeboxEP = `http://localhost:${API_PORT}/jukebox?jukebox_id=${jukebox_id}&sessionuserid=${user_id}`;
         let jukevinylsEP = `http://localhost:${API_PORT}/jukevinyls?jukebox_id=${jukebox_id}`;
-        let reviewsEP = `http://localhost:${API_PORT}/reviews?jukebox_id=${jukebox_id}`;
+        let reviewsEP = `http://localhost:${API_PORT}/reviews?jukebox_id=${jukebox_id}&sessionuserid=${user_id}`;
         let likesEP = `http://localhost:${API_PORT}/jukeboxlikes?jukebox_id=${jukebox_id}`;
 
         axios.get(jukeboxEP)

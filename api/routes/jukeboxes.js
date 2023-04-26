@@ -4,17 +4,18 @@ const connection = require("../connection.js");
 
 router.get('/', (req, res)=> { 
 
+    let { sessionuserid, user_id } = req.query;
 
     let userclause = "";
-    let user_id = req.query.user_id;
-    if (user_id) userclause = `WHERE jukebox.user_id = ${user_id}`
+    if (user_id) userclause = ` AND jukebox.user_id = ${user_id}`
 
     let jukeboxesQ = `SELECT jukebox_id, jukeboxname, jukeboxdesc, jukeboximageurl, jukebox.user_id, username
     FROM jukebox
     LEFT JOIN user ON jukebox.user_id = user.user_id
+    WHERE (public OR user.user_id = ?)
     ${userclause};`
 
-    connection.query(jukeboxesQ, (err, data)=>{
+    connection.query(jukeboxesQ, [sessionuserid], (err, data)=>{
 
         if (err) {
             console.log("Jukebox selection failed:", err.sqlMessage)
