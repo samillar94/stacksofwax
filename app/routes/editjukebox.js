@@ -10,9 +10,7 @@ router.post('/', (req, res)=> {
 
         let from = req.headers.referer; 
 
-        let { jukebox_id, jukeboxname, jukeboxdesc } = req.body;
-
-        console.log(jukebox_id, jukeboxname, jukeboxdesc);
+        let { jukebox_id, jukeboxname, jukeboxdesc, jukeboximageurl } = req.body;
 
         const config = {
             headers: {
@@ -20,7 +18,7 @@ router.post('/', (req, res)=> {
             }
         };
 
-        const postdata = { jukebox_id, jukeboxname, jukeboxdesc };
+        const postdata = { jukebox_id, jukeboxname, jukeboxdesc, jukeboximageurl };
 
         let editjukeboxEP = `http://localhost:${API_PORT}/editjukebox`; 
 

@@ -1,8 +1,8 @@
 <%- include('header', {here: 'collectors'}) %>
 
-<h1>Members</h1>
+<div class="nice"> 
 
-<div class="my-main"> 
+  <h1>Members</h1>
 
   <table class="table">
     <tr>
@@ -17,12 +17,12 @@
       <td>
         <a class="btn btn-outline-info" href="/collector?id=<%= collector.user_id %>">
           <img class="minipic" src="
-          <% if (collector.userimageurl == null) { %>
+          <% if (collector.userimageurl == null || collector.userimageurl == '') { %>
           defaultavatar.png
           <% } else { %>
           <%= collector.userimageurl %>
           <% } %>
-          "/><%= collector.username %>
+          " onerror="this.onerror=null; this.src='defaultavatar.png'"/><%= collector.username %>
         </a>
       </td>
       <td><%= collector.stack %></td>

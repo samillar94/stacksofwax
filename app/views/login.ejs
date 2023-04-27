@@ -1,13 +1,17 @@
 <%- include('header', {here: 'login'}) %>
 
-<h2>Welcome back</h2>
+<div class="nice">
+  <h2>Welcome back</h2>
+</div>
 
-<form method="POST" action="/login">
-  <label>
-    <input name="username" type="text" placeholder="username">
-    <input name="passwordraw" type="password" placeholder="password">
-  </label>
-  <button class="btn btn-outline-light">Login</button>
-</form>
+<div class="nice">
+  <form method="POST" action="/login">
+    <label>
+      <input name="username" type="text" placeholder="username">
+      <input name="passwordraw" type="password" placeholder="password">
+    </label>
+    <button class="btn btn-outline-light">Login</button>
+  </form>
+</div>
 
 <%- include('footer') %>

@@ -1,84 +1,87 @@
 <%- include('header', {here: 'collector'}) %>
-<div class="container">
-  <div class="row">
-    <div class="col-lg-7">
-      <h1><img class="bigpic" src="
-        <% if (userdata.userimageurl == null) { %>
-        defaultavatar.png
-        <% } else { %>
-        <%= userdata.userimageurl %>
-        <% } %>
-        "/><%= userdata.username %></h1>
-    </div>
-    <div class="col-lg-5">
-      <table class="table">
-        <tr>
-          <th>Joined</th>
-          <td><%= userdata.joindate %></td>
-        </tr>
-        <tr>
-          <th>Bio</th>
-          <td><%= userdata.bio %></td>
-        </tr>
-        <tr>
-          <th>Stack</th>
-          <td><%= userdata.stack %> vinyls collected</td>
-        </tr>
-      </table>
-    </div>
+
+<div class="nice row">
+  <div class="col-lg-7">
+    <h1><img class="bigpic" src="
+      <% if (userdata.userimageurl == null || userdata.userimageurl == '') { %>
+      defaultavatar.png
+      <% } else { %>
+      <%= userdata.userimageurl %>
+      <% } %>
+      " onerror="this.onerror=null; this.src='defaultavatar.png'"/><%= userdata.username %></h1>
+  </div>
+  <div class="col-lg-5">
+    <table class="table">
+      <tr>
+        <th>Joined</th>
+        <td><%= userdata.joindate %></td>
+      </tr>
+      <tr>
+        <th>Bio</th>
+        <td><%= userdata.bio %></td>
+      </tr>
+      <tr>
+        <th>Stack</th>
+        <td><%= userdata.stack %> vinyls collected</td>
+      </tr>
+    </table>
   </div>
 </div>
 
-<% if(ownedvinylsdata[0]) { %>
-<h3>Their wax</h3>
-<table class="table">
-  <tr>
-    <th>Release</th>
-    <th>Year</th>
-    <th>Copies</th>
-  </tr>
-  <% ownedvinylsdata.forEach(vinyl => { %>
-  <tr>
-    <td><a class="btn btn-outline-info" href="/vinyl?id=<%= vinyl.release_id %>"
-      ><img class="minicover" src="
-      <% if (vinyl.releaseimageurl == null) { %>
-      defaultcover.png
-      <% } else { %>
-      <%= vinyl.releaseimageurl %>
-      <% } %>
-      "/> <%= vinyl.releasename %></a></td>
-    <td><%= vinyl.year %></td>
-    <td><%= vinyl.copies.length %></td>
-  </tr>
-  <% }) %>
-</table>
-<% } %>
+<div class="nice">
+  <% if(ownedvinylsdata[0]) { %>
+  <h3>Their wax</h3>
+  <table class="table">
+    <tr>
+      <th>Release</th>
+      <th>Year</th>
+      <th>Copies</th>
+    </tr>
+    <% ownedvinylsdata.forEach(vinyl => { %>
+    <tr>
+      <td><a class="btn btn-outline-info" href="/vinyl?id=<%= vinyl.release_id %>"
+        ><img class="minicover" src="
+        <% if (vinyl.releaseimageurl == null || vinyl.releaseimageurl == '') { %>
+        defaultcover.png
+        <% } else { %>
+        <%= vinyl.releaseimageurl %>
+        <% } %>
+        " onerror="this.onerror=null; this.src='defaultcover.png'"/> <%= vinyl.releasename %></a></td>
+      <td><%= vinyl.year %></td>
+      <td><%= vinyl.copies.length %></td>
+    </tr>
+    <% }) %>
+  </table>
+  <% } %>
+</div>
 
-<h3>Their jukeboxes</h3>
-<table class="table">
-  <tr>
-    <th>ID</th>
-    <th>Name</th>
-    <th>Description</th>
-  </tr>
-  <% if(jukeboxesdata) { 
-    jukeboxesdata.forEach(jukebox => { %>
-  <tr>
-    <td><%= jukebox.jukebox_id %></td>
-    <td>
-      <a class="btn btn-outline-info" href="/jukebox?id=<%= jukebox.jukebox_id %>"><img class="minicover" src="
-    <% if (jukebox.jukeboximageurl == null) { %>
-    defaultjuke.png
-    <% } else { %>
-    <%= jukebox.jukeboximageurl %>
-    <% } %>
-    "/> <%= jukebox.jukeboxname %></a>
-    </td>
-    <td><%= jukebox.jukeboxdesc %></td>
-    </td>
-  </tr>
-    <% });
-  }; %>  
-</table>
+<div class="nice">
+  <h3>Their jukeboxes</h3>
+  <table class="table">
+    <tr>
+      <th>ID</th>
+      <th>Name</th>
+      <th>Description</th>
+    </tr>
+    <% if(jukeboxesdata) { 
+      jukeboxesdata.forEach(jukebox => { %>
+    <tr>
+      <td><%= jukebox.jukebox_id %></td>
+      <td>
+        <a class="btn btn-outline-info" href="/jukebox?id=<%= jukebox.jukebox_id %>"><img class="minicover" src="
+      <% if (jukebox.jukeboximageurl == null) { %>
+      defaultjuke.png
+      <% } else { %>
+      <%= jukebox.jukeboximageurl %>
+      <% } %>
+      " onerror="this.onerror=null; this.src='defaultjuke.png'"/> <%= jukebox.jukeboxname %></a>
+      </td>
+      <td><%= jukebox.jukeboxdesc %></td>
+      </td>
+    </tr>
+      <% });
+    }; %>  
+  </table>
+</div>
 
 <%- include('footer') %>

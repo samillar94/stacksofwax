@@ -1,28 +1,33 @@
 <%- include('header', {here: 'home'}) %>
 
-<h1>Got wax?</h1>
-<p>Organise your collection, make new discoveries and connect with other enthusiasts on <img style="vertical-align:text-bottom" src="stacksofwax logo v1e1.png" alt="STACKSofWAX" height="25"></p>
+<div class="nice hero">
+  <h1>Got wax?</h1>
+  <h3>Organise your vinyl collection, make new discoveries and connect with other enthusiasts</h3>
+  <p><a class="btn btn-dark" href="/signup">Join us!</a> <a class="btn btn-dark" href="/login">Log in</a></p>
+</div>
 
-<h5>The most popular releases among members:</h5>
+<div class="nice">
+  <h5>The most popular releases among members:</h5>
 
-<div class="flex-container"> 
+  <div class="flex-container"> 
 
-  <% vinylsdata.forEach( (release)=>{   %>
-    <div>
-        <a class="btn btn-outline-info" href="/vinyl?id=<%= release.release_id %>">
-          <img class="bigcover" src="
-          <% if (release.releaseimageurl == null) { %>
-          defaultcover.png
-          <% } else { %>
-          <%= release.releaseimageurl %>
-          <% } %>
-          "/><br/>
-          <%= release.releasename %><br/>
-          <span style="font-size: smaller;"><%= release.sectionsartistnames %></span>
-        </a>
-    </div>
-  <% }); %>
+    <% vinylsdata.forEach( (release)=>{ %>
+      <div>
+          <a class="btn btn-outline-info" href="/vinyl?id=<%= release.release_id %>">
+            <img class="bigcover" src="
+            <% if (release.releaseimageurl == null || release.releaseimageurl == '') { %>
+            defaultcover.png
+            <% } else { %>
+            <%= release.releaseimageurl %>
+            <% } %>
+            " onerror="this.onerror=null; this.src='defaultcover.png'"/><br/>
+            <%= release.releasename %><br/>
+            <span style="font-size: smaller;"><%= release.sectionsartistnames %></span>
+          </a>
+      </div>
+    <% }); %>
 
+  </div>
 </div>
 
 <%- include('footer') %>

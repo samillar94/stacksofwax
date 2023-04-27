@@ -1,36 +1,33 @@
 html {
     min-height: 100%;
 }
+
 body {
     min-height: 100%;
     background: linear-gradient(0.25turn, #210121, #0a000a);
-    /* background: 
-        linear-gradient(127deg, rgb(35, 0, 83), rgba(140, 0, 255, 0) 70%),
-        linear-gradient(217deg, rgba(255,0,0,.8), rgba(255,0,0,0) 70%),
-        linear-gradient(336deg, rgba(0,0,255,.8), rgba(0,0,255,0) 70.71%); */
-    /* color: #eee; */
-    /* font-family: 'Segoe UI', sans-serif; */
 }
 
 table {
     border-color: #ffffff21 !important;
 }
 
-a {
-    /* color: #aee; */
-}
-
-/* input[type=text], input[type=textarea], input[type=password], textarea {
-    color: #210121;
-} */
-
 div.my-main {
-    /* margin: 0 auto;  */
     padding: 20px;
 }
 
-.my-menu {
-    /* margin: auto; */
+div.hero {
+    font-weight: bold;
+    text-shadow: 1px 1px 2px #000000, 0 0 1em #210121, 0 0 0.2em #0a000a;
+    padding: 150px 20px 150px 20px;
+    background-image: url(grooves\ \(BBC\).jpg);
+    background-position: center 96px;
+    background-attachment: fixed;
+    /* max-width: 1100px; */
+    margin: 0 auto;
+}
+
+div.nice {
+    margin-top: 40px;
 }
 
 div.flex-container {

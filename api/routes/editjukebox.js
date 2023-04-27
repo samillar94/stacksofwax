@@ -4,15 +4,15 @@ const connection = require("../connection.js");
 
 router.post('/', (req, res)=> { 
 
-    let { jukebox_id, jukeboxname, jukeboxdesc } = req.body;
+    let { jukebox_id, jukeboxname, jukeboxdesc, jukeboximageurl } = req.body;
 
     let editjukeboxQ = `UPDATE jukebox
-    SET jukeboxname = ?, jukeboxdesc = ?
+    SET jukeboxname = ?, jukeboxdesc = ?, jukeboximageurl = ?
     WHERE jukebox_id = ?;`;
 
     console.log(req.body)
 
-    connection.query(editjukeboxQ, [jukeboxname, jukeboxdesc, jukebox_id], (err, data)=>{
+    connection.query(editjukeboxQ, [jukeboxname, jukeboxdesc, jukeboximageurl, jukebox_id], (err, data)=>{
        
         if (err) {
             console.log("Jukebox update failed: ", err.sqlMessage);

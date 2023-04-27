@@ -1,26 +1,30 @@
 <%- include('header', {here: 'genre'}) %>
 
-<h1><%= genre.genrename %></h1>
-<h3>Releases:</h3>
+<div class="nice">
+  <h1><%= genre.genrename %></h1>
+</div>
+<div class="nice">
+  <h3>Releases:</h3>
 
-<div class="flex-container"> 
+  <div class="flex-container"> 
 
-  <% vinyls.forEach( (release)=>{   %>
-    <div>
-        <a class="btn btn-outline-info" href="/vinyl?id=<%= release.release_id %>">
-          <img class="bigcover" src="
-          <% if (release.releaseimageurl == null) { %>
-          defaultcover.png
-          <% } else { %>
-          <%= release.releaseimageurl %>
-          <% } %>
-          "/><br/>
-          <%= release.sectionnames %><br/>
-          <span style="font-size: smaller;"><%= release.sectionsartistnames %></span>
-        </a>
-    </div>
-  <% }); %>
+    <% vinyls.forEach( (release)=>{   %>
+      <div>
+          <a class="btn btn-outline-info" href="/vinyl?id=<%= release.release_id %>">
+            <img class="bigcover" src="
+            <% if (release.releaseimageurl == null) { %>
+            defaultcover.png
+            <% } else { %>
+            <%= release.releaseimageurl %>
+            <% } %>
+            " onerror="this.onerror=null; this.src='defaultcover.png'"/><br/>
+            <%= release.sectionnames %><br/>
+            <span style="font-size: smaller;"><%= release.sectionsartistnames %></span>
+          </a>
+      </div>
+    <% }); %>
 
+  </div>
 </div>
 
 <%- include('footer') %>

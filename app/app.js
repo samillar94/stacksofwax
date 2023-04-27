@@ -16,13 +16,13 @@ app.set('view engine', 'ejs');
 app.use(sessions({
     secret: process.env.SESSIONS_SECRET,
     saveUninitialized: false,
+    resave: false
     // cookie: { 
     //     maxAge: ninetyDays,
     //     secure: true, // requires HTTPS
     //     httpOnly: true, // prevents JS access
     //     sameSite: 'Lax' // match domain
     // },
-    resave: false
     })
 );
 app.use(express.urlencoded({extended: true})); 
@@ -30,7 +30,7 @@ app.use(express.urlencoded({extended: true}));
 /// my middleware
 app.use((req, res, next) => {
     res.locals.user_id = req.session.user_id;
-    res.locals.sess_valid = req.session.sess_valid;
+    res.locals.member = req.session.sess_valid;
     next();
 }); /// exposes session to ejs templates
 const globalErrHandler = require("./middleware/errorHandler");

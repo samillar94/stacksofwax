@@ -1,70 +1,80 @@
 <%- include('header', {here: 'jukebox'}) %>
-<div class="container">
-  <div class="row">
-    <div class="col-md">
-      <h1><img class="bigcover" src="
-        <% if (jukeboxdata.jukeboximageurl == null) { %>
-        defaultjuke.png
-        <% } else { %>
-        <%= jukeboxdata.jukeboximageurl %>
-        <% } %>
-        "/><%= jukeboxdata.jukeboxname %></h1>
-      <h3><%= jukeboxdata.jukeboxdesc %></h3>
-      <p>Created by 
-        <a class="btn btn-outline-info" href="/collector?id=<%= jukeboxdata.user_id %>">
-          <img class="minipic" src="
-            <% if (jukeboxdata.userimageurl == null) { %>
-            defaultavatar.png
-            <% } else { %>
-            <%= jukeboxdata.userimageurl %>
-            <% } %>
-            "/><%= jukeboxdata.username %>
-        </a>
-      </p>
-    </div>
-    <div class="col-md-auto">
-      <form method="POST" action="/togglelike">
-         <div style="text-align:right">
-          <% if (member) { %>
-          <input type="hidden" name="jukebox_id" value="<%= jukeboxdata.jukebox_id %>">
-          <input type="submit" class="btn btn-<% if(likebutton=="Unlike") { %>outline-<% } %>warning" value="<%= likebutton %>">
-          <% } %><br/>
-          <b>Liked by <% if(likebutton=="Unlike") { %>you and<br/><%= likesdata.length-1 %> other<% } else { %><br/><%= likesdata.length %><% } %> collectors</b>
+
+<div class="nice">
+  <div class="container">
+    <div class="row">
+      <div class="col-md">
+        <h1><img class="bigcover" src="
+          <% if (jukeboxdata.jukeboximageurl == null) { %>
+          defaultjuke.png
+          <% } else { %>
+          <%= jukeboxdata.jukeboximageurl %>
+          <% } %>
+          "/><%= jukeboxdata.jukeboxname %></h1>
+        <h3><%= jukeboxdata.jukeboxdesc %></h3>
+        <p>Created by 
+          <a class="btn btn-outline-info" href="/collector?id=<%= jukeboxdata.user_id %>">
+            <img class="minipic" src="
+              <% if (jukeboxdata.userimageurl == null || jukeboxdata.jukeboximageurl == '') { %>
+              defaultavatar.png
+              <% } else { %>
+              <%= jukeboxdata.userimageurl %>
+              <% } %>
+              "/><%= jukeboxdata.username %>
+          </a>
+        </p>
+      </div>
+      <div class="col-md-auto">
+        <div style="text-align:right">
+          <form method="POST" action="/togglelike">
+            <% if (member) { %>
+            <input type="hidden" name="jukebox_id" value="<%= jukeboxdata.jukebox_id %>">
+            <input type="submit" class="btn btn-<% if (likebutton=="Unlike") { %>outline-<% } %>warning" value="<%= likebutton %>">
+            <% } %><br/>
+            <b>Liked by <% if (likebutton=="Unlike") { %>you and<br/><%= likesdata.length-1 %> other<% } else { %><br/><%= likesdata.length %><% } %> collectors</b><br/>
+            <% if (jukeboxdata.user_id == user_id) { %><a href="/me#jukebox<%= jukeboxdata.jukebox_id %>" class="btn btn-dark">Edit</a><% } %>
+          </form>
         </div>
-      </form>
+      </div>
     </div>
   </div>
 </div>
-<h3>Wax</h3>
-<% if(jukevinylsdata) jukevinylsdata.forEach( (copy)=>{   %>
-  <a class="btn btn-outline-info" href="/vinyl?id=<%= copy.release_id %>"
-    ><img class="minicover" src="
-    <% if (copy.releaseimageurl == null) { %>
-    defaultcover.png
-    <% } else { %>
-    <%= copy.releaseimageurl %>
-    <% } %>
-    "/> <%= copy.releasename %> <span style="font-size: small">#<%= copy.copy_id %></span></a>
-<% }); %>
 
-<h3>Reviews</h3>
-<table class="table">
-  <% if (member) { %>
-  <form method="POST" action="/addreview">
-  <tr>
-    <input type="hidden" name="jukebox_id" value="<%= jukeboxdata.jukebox_id %>">
-    <td><textarea name="reviewtext" rows="4" cols="50" placeholder="Nice combo right? Leave a comment."></textarea></td>
-    <td style="text-align: right"><input type="submit" class="btn btn-outline-success" value="Post" /></td>
-  </tr>
-  </form>
-  <% } %>
-  <% if (reviewsdata) reviewsdata.forEach((review) =>{ %>
-  <tr>
-    <td><%= review.reviewtext %></td>
-    <td><%= review.username %></td>
-  </tr>
+<div class="nice">
+  <h3>Wax</h3>
+  <% if(jukevinylsdata) jukevinylsdata.forEach( (copy)=>{   %>
+    <a class="btn btn-outline-info" href="/vinyl?id=<%= copy.release_id %>"
+      ><img class="minicover" src="
+      <% if (copy.releaseimageurl == null || copy.releaseimageurl == '') { %>
+      defaultcover.png
+      <% } else { %>
+      <%= copy.releaseimageurl %>
+      <% } %>
+      " onerror="this.onerror=null; this.src='defaultcover.png'"/> <%= copy.releasename %> <span style="font-size: small">#<%= copy.copy_id %></span></a>
   <% }); %>
-</table>
+</div>
+
+<div class="nice">
+  <h3>Reviews</h3>
+  <table class="table">
+    <% if (member) { %>
+    <form method="POST" action="/addreview">
+    <tr>
+      <input type="hidden" name="jukebox_id" value="<%= jukeboxdata.jukebox_id %>">
+      <td><textarea name="reviewtext" rows="4" cols="50" placeholder="Nice combo right? Leave a comment."></textarea></td>
+      <td style="text-align: right"><input type="submit" class="btn btn-outline-success" value="Post" /></td>
+    </tr>
+    </form>
+    <% } %>
+    <% if (reviewsdata) reviewsdata.forEach((review) =>{ %>
+    <tr>
+      <td><%= review.reviewtext %></td>
+      <td><%= review.username %></td>
+    </tr>
+    <% }); %>
+  </table>
+</div>
+
 
 
 <%- include('footer') %> 

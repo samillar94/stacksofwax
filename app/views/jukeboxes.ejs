@@ -1,25 +1,27 @@
 <%- include('header', {here: 'jukeboxes'}) %>
+<div class="nice">
+  <h1>Jukeboxes</h1>
+  <h5>Spread the wax! Vinyl long-long-playlists curated by our members</h5>
+</div>
 
-<h1>Jukeboxes</h1>
+<div class="nice">
+  <div class="flex-container"> 
 
-<h5>Spread the wax! Vinyl long-long-playlists curated by our members</h5>
+    <% if (jukeboxesdata) jukeboxesdata.forEach( (jukebox)=>{   %>
+      <div>
+        <a class="btn btn-outline-info" href="/jukebox?id=<%= jukebox.jukebox_id %>"><img class="bigcover" src="
+          <% if (jukebox.jukeboximageurl == null || jukebox.jukeboximageurl == '') { %>
+          defaultjuke.png
+          <% } else { %>
+          <%= jukebox.jukeboximageurl %>
+          <% } %>
+          " onerror="this.onerror=null; this.src='defaultjuke.png'"/><br/>
+          <%= jukebox.jukeboxname %><br/>
+          <span style="font-size: smaller;"><%= jukebox.username %></span></a>
+      </div>
+    <% }); %>
 
-<div class="flex-container"> 
-
-  <% if (jukeboxesdata) jukeboxesdata.forEach( (jukebox)=>{   %>
-    <div>
-      <a class="btn btn-outline-info" href="/jukebox?id=<%= jukebox.jukebox_id %>"><img class="bigcover" src="
-        <% if (jukebox.jukeboximageurl == null) { %>
-        defaultjuke.png
-        <% } else { %>
-        <%= jukebox.jukeboximageurl %>
-        <% } %>
-        "/><br/>
-        <%= jukebox.jukeboxname %><br/>
-        <span style="font-size: smaller;"><%= jukebox.username %></span></a>
-    </div>
-  <% }); %>
-
+  </div>
 </div>
 
 <%- include('footer') %>

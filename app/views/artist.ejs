@@ -1,30 +1,32 @@
 <%- include('header', {here: 'artist'}) %>
-
-<h1><img class="bigpic" src="
-  <% if (artist.artistimageurl == null) { %>
-  defaultartist.png
-  <% } else { %>
-  <%= artist.artistimageurl %>
-  <% } %>
-  "/><%= artist.artistname %></h1>
-<p><%= artist.artistnotes %></p>
-<h3>Their releases:</h3>
-<div class="flex-container"> 
-  <% vinyls.forEach( (release)=>{   %>
-    <div>
-        <a class="btn btn-outline-info" href="/vinyl?id=<%= release.release_id %>">
-          <img class="bigcover" src="
-          <% if (release.releaseimageurl == null) { %>
-          defaultcover.png
-          <% } else { %>
-          <%= release.releaseimageurl %>
-          <% } %>
-          "/><br/>
-          <%= release.sectionnames %><br/>
-          <span style="font-size: smaller;"><%= release.sectionsartistnames %></span>
-        </a>
-    </div>
-  <% }); %>
+<div class="nice">
+  <h1><img class="bigpic" src="
+    <% if (artist.artistimageurl == null || artist.artistimageurl == '') { %>
+    defaultartist.png
+    <% } else { %>
+    <%= artist.artistimageurl %>
+    <% } %>
+    " onerror="this.onerror=null; this.src='defaultartist.png'"/><%= artist.artistname %></h1>
+  <p><%= artist.artistnotes %></p>
 </div>
-
+<div class="nice">
+  <h3>Their releases:</h3>
+  <div class="flex-container"> 
+    <% vinyls.forEach( (release)=>{   %>
+      <div>
+          <a class="btn btn-outline-info" href="/vinyl?id=<%= release.release_id %>">
+            <img class="bigcover" src="
+            <% if (release.releaseimageurl == null || release.releaseimageurl == '') { %>
+            defaultcover.png
+            <% } else { %>
+            <%= release.releaseimageurl %>
+            <% } %>
+            " onerror="this.onerror=null; this.src='defaultcover.png'"/><br/>
+            <%= release.sectionnames %><br/>
+            <span style="font-size: smaller;"><%= release.sectionsartistnames %></span>
+          </a>
+      </div>
+    <% }); %>
+  </div>
+</div>
 <%- include('footer') %>

@@ -1,17 +1,16 @@
 <%- include('header', {here: 'genres'}) %>
 
-<h1>Genres</h1>
+<div class="nice">
+  <h1>Genres</h1>
+  <div class="flex-container"> 
 
-<!-- <h5>Explore our vinyl database by genre</h5> -->
+    <% if (genres) genres.forEach( (genre)=>{   %>
+      <div>
+        <a class="btn btn-outline-info" href="/genre?handle=<%= genre.genrehandle %>"><%= genre.genrename %></a>
+      </div>
+    <% }); %>
 
-<div class="flex-container"> 
-
-  <% if (genres) genres.forEach( (genre)=>{   %>
-    <div>
-      <a class="btn btn-outline-info" href="/genre?handle=<%= genre.genrehandle %>"><%= genre.genrename %></a>
-    </div>
-  <% }); %>
-
+  </div>
 </div>
 
 <%- include('footer') %>

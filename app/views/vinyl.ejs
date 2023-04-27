@@ -1,83 +1,88 @@
 <%- include('header', {here: 'vinyl'}) %>
-<div class="container">
-  <div class="row">
-    <div class="col-lg-auto">
-      <h1><img class="bigcover" src="
-        <% if (vinyldata.releaseimageurl == null) { %>
-        defaultcover.png
+
+<div class="nice row">
+  <div class="col-lg-auto">
+    <h1><img class="bigcover" src="
+      <% if (vinyldata.releaseimageurl == null || vinyldata.releaseimageurl == '') { %>
+      defaultcover.png
+      <% } else { %>
+      <%= vinyldata.releaseimageurl %>
+      <% } %>
+      " onerror="this.onerror=null; this.src='defaultcover.png'"/><%= vinyldata.releasename %></h1>
+    <% if (vinyldata.vinyls>1) { %><p><%= vinyldata.vinyls %>-vinyl release</p><% } %>
+    <% vinyldata.sections.forEach(section => { %>
+      <h2><% if (section.sectionname != vinyldata.releasename) { %><%= section.sectionname %> <% } %><% section.artists.forEach(artist => { %><a class="btn btn-outline-info" href="/artist?id=<%= artist.artist_id %>"><img class="minipic" src="
+        <% if (artist.artistimageurl == null || artist.artistimageurl == '') { %>
+        defaultartist.png
         <% } else { %>
-        <%= vinyldata.releaseimageurl %>
-        <% } %>
-        "/><%= vinyldata.releasename %></h1>
-      <% if (vinyldata.vinyls>1) { %><p><%= vinyldata.vinyls %>-vinyl release</p><% } %>
-      <% vinyldata.sections.forEach(section => { %>
-        <h2><% if (section.sectionname != vinyldata.releasename) { %><%= section.sectionname %> <% } %><% section.artists.forEach(artist => { %><a class="btn btn-outline-info" href="/artist?id=<%= artist.artist_id %>"><img class="minipic" src="
-          <% if (artist.artistimageurl == null) { %>
-          defaultartist.png
-          <% } else { %>
-          <%= artist.artistimageurl %>
-          <% }; %>
-          "/> <%= artist.artistname %></a> <% }); %></h2>
-        <table class="table table-sm">
-          <% section.tracks.forEach(track => { %>
-          <tr>
-            <td><%= track.trackindex %></td>
-            <td><%= track.trackname %></td>
-          </tr>
-          <% }); %>
-        </table>
-      <% }) %>
-    </div>
-    <div class="col-lg">
-      <table class="table">
+        <%= artist.artistimageurl %>
+        <% }; %>
+        " onerror="this.onerror=null; this.src='defaultartist.png'"/> <%= artist.artistname %></a> <% }); %></h2>
+      <table class="table table-sm">
+        <% section.tracks.forEach(track => { %>
         <tr>
-          <th>Year</th>
-          <td><%= vinyldata.year %></td>
+          <td><%= track.trackindex %></td>
+          <td><%= track.trackname %></td>
         </tr>
-        <tr>
-          <th>Genres</th>
-          <td><% vinyldata.genres.forEach(genre => { %><a class="btn btn-outline-info" href="/genre?handle=<%= genre.genrehandle %>"><%= genre.genrename %></a><% }) %></td>
-        </tr>
-        <tr>
-          <th>Notes</th>
-          <td><%= vinyldata.releasenotes %></td>
-        </tr>
-        <tr>
-          <th>Label</th>
-          <td>
-            <!--<a href="/label?id=<%= vinyldata.label_id %>">-->
-              <%= vinyldata.labelname %>
-            <!--</a>-->
-          </td>
-        </tr>
+        <% }); %>
       </table>
-    </div>
+    <% }) %>
+  </div>
+  <div class="col-lg">
+    <table class="table">
+      <tr>
+        <th>Year</th>
+        <td><%= vinyldata.year %></td>
+      </tr>
+      <tr>
+        <th>Genres</th>
+        <td><% vinyldata.genres.forEach(genre => { %><a class="btn btn-outline-info" href="/genre?handle=<%= genre.genrehandle %>"><%= genre.genrename %></a><% }) %></td>
+      </tr>
+      <tr>
+        <th>Notes</th>
+        <td><%= vinyldata.releasenotes %></td>
+      </tr>
+      <tr>
+        <th>Label</th>
+        <td>
+          <!--<a href="/label?id=<%= vinyldata.label_id %>">-->
+            <%= vinyldata.labelname %>
+          <!--</a>-->
+        </td>
+      </tr>
+    </table>
   </div>
 </div>
 
-
-<!-- TODO include add button and table of owned copies and comments for members -->
-
 <% if (member) { %>
 <% if(vinyldata.copies) { %>
-<h3>My copies</h3>
-<table class="table">
-  <tr>
-    <th>ID</th>
-    <th>My notes</th>
-  </tr>
-  <% vinyldata.copies.forEach(copy => { %>
-  <tr>
-    <td>#<%= copy.copy_id %></td>
-    <td><%= copy.ownercomment %></td>
-  </tr>
-  <% }) %>
-</table>
+
+<div class="nice">
+  <h3>My copies</h3>
+  <table class="table">
+    <tr>
+      <th>ID</th>
+      <th>My notes</th>
+    </tr>
+    <% vinyldata.copies.forEach(copy => { %>
+    <tr>
+      <td>#<%= copy.copy_id %></td>
+      <td><%= copy.ownercomment %></td>
+    </tr>
+    <% }) %>
+  </table>
+</div>
+
 <% } %>
-<form method="POST" action="/ihaveone">
-  <input type="hidden" id="release_id" name="release_id" value="<%= vinyldata.release_id %>">
-  <button class='btn btn-outline-success' >I have <% if (vinyldata.copies) { %>another <% } %>one</button>
-</form>
+
+<div class="nice">
+  <form method="POST" action="/ihaveone">
+    <input type="hidden" id="release_id" name="release_id" value="<%= vinyldata.release_id %>">
+    <button class='btn btn-outline-success' >I have <% if (vinyldata.copies) { %>another <% } %>one</button>
+  </form>
+  <% if (vinyldata.copies) { %> <a href="/me#vinyl<%= vinyldata.release_id %>" class="btn btn-dark">Edit copies</a><% } %>
+</div>
+
 <% } %>
 
 <%- include('footer') %>

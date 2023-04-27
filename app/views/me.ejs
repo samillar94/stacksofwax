@@ -1,214 +1,219 @@
 <%- include('header', {here: 'me'}) %>
-<div class="container">
-  <div id="MdivVD" class="row">
-    <div class="col-md">
-      <h1><img class="bigpic" src="
-        <% if (me.userimageurl == null) { %>
-        defaultavatar.png
-        <% } else { %>
-        <%= me.userimageurl %>
-        <% } %>
-        "/><%= me.username %></h1>
-      <p><%= me.bio %> </p>
-      <p><% if (me.public == 1) { %>Public<% } else { %>Private<% } %> profile</p>
-    </div>
-    <div class="col-md-auto">
-      <button class="btn btn-outline-light" onclick="editM()">Edit profile</button>
-    </div>
+
+<div id="MdivVD" class="nice row">
+  <div class="col-md">
+    <h1><img class="bigpic" src="
+      <% if (me.userimageurl == null) { %>
+      defaultavatar.png
+      <% } else { %>
+      <%= me.userimageurl %>
+      <% } %>
+      "/><%= me.username %></h1>
+    <p><%= me.bio %> </p>
+    <p><b><% if (me.public == 1) { %>Public<% } else { %>Private<% } %> profile</p></b>
   </div>
-  <div id="MdivED" style="display:none" class="row">
-    <div class="col-md">
-      <form method="POST" action="/me">
-      <input name="user_id" value="<%= me.user_id %>" type="hidden"/>
-      <table>
-        <tr>
-          <th>Username: </th>
-          <td><input name="username" value="<%= me.username %>"/></td>
-        </tr>
-        <tr>
-          <th>Profile pic URL: </th>
-          <td><input name="userimageurl" value="<%= me.userimageurl %>"/></td>
-        </tr>
-        <tr>
-          <th>Bio: </th>
-          <td><input name="bio" value="<%= me.bio %>" type="textarea" rows="3" cols="50"/></td>
-        </tr>
-        <tr>
-          <th>Public: </th>
-          <td><input type="checkbox" name="public" value="public"
-            <% if (me.public == 1) { %>checked<% } %>
-            /></td>
-        </tr>
-        <tr>
-          <th></th>
-          <td><input value="Save" type="submit" class="btn btn-outline-success"/></td>
-        </tr>
-      </table>
-      </form>
-    </div>
-    <div class="col-md-auto">
-      <button class="btn btn-outline-light" onclick="closeM()">Close</button>
-    </div>
+  <div class="col-md-auto">
+    <button class="btn btn-outline-light" onclick="editM()">Edit profile</button>
+    <a href="/collector?id=<%= user_id %>" class="btn btn-dark">My <% if (me.public == 1) { %>public <% } %>page</a>
   </div>
 </div>
-<h3>My jukeboxes</h3>
-<table class="table">
-  <tr>
-    <th>ID</th>
-    <th>Name</th>
-    <th>Description</th>
-    <th>Options</th>
-    <th>Wax</th>
-  </tr>
-  <% if(jukeboxesdata) { 
-    jukeboxesdata.forEach(jukebox => { %>
-  <tr style="border-top-width: 3px">
-    <td><%= jukebox.jukebox_id %></td>
 
-    <form method="POST" action="/editjukebox" onsubmit="return confirm('Sure you want to update this jukebox?')">
-    <input type="hidden" name="jukebox_id" value="<%= jukebox.jukebox_id %>">
-
-    <td id="JtdVN<%= jukebox.jukebox_id %>" style="display: table-cell">
-      <a href="/jukebox?id=<%= jukebox.jukebox_id %>" class="btn btn-outline-info"><img class="minicover" src="
-    <% if (jukebox.jukeboximageurl == null) { %>
-    defaultjuke.png
-    <% } else { %>
-    <%= jukebox.jukeboximageurl %>
-    <% } %>
-    "/> <%= jukebox.jukeboxname %></a>
-    </td>
-    <td id="JtdVC<%= jukebox.jukebox_id %>" style="display: table-cell"><%= jukebox.jukeboxdesc %></td>
-    <td id="JtdVB<%= jukebox.jukebox_id %>" style="display: table-cell; text-align: right">
-      <a role="button" onclick="var id = <%= jukebox.jukebox_id %>; editJ(id);" class="btn btn-outline-light">Edit</a>
-    </td>
-
-    <td id="JtdEN<%= jukebox.jukebox_id %>" style="display: none">
-      <input name="jukeboxname" value="<%= jukebox.jukeboxname %>">
-    </td>
-    <td id="JtdEC<%= jukebox.jukebox_id %>" style="display: none">
-      <textarea name="jukeboxdesc" rows="4" cols="50"><%= jukebox.jukeboxdesc %></textarea>
-    </td>
-    <td id="JtdEB<%= jukebox.jukebox_id %>" style="display: none; text-align: right">
-      <a role="button" onclick="var id = <%= jukebox.jukebox_id %>; closeJ(id);" class="btn btn-outline-light">Close</a>     
-      <input type="submit" value="Save" class="btn btn-outline-success"/> 
-
+<div id="MdivED" style="display:none" class="nice row">
+  <div class="col-md">
+    <form method="POST" action="/me">
+    <input name="user_id" value="<%= me.user_id %>" type="hidden"/>
+    <table>
+      <tr>
+        <th>Username: </th>
+        <td><input name="username" value="<%= me.username %>"/></td>
+      </tr>
+      <tr>
+        <th>Profile pic URL: </th>
+        <td><input name="userimageurl" value="<%= me.userimageurl %>"/></td>
+      </tr>
+      <tr>
+        <th>Bio: </th>
+        <td><input name="bio" value="<%= me.bio %>" type="textarea" rows="3" cols="50"/></td>
+      </tr>
+      <tr>
+        <th>Public: </th>
+        <td><input type="checkbox" name="public" value="public"
+          <% if (me.public == 1) { %>checked<% } %>
+          /></td>
+      </tr>
+      <tr>
+        <th></th>
+        <td><input value="Save" type="submit" class="btn btn-outline-success"/></td>
+      </tr>
+    </table>
     </form>
+  </div>
+  <div class="col-md-auto">
+    <button class="btn btn-outline-light" onclick="closeM()">Close</button>
+  </div>
+</div>
 
-    <form method="POST" action="/deletejukebox" onsubmit="return confirm('Sure you want to delete this jukebox?')">
+<div class="nice">
+  <h3 id="jukeboxes">My jukeboxes</h3>
+  <table class="table">
+    <tr>
+      <th>ID</th>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Options</th>
+      <th>Wax</th>
+    </tr>
+    <% if(jukeboxesdata) { 
+      jukeboxesdata.forEach(jukebox => { %>
+    <tr style="border-top-width: 3px; scroll-margin-top: 96px" id="jukebox<%= jukebox.jukebox_id %>">
+      <td><%= jukebox.jukebox_id %></td>
+
+      <form method="POST" action="/editjukebox" onsubmit="return confirm('Sure you want to update this jukebox?')">
       <input type="hidden" name="jukebox_id" value="<%= jukebox.jukebox_id %>">
-      <input type="submit" value="Delete" class="btn btn-outline-danger"/>
-    </td>
-    </form>
-    <td style="text-align:right;">
-      <% if(jukevinylsdata) jukevinylsdata.forEach( (copy)=>{   
-        if (copy.jukebox_id == jukebox.jukebox_id) { %>
-          <a class="btn btn-outline-info btn-sm" href="/vinyl?id=<%= copy.release_id %>"
-            ><img class="minicover" src="
-            <% if (copy.releaseimageurl == null) { %>
-            defaultcover.png
-            <% } else { %>
-            <%= copy.releaseimageurl %>
-            <% } %>
-            "/> <%= copy.releasename %> <span style="font-size: small">#<%= copy.copy_id %></span>
-            <form 
-            method="POST" 
-            action="/deleteselection" 
-            style="display:inline" 
-            onsubmit="return confirm('Sure you want to remove this vinyl from the jukebox?')"
-            >
-            <input type="hidden" name="jukebox_id" value="<%= copy.jukebox_id %>">
-            <input type="hidden" name="copy_id" value="<%= copy.copy_id %>">
-            <input type="submit" value="🗑️" class="btn btn-outline-danger btn-sm"></input>
-            </form>
-          </a><br/>
-      <% };
-      }); %>
-    </td>
-  </tr>
-    <% });
-  }; %>  
-  <form method="POST" action="/addjukebox">
-  <tr style="border-top-width: 3px">
-    <td>+</td>
-    <td><input name="jukeboxname" type="text" placeholder="Name it something fancy"></td>
-    <td><textarea name="jukeboxdesc" rows="4" cols="25" placeholder="255-character elevator pitch... go!"></textarea></td>
-    <td style="text-align: right"><input type="submit" value="Add" class="btn btn-outline-success"/></td>
-  </tr>
-  </form>
-</table>
 
-<h3>My wax</h3>
-<% if(copiesdata) { %>
-
-<table class="table">
-  <tr>
-    <th>Release | Copy #</th>
-    <th>Comment</th>
-    <th>Copies</th>
-    <th>Options</th>
-  </tr>
-  <% copiesdata.forEach(vinyl => { %>
-  <tr style="border-top-width: 5px">
-    <td colspan="2"><a class="btn btn-outline-info" href="/vinyl?id=<%= vinyl.release_id %>"
-      ><img class="minicover" src="
-      <% if (vinyl.releaseimageurl == null) { %>
-      defaultcover.png
+      <td id="JtdVN<%= jukebox.jukebox_id %>" style="display: table-cell">
+        <a href="/jukebox?id=<%= jukebox.jukebox_id %>" class="btn btn-outline-info"><img class="minicover" src="
+      <% if (jukebox.jukeboximageurl == null || jukebox.jukeboximageurl == '') { %>
+      defaultjuke.png
       <% } else { %>
-      <%= vinyl.releaseimageurl %>
+      <%= jukebox.jukeboximageurl %>
       <% } %>
-      "/> <%= vinyl.releasename %></a></td>
-    <td><%= vinyl.copies.length %></td>
-  </tr>
-  <% vinyl.copies.forEach(copy => { %>
-  <form method="POST" action="/editcopy" onsubmit="return confirm('Sure you want to save changes to this copy?')">
-  <tr style="border-top-width: 3px">
+      " onerror="this.onerror=null; this.src='defaultjuke.png'"/> <%= jukebox.jukeboxname %></a>
+      </td>
+      <td id="JtdVC<%= jukebox.jukebox_id %>" style="display: table-cell"><%= jukebox.jukeboxdesc %></td>
+      <td id="JtdVB<%= jukebox.jukebox_id %>" style="display: table-cell; text-align: right">
+        <a role="button" onclick="var id = <%= jukebox.jukebox_id %>; editJ(id);" class="btn btn-outline-light">Edit</a>
+      </td>
 
-    <td><span style="font-size: small">#<%= copy.copy_id %></span></td>
-    <td id="CtdVC<%= copy.copy_id %>" style="display: table-cell;" colspan="2"><%= copy.ownercomment %></td>
-    <td id="CtdEC<%= copy.copy_id %>" style="display: none;" colspan="2">
-      <textarea name="ownercomment" rows="4" cols="50"><%= copy.ownercomment %></textarea>
-    </td>
-    <td id="CtdVB<%= copy.copy_id %>" style="display: table-cell; text-align: right">
-      <a role="button" onclick="var id = <%= copy.copy_id %>; editC(id);" class="btn btn-outline-light">Edit</a>
-    </td>
-    <td id="CtdEB<%= copy.copy_id %>" style="display: none; text-align: right">
-      <a role="button" onclick="var id = <%= copy.copy_id %>; closeC(id);" class="btn btn-outline-light">Close</a>
-      <input type="hidden" id="copy_id" name="copy_id" value="<%= copy.copy_id %>">
-      <input type="submit" name="toupdate" value="Save" class="btn btn-outline-success"/>
+      <td id="JtdEN<%= jukebox.jukebox_id %>" style="display: none">
+        <input name="jukeboxname" value="<%= jukebox.jukeboxname %>">
+        <input name="jukeboximageurl" value="<%= jukebox.jukeboximageurl %>">
+      </td>
+      <td id="JtdEC<%= jukebox.jukebox_id %>" style="display: none">
+        <textarea name="jukeboxdesc" rows="4" cols="50"><%= jukebox.jukeboxdesc %></textarea>
+      </td>
+      <td id="JtdEB<%= jukebox.jukebox_id %>" style="display: none; text-align: right">
+        <a role="button" onclick="var id = <%= jukebox.jukebox_id %>; closeJ(id);" class="btn btn-outline-light">Close</a>     
+        <input type="submit" value="Save" class="btn btn-outline-success"/> 
+
       </form>
-      <form method="POST" action="/deletecopy" onsubmit="return confirm('Sure you want to remove this copy from the site?')">
-      <input type="hidden" id="copy_id" name="copy_id" value="<%= copy.copy_id %>">
-      <input type="submit" name="todelete" value="Delete" class="btn btn-outline-danger"/>
-      </form>          
-    </td>    
 
-  </tr>
-  <tr id="CtrEJ<%= copy.copy_id %>" style="display: none">
-    <form method="POST" action="/popjukebox">
-    <input type="hidden" name="copy_id" value="<%= copy.copy_id %>">
-    <td colspan="3">
-      <select name="jukebox_id">
-        <option value="" selected>Add your copy to a jukebox…</option>
-        <% if(jukeboxesdata) jukeboxesdata.forEach( jukebox => { %>
-        <option value="<%= jukebox.jukebox_id %>"><%= jukebox.jukeboxname %></option>
-        <% }); %>
-      </select>
-    </td>
-    <td style="text-align: right">
-      <input type="submit" value="Add" class="btn btn-outline-success"/>
-    </td>
+      <form method="POST" action="/deletejukebox" onsubmit="return confirm('Sure you want to delete this jukebox?')">
+        <input type="hidden" name="jukebox_id" value="<%= jukebox.jukebox_id %>">
+        <input type="submit" value="Delete" class="btn btn-outline-danger"/>
+      </td>
+      </form>
+      <td style="text-align:right;">
+        <% if(jukevinylsdata) jukevinylsdata.forEach( (copy)=>{   
+          if (copy.jukebox_id == jukebox.jukebox_id) { %>
+            <a class="btn btn-outline-info btn-sm" href="/vinyl?id=<%= copy.release_id %>"
+              ><img class="minicover" src="
+              <% if (copy.releaseimageurl == null || copy.releaseimageurl == '') { %>
+              defaultcover.png
+              <% } else { %>
+              <%= copy.releaseimageurl %>
+              <% } %>
+              "/> <%= copy.releasename %> <span style="font-size: small">#<%= copy.copy_id %></span>
+              <form 
+              method="POST" 
+              action="/deleteselection" 
+              style="display:inline" 
+              onsubmit="return confirm('Sure you want to remove this vinyl from the jukebox?')"
+              >
+              <input type="hidden" name="jukebox_id" value="<%= copy.jukebox_id %>">
+              <input type="hidden" name="copy_id" value="<%= copy.copy_id %>">
+              <input type="submit" value="🗑️" class="btn btn-outline-danger btn-sm"></input>
+              </form>
+            </a><br/>
+        <% };
+        }); %>
+      </td>
+    </tr>
+      <% });
+    }; %>  
+    <form method="POST" action="/addjukebox">
+    <tr style="border-top-width: 3px">
+      <td>+</td>
+      <td><input name="jukeboxname" type="text" placeholder="Name it something fancy"></td>
+      <td><textarea name="jukeboxdesc" rows="4" cols="25" placeholder="255-character elevator pitch... go!"></textarea></td>
+      <td style="text-align: right"><input type="submit" value="Add" class="btn btn-outline-success"/></td>
+    </tr>
     </form>
-  </tr>
-  <% }); %>
+  </table>
+</div>
 
-  <% }); %>
+<div class="nice">
+  <h3 id="wax">My wax</h3>
+  <% if(copiesdata) { %>
 
-  
-</table>
+  <table class="table">
+    <tr>
+      <th>Release | Copy ID</th>
+      <th>Comment</th>
+      <th>Copies</th>
+      <th>Options</th>
+    </tr>
+    <% copiesdata.forEach(vinyl => { %>
+    <tr style="border-top-width: 5px; scroll-margin-top: 96px" id="vinyl<%= vinyl.release_id %>">
+      <td colspan="2"><a class="btn btn-outline-info" href="/vinyl?id=<%= vinyl.release_id %>"
+        ><img class="minicover" src="
+        <% if (vinyl.releaseimageurl == null || vinyl.releaseimageurl == '') { %>
+        defaultcover.png
+        <% } else { %>
+        <%= vinyl.releaseimageurl %>
+        <% } %>
+        " onerror="this.onerror=null; this.src='defaultcover.png'"/> <%= vinyl.releasename %></a></td>
+      <td><%= vinyl.copies.length %></td>
+    </tr>
+    <% vinyl.copies.forEach(copy => { %>
+    <form method="POST" action="/editcopy" onsubmit="return confirm('Sure you want to save changes to this copy?')">
+    <tr style="border-top-width: 3px">
 
-<% }; %>
+      <td><span style="font-size: small">#<%= copy.copy_id %></span></td>
+      <td id="CtdVC<%= copy.copy_id %>" style="display: table-cell;" colspan="2"><%= copy.ownercomment %></td>
+      <td id="CtdEC<%= copy.copy_id %>" style="display: none;" colspan="2">
+        <textarea name="ownercomment" rows="4" cols="50"><%= copy.ownercomment %></textarea>
+      </td>
+      <td id="CtdVB<%= copy.copy_id %>" style="display: table-cell; text-align: right">
+        <a role="button" onclick="var id = <%= copy.copy_id %>; editC(id);" class="btn btn-outline-light">Edit</a>
+      </td>
+      <td id="CtdEB<%= copy.copy_id %>" style="display: none; text-align: right">
+        <a role="button" onclick="var id = <%= copy.copy_id %>; closeC(id);" class="btn btn-outline-light">Close</a>
+        <input type="hidden" id="copy_id" name="copy_id" value="<%= copy.copy_id %>">
+        <input type="submit" name="toupdate" value="Save" class="btn btn-outline-success"/>
+        </form>
+        <form method="POST" action="/deletecopy" onsubmit="return confirm('Sure you want to remove this copy from the site?')">
+        <input type="hidden" id="copy_id" name="copy_id" value="<%= copy.copy_id %>">
+        <input type="submit" name="todelete" value="Delete" class="btn btn-outline-danger"/>
+        </form>          
+      </td>    
 
-<a href="/collector?id=<%= user_id %>" class="btn btn-dark">My page</a>
+    </tr>
+    <tr id="CtrEJ<%= copy.copy_id %>" style="display: none">
+      <form method="POST" action="/popjukebox">
+      <input type="hidden" name="copy_id" value="<%= copy.copy_id %>">
+      <td colspan="3">
+        <select name="jukebox_id">
+          <option value="" selected>Add your copy to a jukebox…</option>
+          <% if(jukeboxesdata) jukeboxesdata.forEach( jukebox => { %>
+          <option value="<%= jukebox.jukebox_id %>"><%= jukebox.jukeboxname %></option>
+          <% }); %>
+        </select>
+      </td>
+      <td style="text-align: right">
+        <input type="submit" value="Add" class="btn btn-outline-success"/>
+      </td>
+      </form>
+    </tr>
+    <% }); %>
+
+    <% }); %>
+
+    
+  </table>
+
+  <% }; %>
+</div>
 
 <%- include('footer') %>
 

@@ -57,7 +57,6 @@ router.get('/', (req, res)=> {
                                 reviewsdata,
                                 likesdata,
                                 likebutton,
-                                member: req.session.sess_valid,
                                 query: req.query
                             });
                         } else {

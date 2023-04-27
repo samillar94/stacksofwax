@@ -1,24 +1,26 @@
 <%- include('header', {here: 'home'}) %>
 
-<h1>Search results: <%= query.nameS %></h1>
+<div class="nice">
+  <h1>Search results: <%= query.nameS %></h1>
 
-<div class="flex-container"> 
+  <div class="flex-container"> 
 
-  <% vinylsdata.sort((v1, v2) => {
-    return v1.releasename.localeCompare(v2.releasename);
-  });
-    vinylsdata.forEach( (release)=>{ %>
-    <div>
-      <a role="button" class="btn btn-outline-info" href="/vinyl?id=<%= release.release_id %>"><img class="minicover" src="
-        <% if (release.releaseimageurl == null) { %>
-        defaultcover.png
-        <% } else { %>
-        <%= release.releaseimageurl %>
-        <% } %>
-        "/> <%= release.releasename %></a>
-    </div>
-  <% }); %>
+    <% vinylsdata.sort((v1, v2) => {
+      return v1.releasename.localeCompare(v2.releasename);
+    });
+      vinylsdata.forEach( (release)=>{ %>
+      <div>
+        <a role="button" class="btn btn-outline-info" href="/vinyl?id=<%= release.release_id %>"><img class="minicover" src="
+          <% if (release.releaseimageurl == null) { %>
+          defaultcover.png
+          <% } else { %>
+          <%= release.releaseimageurl %>
+          <% } %>
+          " onerror="this.onerror=null; this.src='defaultcover.png'"/> <%= release.releasename %></a>
+      </div>
+    <% }); %>
 
+  </div>
 </div>
 
 <%- include('footer') %>
