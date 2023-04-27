@@ -14,37 +14,35 @@ router.get('/', (req, res) => {
         let vinylsEP = `http://localhost:${API_PORT}/vinyls?genrehandle=${genrehandle}`;
 
         axios.get(genreEP)
-            .then((results1) => {
+        .then((results1) => {
 
-                let genre = results1.data.goodstuff;
+            let genre = results1.data.goodstuff;
 
-                if (results1.data.badstuff) console.log(results1.data.badstuff);
+            if (results1.data.badstuff) console.log(results1.data.badstuff);
 
-                if (genre) {
+            if (genre) {
 
-                    axios.get(vinylsEP)
-                        .then((results2) => {
+                axios.get(vinylsEP)
+                .then((results2) => {
 
-                            let vinyls = results2.data.goodstuff;
+                    let vinyls = results2.data.goodstuff;
 
-                            if (results2.data.badstuff) console.log(results2.data.badstuff); 
+                    if (results2.data.badstuff) console.log(results2.data.badstuff); 
 
-                            res.render('genre', {
-                                title: genre.genrename+' - Genre',
-                                genre,
-                                vinyls,
-                                member: req.session.sess_valid, 
-                                query: req.query
-                            });
+                    res.render('genre', {
+                        title: genre.genrename+' - Genre',
+                        genre,
+                        vinyls
+                    });
 
-                        });
+                });
 
-                } else {
-                    console.log("Genre route received no genre data from the API.");
-                    console.log("Response:", results1.data.badstuff);
-                    res.redirect('/genres?message=nogenre');
-                };
-            });
+            } else {
+                console.log("Genre route received no genre data from the API.");
+                console.log("Response:", results1.data.badstuff);
+                res.redirect('/genres?message=nogenre');
+            };
+        });
 
     } catch (err) {
 

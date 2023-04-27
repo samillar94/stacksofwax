@@ -18,9 +18,7 @@ router.get('/', (req, res)=> {
             if (results.data.badstuff) console.log(results.data.badstuff)
             res.render('collectors', {
                 title: 'Collectors', 
-                collectorsdata: collectorsdata, 
-                member: req.session.sess_valid,
-                query: req.query
+                collectorsdata
             });  
     
         });

@@ -40,9 +40,7 @@ router.get('/', (req, res)=> {
                             title: `${userdata.username} - Collector`, 
                             userdata, 
                             ownedvinylsdata, 
-                            jukeboxesdata,
-                            member: req.session.sess_valid,
-                            query: req.query
+                            jukeboxesdata
                         });  
 
                     } else {

@@ -14,12 +14,10 @@ router.get('/', (req, res)=> {
         .then((results)=>{
             
             let artists = results.data.goodstuff;
-            
+
             res.render('artists', {
                 title: 'Artists', 
-                artists, 
-                member: req.session.sess_valid,
-                query: req.query
+                artists
             }); 
 
         });

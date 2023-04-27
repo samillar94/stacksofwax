@@ -19,9 +19,7 @@ router.get('/', (req, res)=> {
             let jukeboxesdata = results.data.goodstuff;
             res.render('jukeboxes', {
                 title: 'Jukeboxes', 
-                jukeboxesdata: jukeboxesdata, 
-                member: req.session.sess_valid,
-                query: req.query
+                jukeboxesdata
             }); 
 
         });

@@ -56,8 +56,7 @@ router.get('/', (req, res)=> {
                                 jukevinylsdata,
                                 reviewsdata,
                                 likesdata,
-                                likebutton,
-                                query: req.query
+                                likebutton
                             });
                         } else {
                             console.log("Jukebox route received no release data from the API.");

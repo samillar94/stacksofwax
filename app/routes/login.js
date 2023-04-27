@@ -48,8 +48,7 @@ router.post('/', (req, res)=> {
             let goodstuff = results.data.goodstuff;
     
             if (goodstuff) {
-                req.session.user_id = goodstuff.user_id; // shift these to cookies
-                // res.cookie("user_id", goodstuff.user_id);
+                req.session.user_id = goodstuff.user_id; 
                 console.log("...succeeded.");
                 res.redirect("/goodlogin");
             } else {

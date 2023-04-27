@@ -16,9 +16,7 @@ router.get('/', (req, res)=> {
             let genres = results.data.goodstuff;
             res.render('genres', {
                 title: 'Genres', 
-                genres, 
-                member: req.session.sess_valid,
-                query: req.query
+                genres
             }); 
 
         });

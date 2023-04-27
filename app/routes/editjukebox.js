@@ -26,7 +26,7 @@ router.post('/', (req, res)=> {
         .then((results)=>{
 
             if (from.includes('http://localhost:3000/me')) res.redirect('me'); 
-            // if (from == 'http://localhost:3000/jukeboxes') res.redirect('jukeboxes'); /// need to sort this out
+            // if (from == 'http://localhost:3000/jukeboxes') res.redirect('jukeboxes'); 
     
         });
 
