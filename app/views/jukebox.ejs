@@ -40,9 +40,12 @@
   </div>
 </div>
 
-<% if(jukevinylsdata) jukevinylsdata.forEach( (copy)=>{   %>
+<% if(jukevinylsdata) { %>
 <div class="nice">
   <h3>Wax</h3>
+
+<% jukevinylsdata.forEach( (copy)=>{   %>
+
     <a class="btn btn-outline-info" href="/vinyl?id=<%= copy.release_id %>"
       ><img class="minicover" src="
       <% if (copy.releaseimageurl == null || copy.releaseimageurl == '') { %>
@@ -52,7 +55,7 @@
       <% } %>
       " onerror="this.onerror=null; this.src='defaultcover.png'"/> <%= copy.releasename %> <span style="font-size: small">#<%= copy.copy_id %></span></a>
 </div>
-<% }); %>
+<% })}; %>
 
 <div class="nice">
   <h3>Reviews</h3>
