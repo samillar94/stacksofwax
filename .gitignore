@@ -1,6 +1,6 @@
 STACKSOFWAX - Shortcut.lnk
 *.sql
-report
+report/
 
 # Logs
 logs
