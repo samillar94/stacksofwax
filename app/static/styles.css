@@ -16,14 +16,18 @@ div.my-main {
 }
 
 div.hero {
-    font-weight: bold;
-    text-shadow: 1px 1px 2px #000000, 0 0 1em #210121, 0 0 0.2em #0a000a;
     padding: 150px 20px 150px 20px;
     background-image: url(grooves\ \(BBC\).jpg);
     background-position: center 96px;
     background-attachment: fixed;
     /* max-width: 1100px; */
     margin: 0 auto;
+}
+
+div.hero :not(a) {
+    color: #210121;
+    font-weight: bold;
+    text-shadow: 1px 1px 2px #ffffff, 0 0 1em #ff5dff, 0 0 0.2em #ffbbff;
 }
 
 div.nice {
