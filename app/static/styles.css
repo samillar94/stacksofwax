@@ -20,14 +20,13 @@ div.hero {
     background-image: url(grooves\ \(BBC\).jpg);
     background-position: center 96px;
     background-attachment: fixed;
-    /* max-width: 1100px; */
     margin: 0 auto;
 }
 
-div.hero :not(a) {
+div.hero :not(a.btn) {
     color: #210121;
     font-weight: bold;
-    text-shadow: 1px 1px 2px #ffffff, 0 0 1em #ff5dff, 0 0 0.2em #ffbbff;
+    text-shadow: 1px 1px 2px #ffffff, 0 0 0.2em #ffecff, 0 0 1em #ffa6ff;
 }
 
 div.nice {

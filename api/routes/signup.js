@@ -6,9 +6,6 @@ router.post('/', (req, res)=> {
 
     let username = req.body.username;
     let passwordraw = req.body.passwordraw; 
-    /// TODO ensure non blank password (client JS)
-    /// TODO ensure passwords match (client JS)
-    /// TODO ensure unique username goes to API (client JS)
 
     let signupQ = `#Create a random code, six chars in length
     SET @salt = SUBSTRING(SHA1(RAND()), 1, 6);

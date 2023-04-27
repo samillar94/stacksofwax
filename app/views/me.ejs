@@ -3,12 +3,12 @@
 <div id="MdivVD" class="nice row">
   <div class="col-md">
     <h1><img class="bigpic" src="
-      <% if (me.userimageurl == null) { %>
+      <% if (me.userimageurl == null || me.userimageurl =='') { %>
       defaultavatar.png
       <% } else { %>
       <%= me.userimageurl %>
       <% } %>
-      "/><%= me.username %></h1>
+      " onerror="this.onerror=null; this.src='defaultjuke.png'"/><%= me.username %></h1>
     <p><%= me.bio %> </p>
     <p><b><% if (me.public == 1) { %>Public<% } else { %>Private<% } %> profile</p></b>
   </div>

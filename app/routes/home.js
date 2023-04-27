@@ -8,10 +8,7 @@ router.get('/', (req, res, next)=> {
 
     try {
 
-        let from = req.headers.referer; /// could use this to display page differently 
-
         let vinylsEP = `http://localhost:${API_PORT}/vinyls`;
-        /// TODO top n vinyls
 
         axios.get(vinylsEP)
         .then((results)=>{
@@ -19,9 +16,7 @@ router.get('/', (req, res, next)=> {
             let vinylsdata = results.data.goodstuff;
             res.render('home', {
                 title: 'Vinyls', 
-                vinylsdata: vinylsdata, 
-                member: req.session.sess_valid,
-                query: req.query
+                vinylsdata
             }); 
 
         });

@@ -8,7 +8,7 @@ router.get('/', (req, res)=> {
 
     try {
 
-        /// code from inside app.get here (pull axios.get.then.catch into catch block below)
+        /// code 
 
     } catch (err) {
 
@@ -23,7 +23,7 @@ router.post('/', (req, res)=> {
 
     try {
 
-        /// code from inside app.post here (pull axios.post.then.catch into catch block below)
+        /// code 
 
     } catch (err) {
 

@@ -11,10 +11,8 @@ router.post('/', (req, res)=> {
         let user_id = req.session.user_id;
         let jukebox_id = req.body.jukebox_id;
         let copy_id = req.body.copy_id;
-        console.log(req.body);
 
         let from = req.headers.referer; /// TODO use this to send user back whence they came 
-        console.log(from);
 
         const postdata = {jukebox_id, copy_id, user_id};
 

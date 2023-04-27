@@ -25,7 +25,7 @@ for (const file of routeFiles) {
 	const route = require(`./routes/${file}`);
 	app.use(`/${file.slice(0,-3)}`, route);
 };
-console.log("Routes:", routeFiles);
+// console.log("Routes:", routeFiles);
 
 /// late middleware
 app.use(globalErrHandler);

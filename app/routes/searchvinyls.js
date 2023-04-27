@@ -8,8 +8,6 @@ router.get('/', (req, res)=> {
 
     try {
 
-        let from = req.headers.referer; /// could use this to display page differently 
-
         let { nameS } = req.query;
 
         let searchvinylsEP = `http://localhost:${API_PORT}/searchvinyls?nameS=${nameS}`;
