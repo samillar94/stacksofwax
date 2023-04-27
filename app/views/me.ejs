@@ -1,45 +1,55 @@
 <%- include('header', {here: 'me'}) %>
-<div id="MdivVD">
-  <h1><img class="bigpic" src="
-    <% if (me.userimageurl == null) { %>
-    defaultavatar.png
-    <% } else { %>
-    <%= me.userimageurl %>
-    <% } %>
-    "/><%= me.username %></h1>
-  <p><%= me.bio %> </p>
-  <p><% if (me.public == 1) { %>Public<% } else { %>Private<% } %> profile</p>
-  <button class="btn btn-outline-light" onclick="editM()">Edit profile</button>
-</div>
-<div id="MdivED" style="display:none">
-  <form method="POST" action="/me">
-  <input name="user_id" value="<%= me.user_id %>" type="hidden"/>
-  <table>
-    <tr>
-      <th>Username: </th>
-      <td><input name="username" value="<%= me.username %>"/></td>
-    </tr>
-    <tr>
-      <th>Profile pic URL: </th>
-      <td><input name="userimageurl" value="<%= me.userimageurl %>"/></td>
-    </tr>
-    <tr>
-      <th>Bio: </th>
-      <td><input name="bio" value="<%= me.bio %>" type="textarea" rows="3" cols="50"/></td>
-    </tr>
-    <tr>
-      <th>Public: </th>
-      <td><input type="checkbox" name="public" value="public"
-        <% if (me.public == 1) { %>checked<% } %>
-        /></td>
-    </tr>
-    <tr>
-      <th></th>
-      <td><input value="Save" type="submit" class="btn btn-outline-success"/></td>
-    </tr>
-  </table>
-  </form>
-  <button class="btn btn-outline-light" onclick="closeM()">Close</button>
+<div class="container">
+  <div id="MdivVD" class="row">
+    <div class="col-md">
+      <h1><img class="bigpic" src="
+        <% if (me.userimageurl == null) { %>
+        defaultavatar.png
+        <% } else { %>
+        <%= me.userimageurl %>
+        <% } %>
+        "/><%= me.username %></h1>
+      <p><%= me.bio %> </p>
+      <p><% if (me.public == 1) { %>Public<% } else { %>Private<% } %> profile</p>
+    </div>
+    <div class="col-md-auto">
+      <button class="btn btn-outline-light" onclick="editM()">Edit profile</button>
+    </div>
+  </div>
+  <div id="MdivED" style="display:none" class="row">
+    <div class="col-md">
+      <form method="POST" action="/me">
+      <input name="user_id" value="<%= me.user_id %>" type="hidden"/>
+      <table>
+        <tr>
+          <th>Username: </th>
+          <td><input name="username" value="<%= me.username %>"/></td>
+        </tr>
+        <tr>
+          <th>Profile pic URL: </th>
+          <td><input name="userimageurl" value="<%= me.userimageurl %>"/></td>
+        </tr>
+        <tr>
+          <th>Bio: </th>
+          <td><input name="bio" value="<%= me.bio %>" type="textarea" rows="3" cols="50"/></td>
+        </tr>
+        <tr>
+          <th>Public: </th>
+          <td><input type="checkbox" name="public" value="public"
+            <% if (me.public == 1) { %>checked<% } %>
+            /></td>
+        </tr>
+        <tr>
+          <th></th>
+          <td><input value="Save" type="submit" class="btn btn-outline-success"/></td>
+        </tr>
+      </table>
+      </form>
+    </div>
+    <div class="col-md-auto">
+      <button class="btn btn-outline-light" onclick="closeM()">Close</button>
+    </div>
+  </div>
 </div>
 <h3>My jukeboxes</h3>
 <table class="table">

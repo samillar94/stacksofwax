@@ -1,25 +1,40 @@
 <%- include('header', {here: 'jukebox'}) %>
-    
-<h1><img class="bigcover" src="
-  <% if (jukeboxdata.jukeboximageurl == null) { %>
-  defaultjuke.png
-  <% } else { %>
-  <%= jukeboxdata.jukeboximageurl %>
-  <% } %>
-  "/> <%= jukeboxdata.jukeboxname %></h1>
-<h3><%= jukeboxdata.jukeboxdesc %></h3>
-<p>Created by 
-  <a class="btn btn-outline-info" href="/collector?id=<%= jukeboxdata.user_id %>">
-    <img class="minipic" src="
-          <% if (jukeboxdata.userimageurl == null) { %>
-          defaultavatar.png
-          <% } else { %>
-          <%= jukeboxdata.userimageurl %>
-          <% } %>
-          "/><%= jukeboxdata.username %>
-  </a>
-</p>
-
+<div class="container">
+  <div class="row">
+    <div class="col-md">
+      <h1><img class="bigcover" src="
+        <% if (jukeboxdata.jukeboximageurl == null) { %>
+        defaultjuke.png
+        <% } else { %>
+        <%= jukeboxdata.jukeboximageurl %>
+        <% } %>
+        "/><%= jukeboxdata.jukeboxname %></h1>
+      <h3><%= jukeboxdata.jukeboxdesc %></h3>
+      <p>Created by 
+        <a class="btn btn-outline-info" href="/collector?id=<%= jukeboxdata.user_id %>">
+          <img class="minipic" src="
+            <% if (jukeboxdata.userimageurl == null) { %>
+            defaultavatar.png
+            <% } else { %>
+            <%= jukeboxdata.userimageurl %>
+            <% } %>
+            "/><%= jukeboxdata.username %>
+        </a>
+      </p>
+    </div>
+    <div class="col-md-auto">
+      <form method="POST" action="/togglelike">
+         <div style="text-align:right">
+          <% if (member) { %>
+          <input type="hidden" name="jukebox_id" value="<%= jukeboxdata.jukebox_id %>">
+          <input type="submit" class="btn btn-<% if(likebutton=="Unlike") { %>outline-<% } %>warning" value="<%= likebutton %>">
+          <% } %><br/>
+          <b>Liked by <% if(likebutton=="Unlike") { %>you and<br/><%= likesdata.length-1 %> other<% } else { %><br/><%= likesdata.length %><% } %> collectors</b>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
 <h3>Wax</h3>
 <% if(jukevinylsdata) jukevinylsdata.forEach( (copy)=>{   %>
   <a class="btn btn-outline-info" href="/vinyl?id=<%= copy.release_id %>"
@@ -31,16 +46,6 @@
     <% } %>
     "/> <%= copy.releasename %> <span style="font-size: small">#<%= copy.copy_id %></span></a>
 <% }); %>
-
-<form method="POST" action="/togglelike">
-  <h3> 
-    <% if (member) { %>
-    <input type="hidden" name="jukebox_id" value="<%= jukeboxdata.jukebox_id %>">
-    <input type="submit" class="btn btn-<% if(likebutton=="Unlike") { %>outline-<% } %>warning" value="<%= likebutton %>">
-    <% } %>
-    Liked by <% if(likebutton=="Unlike") { %>you and <%= likesdata.length-1 %> other<% } else { %><%= likesdata.length %><% } %> collectors
-  </h3>
-</form>
 
 <h3>Reviews</h3>
 <table class="table">

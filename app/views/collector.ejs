@@ -1,27 +1,33 @@
 <%- include('header', {here: 'collector'}) %>
-
-<h1><img class="bigpic" src="
-  <% if (userdata.userimageurl == null) { %>
-  defaultavatar.png
-  <% } else { %>
-  <%= userdata.userimageurl %>
-  <% } %>
-  "/><%= userdata.username %></h1>
-
-<table class="table">
-  <tr>
-    <th>Joined</th>
-    <td><%= userdata.joindate %></td>
-  </tr>
-  <tr>
-    <th>Bio</th>
-    <td><%= userdata.bio %></td>
-  </tr>
-  <tr>
-    <th>Stack</th>
-    <td><%= userdata.stack %> vinyls collected</td>
-  </tr>
-</table>
+<div class="container">
+  <div class="row">
+    <div class="col-lg-7">
+      <h1><img class="bigpic" src="
+        <% if (userdata.userimageurl == null) { %>
+        defaultavatar.png
+        <% } else { %>
+        <%= userdata.userimageurl %>
+        <% } %>
+        "/><%= userdata.username %></h1>
+    </div>
+    <div class="col-lg-5">
+      <table class="table">
+        <tr>
+          <th>Joined</th>
+          <td><%= userdata.joindate %></td>
+        </tr>
+        <tr>
+          <th>Bio</th>
+          <td><%= userdata.bio %></td>
+        </tr>
+        <tr>
+          <th>Stack</th>
+          <td><%= userdata.stack %> vinyls collected</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>
 
 <% if(ownedvinylsdata[0]) { %>
 <h3>Their wax</h3>

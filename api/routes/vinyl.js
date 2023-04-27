@@ -7,7 +7,7 @@ router.get('/', (req, res)=> {
     let release_id = req.query.release_id;
 
     let vinylQ = `
-    SELECT release_id, releasename, year, vinyls, releasenotes, label.label_id AS label_id, labelname
+    SELECT release_id, releasename, year, vinyls, releasenotes, label.label_id AS label_id, labelname, releaseimageurl
     FROM \`release\`
     LEFT JOIN label ON release.label_id = label.label_id
     WHERE release_id = ${release_id}
