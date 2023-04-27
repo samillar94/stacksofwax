@@ -3,7 +3,6 @@ require('dotenv').config();
 const express = require("express");
 const sessions = require('express-session');
 const fs = require('fs');
-// const cookieParser = require('cookie-parser');
 
 /// app and ports 
 const app = express();
@@ -12,23 +11,17 @@ const APP_PORT = process.env.APP_PORT || 3000;
 /// their middleware 
 app.use(express.static('static'));
 app.set('view engine', 'ejs');
-// const ninetyDays = 1000 * 60 * 60 * 24 * 90;
 app.use(sessions({
     secret: process.env.SESSIONS_SECRET,
     saveUninitialized: false,
     resave: false
-    // cookie: { 
-    //     maxAge: ninetyDays,
-    //     secure: true, // requires HTTPS
-    //     httpOnly: true, // prevents JS access
-    //     sameSite: 'Lax' // match domain
-    // },
     })
 );
 app.use(express.urlencoded({extended: true})); 
 
 /// my middleware
 app.use((req, res, next) => {
+    res.locals.query = req.query;
     res.locals.user_id = req.session.user_id;
     res.locals.member = req.session.sess_valid;
     next();

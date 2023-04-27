@@ -8,13 +8,12 @@ router.get('/', (req, res)=>{
 
     res.render('signup', {
         title: 'Sign up', 
-        member: false,
-        query: req.query
+        member: false
     });
 
 });
 
-router.post('/', (req, res, next)=> { 
+router.post('/', (req, res)=> { 
 
     try {
 

@@ -46,17 +46,15 @@ router.get('/', (req, res)=> {
                                 res.render('me', {
                                     title: `Me`, 
                                     me,
-                                    copiesdata: copiesdata, 
-                                    jukeboxesdata: jukeboxesdata,
-                                    jukevinylsdata,
-                                    member: req.session.sess_valid,
-                                    query: req.query
+                                    copiesdata, 
+                                    jukeboxesdata,
+                                    jukevinylsdata
                                 });
 
                             } else {
 
                                 console.log("Me route received no user data from the API.")
-                                res.redirect('/');
+                                res.redirect('/?message=nouserdata');
 
                             }
                         });
